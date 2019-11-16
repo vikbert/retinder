@@ -1,0 +1,31 @@
+{
+  "files": {
+    "main.css": "/static/css/main.ba1a2d62.chunk.css",
+    "main.js": "/static/js/main.b864e2fb.chunk.js",
+    "main.js.map": "/static/js/main.b864e2fb.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.693dfbfe.js",
+    "runtime-main.js.map": "/static/js/runtime-main.693dfbfe.js.map",
+    "static/js/2.9e8911ed.chunk.js": "/static/js/2.9e8911ed.chunk.js",
+    "static/js/2.9e8911ed.chunk.js.map": "/static/js/2.9e8911ed.chunk.js.map",
+    "index.html": "/index.html",
+    "precache-manifest.319efaa63c65a9d6d374a0571e50ab38.js": "/precache-manifest.319efaa63c65a9d6d374a0571e50ab38.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.ba1a2d62.chunk.css.map": "/static/css/main.ba1a2d62.chunk.css.map",
+    "static/media/bash.png": "/static/media/bash.ed747876.png",
+    "static/media/bulma.png": "/static/media/bulma.8050b70c.png",
+    "static/media/eye-blocked.svg": "/static/media/eye-blocked.dfd8e517.svg",
+    "static/media/eye-plus.svg": "/static/media/eye-plus.5e39b213.svg",
+    "static/media/git.png": "/static/media/git.2fad9c4c.png",
+    "static/media/js.png": "/static/media/js.ac431692.png",
+    "static/media/material.png": "/static/media/material.3bdbe13e.png",
+    "static/media/php.png": "/static/media/php.be8e73fc.png",
+    "static/media/react.png": "/static/media/react.960ca83d.png",
+    "static/media/sf.png": "/static/media/sf.165f1ade.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.693dfbfe.js",
+    "static/js/2.9e8911ed.chunk.js",
+    "static/css/main.ba1a2d62.chunk.css",
+    "static/js/main.b864e2fb.chunk.js"
+  ]
+}
