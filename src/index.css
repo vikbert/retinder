@@ -138,6 +138,10 @@ body {
 }
 
 #nope {
+  background: hsl(66, 52%, 48%);
+}
+
+#restart {
   background: hsl(141, 71%, 48%);
 }
 

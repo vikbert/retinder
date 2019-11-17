@@ -8,14 +8,14 @@ const cardData = [
     {
         image: 'https://placeimg.com/600/300/people',
         title: 'React components',
-        description: 'this is reminder card for react components',
-        category: 'bash',
+        description: 'this is reminder card for react components this is reminder card for react componentsthis is reminder card for react componentsthis is reminder card for react components',
+        category: 'bulma',
     },
     {
         image: 'https://placeimg.com/600/300/nature',
         title: 'Git command',
-        description: 'this is reminder card for git commands',
-        category: 'bulma',
+        description: 'this is reminder card for react components this is reminder card for react componentsthis is reminder card for react componentsthis is reminder card for react components',
+        category: 'git',
     },
 ];
 window.localStorage.setItem('cards', JSON.stringify(cardData));
