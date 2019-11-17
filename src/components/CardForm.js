@@ -1,60 +1,80 @@
-import React from 'react';
+import React, {useState} from 'react';
 
-const CardInput = ({name}) => (
-    <div className="field">
-        <label htmlFor={name} className="label has-text-left">{name}</label>
-        <div className="control is-primary">
-            <input type="text" className="input is-primary"/>
-        </div>
-    </div>
-);
+const CardForm = ({closeModal = null}) => {
+    const [formData, setFormData] = useState({
+        title: '',
+        description: '',
+        category: 'bash',
+    });
 
-const CardTextarea = ({name}) => (
-    <div className="field">
-        <label htmlFor="description" className="label has-text-left">Description</label>
-        <div className="control">
-            <textarea className="textarea is-primary" placeholder={'Card description'}/>
-        </div>
-    </div>
-);
+    const handleSubmit = (e) => {
+        e.preventDefault();
+        
+        const cards = JSON.parse(window.localStorage.getItem('cards')) || [];
+        window.localStorage.setItem('cards', JSON.stringify([formData, ...cards]));
+        
+        closeModal();
+    };
 
-const CardSelect = ({name}) => (
-    <div className="field">
-        <label htmlFor={name} className="label has-text-left">{name}</label>
-        <div className="control is-expanded">
-            <div className="select is-primary is-fullwidth">
-                <select>
-                    <option value="git">git</option>
-                    <option value="sf">symfony</option>
-                </select>
-            </div>
-        </div>
-    </div>
-);
-
-const CardForm = () => (
-    <div className="columns">
-        <div className="column is-three-fifths is-offset-one-fifth">
-            <form className="box is-fullwidth">
-                <CardInput name={'title'}/>
-                <CardTextarea name={'description'}/>
-                <CardSelect name={'category'}/>
-                <div className="field is-grouped">
-                    <div className="control">
-                        <button className="button  is-success is-right">
-                            Submit
-                        </button>
-                    </div>
-                    <div className="control">
-                        <button className="button is-light is-danger">
-                            Cancel
-                        </button>
+    const handleChange = (e) => {
+        const newData = {...formData};
+        newData[e.target.name] = e.target.value;
+        setFormData(newData);
+    };
+    return (
+        <form className="box is-fullwidth" onSubmit={handleSubmit}>
+            <div className="field">
+                <label htmlFor={'category'} className="label has-text-left">Category</label>
+                <div className="control is-expanded">
+                    <div className="select is-primary is-fullwidth">
+                        <select name={'category'} onChange={handleChange} required>
+                            <option value="" disabled>Choose Category</option>
+                            <option value="bash">Bash</option>
+                            <option value="bulma">Bulma</option>
+                            <option value="git">Git & GitHub</option>
+                            <option value="js">JavaScript</option>
+                            <option value="material">Material UI</option>
+                            <option value="php">PHP & Symfony</option>
+                            <option value="react">react</option>
+                        </select>
                     </div>
                 </div>
-            </form>
-        </div>
-    </div>
-    
-);
+            </div>
+            <div className="field">
+                <label htmlFor={'title'} className="label has-text-left">Title</label>
+                <div className="control is-primary">
+                    <input type="text"
+                           name={'title'}
+                           className="input is-primary"
+                           required
+                           onChange={handleChange}/>
+                </div>
+            </div>
+            <div className="field">
+                <label htmlFor="description" className="label has-text-left">Description</label>
+                <div className="control">
+                    <textarea className="textarea is-primary"
+                              name={'description'}
+                              required
+                              onChange={handleChange}
+                              rows={3}
+                              placeholder={'Card description'}/>
+                </div>
+            </div>
+            <div className="field is-grouped">
+                <div className="control">
+                    <button className="button  is-success is-right" type="submit">
+                        Submit
+                    </button>
+                </div>
+                <div className="control">
+                    <button className="button is-light is-danger" onClick={closeModal}>
+                        Cancel
+                    </button>
+                </div>
+            </div>
+        </form>
+    );
+};
 
 export default CardForm;

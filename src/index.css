@@ -20,6 +20,10 @@ body {
 .card-image {
   padding: 8px
 }
+.modal-close {
+  max-height: 40px;
+  max-width: 40px;
+}
 
 .tinder--buttons {
   flex: 0 0 100px;
