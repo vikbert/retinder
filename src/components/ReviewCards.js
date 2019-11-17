@@ -1,8 +1,8 @@
 import React, {useState} from 'react';
-import Card from "./Card";
 import EyeBlocked from "../assets/svg/EyeBlocked";
 import EyePlus from "../assets/svg/EyePlus";
 import CategoryList from "./CategoryList";
+import BulmaCard from "./BulmaCard";
 
 const ReviewCards = ({cards}) => {
     const [count, setCount] = useState(0);
@@ -22,18 +22,14 @@ const ReviewCards = ({cards}) => {
 
     return (
         <>
-            <div className="tinder loaded">
-                <div className="tinder--cards">
-                    <Card card={currentCard}/>
-                </div>
-                <div className="tinder--buttons">
-                    <button id="nope" onClick={handleClickNope}>
-                        <EyeBlocked/>
-                    </button>
-                    <button id="love" onClick={handleClickLove}>
-                        <EyePlus/>
-                    </button>
-                </div>
+            <BulmaCard card={currentCard}/>
+            <div className="tinder--buttons">
+                <button id="nope" onClick={handleClickNope}>
+                    <EyeBlocked/>
+                </button>
+                <button id="love" onClick={handleClickLove}>
+                    <EyePlus/>
+                </button>
             </div>
         </>
     );

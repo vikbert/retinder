@@ -14,7 +14,7 @@ const App = () => {
 
             <div className="columns is-mobile is-centered">
                 <div className="column is-full">
-                    <div className="container">
+                    <div className="container is-fluid">
                         {hasValidCards
                             ? (
                                 <div className="notification is-warning">
