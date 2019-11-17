@@ -8,14 +8,17 @@ body {
   font-family: sans-serif;
 }
 .card {
-  max-height: 70vh;
+  height: 70vh;
   overflow-x: hidden;
   overflow-y: auto;
   border-radius: 5px;
   box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
 }
 .card-content {
- padding: 0 1rem 1rem 1rem; 
+ padding: 1rem; 
+}
+.card-image {
+  padding: 8px
 }
 
 .tinder--buttons {

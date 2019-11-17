@@ -5,18 +5,10 @@ const BulmaCard = ({card}) => {
 
     return (
         <div className="card">
-            <div className="card-image has-text-right">
-                <span className="icon">
-                    <i className="fa fa-info"></i>
-                </span>
+            <div className="card-image has-text-centered has-background-warning">
+                <span className="title is-6">{title}</span>
             </div>
             <div className="card-content">
-                <div className="media">
-                    <div className="media-content">
-                        <span className="title is-4">{title}</span>
-                    </div>
-                </div>
-
                 <div className="content">
                     {description}
                 </div>
