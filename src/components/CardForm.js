@@ -1,7 +1,9 @@
 import React, {useState} from 'react';
+const uuidv4 = require('uuid/v4');
 
 const CardForm = ({closeModal = null}) => {
     const [formData, setFormData] = useState({
+        uuid: uuidv4(),
         title: '',
         description: '',
         category: 'bash',
@@ -9,10 +11,10 @@ const CardForm = ({closeModal = null}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        
+
         const cards = JSON.parse(window.localStorage.getItem('cards')) || [];
         window.localStorage.setItem('cards', JSON.stringify([formData, ...cards]));
-        
+
         closeModal();
     };
 
