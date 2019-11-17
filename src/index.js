@@ -8,7 +8,7 @@ const cardData = [
     {
         image: 'https://placeimg.com/600/300/people',
         title: 'React components',
-        description: 'this is reminder card for react components this is reminder card for react componentsthis is reminder card for react componentsthis is reminder card for react components',
+        description: 'this is reminder card for react components this is reminder card for react componentsthis is reminder card for react componentsthis is reminder card for react components this is reminder card for react components this is reminder card for react componentsthis is reminder card for react componentsthis is reminder card for react components this is reminder card for react components this is reminder card for react componentsthis is reminder card for react componentsthis is reminder card for react components this is reminder card for react components this is reminder card for react componentsthis is reminder card for react componentsthis is reminder card for react components',
         category: 'git',
     },
     {
