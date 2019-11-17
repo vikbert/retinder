@@ -17,42 +17,6 @@ const cardData = [
         description: 'this is reminder card for git commands',
         category: 'bulma',
     },
-    {
-        image: 'https://placeimg.com/600/300/people',
-        title: 'React components',
-        description: 'this is reminder card for react components',
-        category: 'git',
-    },
-    {
-        image: 'https://placeimg.com/600/300/nature',
-        title: 'Git command',
-        description: 'this is reminder card for git commands',
-        category: 'js',
-    },
-    {
-        image: 'https://placeimg.com/600/300/people',
-        title: 'React components',
-        description: 'this is reminder card for react components',
-        category: 'material',
-    },
-    {
-        image: 'https://placeimg.com/600/300/nature',
-        title: 'Git command',
-        description: 'this is reminder card for git commands',
-        category: 'php',
-    },
-    {
-        image: 'https://placeimg.com/600/300/people',
-        title: 'React components',
-        description: 'this is reminder card for react components',
-        category: 'react',
-    },
-    {
-        image: 'https://placeimg.com/600/300/nature',
-        title: 'Git command',
-        description: 'this is reminder card for git commands',
-        category: 'sf',
-    },
 ];
 window.localStorage.setItem('cards', JSON.stringify(cardData));
 
