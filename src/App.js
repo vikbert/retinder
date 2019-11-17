@@ -8,13 +8,13 @@ const App = () => {
 
     return (
         <>
-            <div className="section">
+            <div className="section" style={{padding: "36px 1.5rem"}}>
                 <TopNav/>
             </div>
 
             <div className="columns is-mobile is-centered">
-                <div className="column is-full">
-                    <div className="container is-fluid">
+                <div className="column">
+                    <div className="container is-fluid" style={{padding: "0 16px"}}>
                         {hasValidCards
                             ? (
                                 <div className="notification is-warning">
