@@ -2,10 +2,10 @@ import React from 'react';
 
 const CardInput = ({name}) => (
     <div className="field">
+        <label htmlFor={name} className="label has-text-left">{name}</label>
         <div className="control is-primary">
             <input type="text" className="input is-primary"/>
         </div>
-        <label htmlFor={name} className="label has-text-left">{name}</label>
     </div>
 );
 
@@ -34,11 +34,11 @@ const CardSelect = ({name}) => (
 
 const CardForm = () => (
     <div className="columns">
-        <div className="column is-three-fifths">
+        <div className="column is-three-fifths is-offset-one-fifth">
             <form className="box is-fullwidth">
                 <CardInput name={'title'}/>
                 <CardTextarea name={'description'}/>
-                {/*<CardSelect name={'category'}/>*/}
+                <CardSelect name={'category'}/>
                 <div className="field is-grouped">
                     <div className="control">
                         <button className="button  is-success is-right">

@@ -2,7 +2,7 @@ import React, {useState} from 'react';
 import Card from "./Card";
 import EyeBlocked from "../assets/svg/EyeBlocked";
 import EyePlus from "../assets/svg/EyePlus";
-import Restart from "./Restart";
+import CategoryList from "./CategoryList";
 
 const ReviewCards = ({cards}) => {
     const [count, setCount] = useState(0);
@@ -16,12 +16,12 @@ const ReviewCards = ({cards}) => {
         setCount(count + 1);
     };
 
-    if (!currentCard || true) {
-        return <Restart/>;
+    if (!currentCard) {
+        return <CategoryList/>;
     }
 
     return (
-        <div>
+        <>
             <div className="tinder loaded">
                 <div className="tinder--cards">
                     <Card card={currentCard}/>
@@ -35,7 +35,7 @@ const ReviewCards = ({cards}) => {
                     </button>
                 </div>
             </div>
-        </div>
+        </>
     );
 };
 
