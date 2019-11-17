@@ -6,7 +6,6 @@ import BulmaCard from "./BulmaCard";
 
 const ReviewCards = ({cards}) => {
     const [count, setCount] = useState(0);
-    const currentCard = cards[count];
 
     const handleClickLove = (event) => {
         setCount(count + 1);
@@ -16,13 +15,13 @@ const ReviewCards = ({cards}) => {
         setCount(count + 1);
     };
 
-    if (!currentCard) {
+    if (cards.length === count) {
         return <CategoryList/>;
     }
 
     return (
         <>
-            <BulmaCard card={currentCard}/>
+            <BulmaCard card={cards[count]}/>
             <div className="tinder--buttons">
                 <button id="nope" onClick={handleClickNope}>
                     <EyeBlocked/>

@@ -1,7 +1,11 @@
 import React, {useState} from 'react';
+import {useDispatch} from "react-redux";
+import {addCard} from '../stores/actions/cardAction'
+
 const uuidv4 = require('uuid/v4');
 
 const CardForm = ({closeModal = null}) => {
+    const dispatch = useDispatch();
     const [formData, setFormData] = useState({
         uuid: uuidv4(),
         title: '',
@@ -12,9 +16,7 @@ const CardForm = ({closeModal = null}) => {
     const handleSubmit = (e) => {
         e.preventDefault();
 
-        const cards = JSON.parse(window.localStorage.getItem('cards')) || [];
-        window.localStorage.setItem('cards', JSON.stringify([formData, ...cards]));
-
+        dispatch(addCard(formData));
         closeModal();
     };
 
