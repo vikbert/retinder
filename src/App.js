@@ -11,16 +11,12 @@ const App = () => {
     useEffect(() => {
         const localData = JSON.parse(window.localStorage.getItem('cards'));
         const invalidData = !Array.isArray(localData) || localData.length === 0;
-        console.log('load from storage', localData);
 
         if (!invalidData) {
-            console.log('dispatch: set data to redux');
             dispatch(loadCards(localData));
         }
     }, [dispatch]);
     
-    console.log('render ', cards);
-
     return (
         <>
             <div className="section" style={{padding: "36px 1.5rem"}}>
