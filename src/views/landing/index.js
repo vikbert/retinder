@@ -1,7 +1,7 @@
 import React, {useEffect} from 'react';
 import ReviewIndex from "../review";
 import {useDispatch, useSelector} from "react-redux";
-import {loadCards} from "../../stores/cardWidget";
+import {listCard} from "../../stores/cardWidget";
 
 const StartReview = () => {
     const dispatch = useDispatch();
@@ -11,7 +11,7 @@ const StartReview = () => {
         let itemData = window.localStorage.getItem('cards');
 
         if (itemData) {
-            dispatch(loadCards(JSON.parse(itemData)));
+            dispatch(listCard(JSON.parse(itemData)));
         }
     }, [dispatch]);
 

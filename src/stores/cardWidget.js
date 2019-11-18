@@ -1,21 +1,21 @@
-const ADD_CARD = 'card.ADD_CARD';
-const LOAD_CARDS = 'card.LOAD_CARDS';
+const CREATE_CARD = 'card.create_card';
+const LIST_CARD = 'card.list_card';
 
 export const addCard = (card) => ({
-    type: ADD_CARD,
+    type: CREATE_CARD,
     card,
 });
 
-export const loadCards = (cards) => ({
-    type: LOAD_CARDS,
+export const listCard = (cards) => ({
+    type: LIST_CARD,
     cards,
 });
 
 const reducer = (state = [], action) => {
     switch (action.type) {
-        case ADD_CARD:
+        case CREATE_CARD:
             return [action.card, ...state];
-        case LOAD_CARDS:
+        case LIST_CARD:
             return action.cards;
         default:
             return state;

@@ -1,7 +1,6 @@
 import React, {useState} from 'react';
 import CardForm from "./CardForm";
 import classNames from 'classnames';
-import uuid from "../../utils/UUID";
 
 const TopNav = () => {
     const [open, setOpen] = useState(false);
@@ -37,7 +36,7 @@ const TopNav = () => {
             <div className={classNames('modal', {'is-active': open})}>
                 <div className="modal-background" onClick={handleCloseModal}></div>
                 <div className="modal-content" style={{width: '100%'}}>
-                    <CardForm closeModal={handleCloseModal} />
+                    <CardForm closeModal={handleCloseModal}/>
                 </div>
                 <button className="modal-close" onClick={handleCloseModal}></button>
             </div>

@@ -69,15 +69,10 @@ const CardForm = ({closeModal = null}) => {
                               placeholder={'Card description'}/>
                 </div>
             </div>
-            <div className="field is-grouped">
-                <div className="control">
-                    <button className="button  is-success is-right" type="submit">
+            <div className="field ">
+                <div className="control is-centered">
+                    <button className="button is-success is-fullwidth" type="submit">
                         Submit
-                    </button>
-                </div>
-                <div className="control">
-                    <button className="button is-light is-danger" onClick={closeModal}>
-                        Cancel
                     </button>
                 </div>
             </div>
