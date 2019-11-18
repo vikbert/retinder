@@ -1,6 +1,7 @@
 import React, {useState} from 'react';
 import CardForm from "./CardForm";
 import classNames from 'classnames';
+import uuid from "../../utils/UUID";
 
 const TopNav = () => {
     const [open, setOpen] = useState(false);
@@ -8,6 +9,11 @@ const TopNav = () => {
     const handleCloseModal = () => {
         setOpen(false);
     };
+
+    const handleOpenModal = () => {
+        setOpen(!open);
+    };
+
     return (
         <>
             <nav className="navbar is-primary is-fixed-top" role="navigation">
@@ -17,10 +23,7 @@ const TopNav = () => {
                         <p className="is-size-7">Categories</p>
                     </span>
                     <span className="navbar-item is-expanded  is-block has-text-centered"
-                          onClick={() => {
-                              setOpen(!open);
-                          }}
-                    >
+                          onClick={handleOpenModal}>
                         <i className="fa fa-plus"></i>
                         <p className="is-size-7">New Card</p>
                     </span>
@@ -34,7 +37,7 @@ const TopNav = () => {
             <div className={classNames('modal', {'is-active': open})}>
                 <div className="modal-background" onClick={handleCloseModal}></div>
                 <div className="modal-content" style={{width: '100%'}}>
-                    <CardForm closeModal={handleCloseModal}/>
+                    <CardForm closeModal={handleCloseModal} />
                 </div>
                 <button className="modal-close" onClick={handleCloseModal}></button>
             </div>

@@ -3,20 +3,24 @@ import {useDispatch} from "react-redux";
 import {addCard} from "../../stores/cardWidget";
 import uuid from "../../utils/UUID";
 
+const initialState = {
+    title: '',
+    description: '',
+    category: 'bash',
+};
+
 const CardForm = ({closeModal = null}) => {
     const dispatch = useDispatch();
-    const [formData, setFormData] = useState({
-        uuid: uuid(),
-        title: '',
-        description: '',
-        category: 'bash',
-    });
+
+    const [formData, setFormData] = useState(initialState);
 
     const handleSubmit = (e) => {
-        e.preventDefault();
-
-        dispatch(addCard(formData));
+        dispatch(addCard({
+            id: uuid(),
+            ...formData,
+        }));
         closeModal();
+        setFormData(initialState);
     };
 
     const handleChange = (e) => {
@@ -24,6 +28,7 @@ const CardForm = ({closeModal = null}) => {
         newData[e.target.name] = e.target.value;
         setFormData(newData);
     };
+
     return (
         <form className="box is-fullwidth" onSubmit={handleSubmit}>
             <div className="field">
