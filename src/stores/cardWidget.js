@@ -11,9 +11,7 @@ export const loadCards = (cards) => ({
     cards,
 });
 
-const initialState = [];
-
-export default function reducer(state = initialState, action) {
+const reducer = (state = [], action) => {
     switch (action.type) {
         case ADD_CARD:
             return [action.card, ...state];
@@ -23,3 +21,5 @@ export default function reducer(state = initialState, action) {
             return state;
     }
 };
+
+export default reducer;

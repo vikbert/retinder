@@ -1,10 +1,7 @@
-import {applyMiddleware, combineReducers, compose, createStore} from 'redux';
+import {applyMiddleware, compose, createStore} from 'redux';
 import loggerMiddleware from 'redux-logger';
-import cardWidget from "../cardWidget";
+import rootReducer from "./rootReducer";
 
-const rootReducer = combineReducers({
-    cardWidget,
-});
 
 export default function configureStore() {
     const middlewares = [loggerMiddleware];

@@ -1,42 +1,19 @@
-import React, {useEffect} from 'react';
-import TopNav from "./views/components/TopNav";
-import {useDispatch, useSelector} from "react-redux";
-import {loadCards} from "./stores/cardWidget";
-import ReviewIndex from "./views/review";
+import React from 'react';
+import {Route, Router, Switch} from 'react-router-dom';
+import StartReview from "./views/landing";
+import {history} from './routing/history';
+import NotFound from "./views/NotFound";
+import Login from "./views/user/Login";
 
 const App = () => {
-    const dispatch = useDispatch();
-    const cards = useSelector((state) => state.cardWidget);
-
-    useEffect(() => {
-        let itemData = window.localStorage.getItem('cards');
-
-        if (itemData) {
-            dispatch(loadCards(JSON.parse(itemData)));
-        }
-    }, [dispatch]);
-
     return (
-        <>
-            <div className="section" style={{padding: "36px 1.5rem"}}>
-                <TopNav/>
-            </div>
-
-            <div className="columns is-mobile is-centered">
-                <div className="column">
-                    <div className="container is-fluid" style={{padding: "0 16px"}}>
-                        {cards.length === 0
-                            ? (
-                                <div className="notification is-warning">
-                                    The cards are not loaded correctly. Please try it later.
-                                </div>
-                            )
-                            : <ReviewIndex cards={cards}/>
-                        }
-                    </div>
-                </div>
-            </div>
-        </>
+        <Router history={history} basename={'/'}>
+            <Switch>
+                <Route exact path={'/login'} component={Login}/>
+                <Route exact path={'/review'} component={StartReview}/>
+                <Route component={NotFound}/>
+            </Switch>
+        </Router>
     );
 };
 
