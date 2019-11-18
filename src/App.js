@@ -1,8 +1,8 @@
 import React, {useEffect} from 'react';
-import ReviewCards from "./views/components/ReviewCards";
 import TopNav from "./views/components/TopNav";
 import {useDispatch, useSelector} from "react-redux";
 import {loadCards} from "./stores/cardWidget";
+import ReviewIndex from "./views/review";
 
 const App = () => {
     const dispatch = useDispatch();
@@ -15,7 +15,7 @@ const App = () => {
             dispatch(loadCards(JSON.parse(itemData)));
         }
     }, [dispatch]);
-    
+
     return (
         <>
             <div className="section" style={{padding: "36px 1.5rem"}}>
@@ -31,7 +31,7 @@ const App = () => {
                                     The cards are not loaded correctly. Please try it later.
                                 </div>
                             )
-                            : <ReviewCards cards={cards}/>
+                            : <ReviewIndex cards={cards}/>
                         }
                     </div>
                 </div>

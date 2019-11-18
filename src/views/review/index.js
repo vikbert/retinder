@@ -1,10 +1,10 @@
 import React, {useState} from 'react';
 import EyeBlocked from "../../assets/svg/EyeBlocked";
 import EyePlus from "../../assets/svg/EyePlus";
-import CategoryList from "./CategoryList";
-import BulmaCard from "./BulmaCard";
+import BulmaCard from "../components/BulmaCard";
+import CategoryIndex from "../category";
 
-const ReviewCards = ({cards}) => {
+const ReviewIndex = ({cards}) => {
     const [count, setCount] = useState(0);
 
     const handleClickLove = (event) => {
@@ -16,7 +16,7 @@ const ReviewCards = ({cards}) => {
     };
 
     if (cards.length === count) {
-        return <CategoryList/>;
+        return <CategoryIndex/>;
     }
 
     return (
@@ -34,4 +34,4 @@ const ReviewCards = ({cards}) => {
     );
 };
 
-export default ReviewCards;
+export default ReviewIndex;
