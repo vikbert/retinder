@@ -1,13 +1,12 @@
 import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
 import {addCard} from "../../stores/cardWidget";
-
-const uuidv4 = require('uuid/v4');
+import uuid from "../../utils/UUID";
 
 const CardForm = ({closeModal = null}) => {
     const dispatch = useDispatch();
     const [formData, setFormData] = useState({
-        uuid: uuidv4(),
+        uuid: uuid(),
         title: '',
         description: '',
         category: 'bash',
