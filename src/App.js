@@ -1,19 +1,18 @@
 import React, {useEffect} from 'react';
+import ReviewCards from "./views/components/ReviewCards";
+import TopNav from "./views/components/TopNav";
 import {useDispatch, useSelector} from "react-redux";
-import ReviewCards from "./components/ReviewCards";
-import TopNav from "./components/TopNav";
-import {loadCards} from "./stores/actions/cardAction";
+import {loadCards} from "./stores/cardWidget";
 
 const App = () => {
     const dispatch = useDispatch();
-    const cards = useSelector((state) => state.reduxCard);
+    const cards = useSelector((state) => state.cardWidget);
 
     useEffect(() => {
-        const localData = JSON.parse(window.localStorage.getItem('cards'));
-        const invalidData = !Array.isArray(localData) || localData.length === 0;
+        let itemData = window.localStorage.getItem('cards');
 
-        if (!invalidData) {
-            dispatch(loadCards(localData));
+        if (itemData) {
+            dispatch(loadCards(JSON.parse(itemData)));
         }
     }, [dispatch]);
     

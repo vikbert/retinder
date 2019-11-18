@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
-import EyeBlocked from "../assets/svg/EyeBlocked";
-import EyePlus from "../assets/svg/EyePlus";
+import EyeBlocked from "../../assets/svg/EyeBlocked";
+import EyePlus from "../../assets/svg/EyePlus";
 import CategoryList from "./CategoryList";
 import BulmaCard from "./BulmaCard";
 

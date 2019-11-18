@@ -5,12 +5,12 @@ import App from './App';
 import * as serviceWorker from './serviceWorker';
 
 import {Provider as ReduxProvider} from 'react-redux';
-import configureStore from "./stores/configureStore";
+import configureStore from "./stores/config/configureStore";
 
 const store = configureStore();
 
 store.subscribe(() => {
-    const cards = store.getState().reduxCard;
+    const cards = store.getState().cardWidget;
     window.localStorage.setItem('cards', JSON.stringify(cards));
 });
 

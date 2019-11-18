@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
-import {addCard} from '../stores/actions/cardAction'
+import {addCard} from "../../stores/cardWidget";
 
 const uuidv4 = require('uuid/v4');
 

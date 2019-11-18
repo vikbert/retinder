@@ -29,5 +29,8 @@
       "not op_mini all"
     ],
     "development": []
+  },
+  "devDependencies": {
+    "redux-logger": "^3.0.6"
   }
 }
