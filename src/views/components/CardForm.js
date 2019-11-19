@@ -3,17 +3,9 @@ import {useDispatch, useSelector} from "react-redux";
 import {createCard} from "../../stores/cardWidget";
 import uuid from "../../utils/UUID";
 
-const initialState = {
-    title: '',
-    description: '',
-    category: 'bash',
-};
-
 const CardForm = ({closeModal = null}) => {
     const dispatch = useDispatch();
     const categories = useSelector((state) => state.categories);
-    
-    const [formData, setFormData] = useState(initialState);
     const [visible, setVisible] = useState(false);
 
     const SuccessMessage = () => {
@@ -26,30 +18,30 @@ const CardForm = ({closeModal = null}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
+        
+        const formElement = e.currentTarget;
+        const formData = new FormData(formElement);
+
         dispatch(createCard({
             id: uuid(),
-            ...formData,
+            title: formData.get('title'),
+            description: formData.get('description'),
+            category: formData.get('category'),
         }));
 
-        e.currentTarget.reset();
+        formElement.reset();
+        
         setVisible(true);
-
         window.setTimeout(() => {
             setVisible(false);
         }, 3000);
-    };
-
-    const handleChange = (e) => {
-        const newData = {...formData};
-        newData[e.target.name] = e.target.value;
-        setFormData(newData);
     };
 
     const CategoryOption = ({category}) => {
         const {id, name} = category;
         return <option value={id}>{name}</option>;
     };
-    
+
     return (
         <form className="box is-fullwidth" onSubmit={handleSubmit}>
             <div className="container">
@@ -67,7 +59,7 @@ const CardForm = ({closeModal = null}) => {
                 <label htmlFor={'category'} className="label has-text-left">Category</label>
                 <div className="control is-expanded">
                     <div className="select is-primary is-fullwidth">
-                        <select name={'category'} onChange={handleChange} required>
+                        <select name={'category'} required>
                             {categories.allIds.map((categoryId, index) => (
                                 <CategoryOption key={categoryId} category={categories.byId[categoryId]}/>
                             ))}
@@ -81,8 +73,7 @@ const CardForm = ({closeModal = null}) => {
                     <input type="text"
                            name={'title'}
                            className="input is-primary"
-                           required
-                           onChange={handleChange}/>
+                           required/>
                 </div>
             </div>
             <div className="field">
@@ -91,7 +82,6 @@ const CardForm = ({closeModal = null}) => {
                     <textarea className="textarea is-primary"
                               name={'description'}
                               required
-                              onChange={handleChange}
                               rows={3}
                               placeholder={'Card description'}/>
                 </div>

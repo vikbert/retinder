@@ -34,9 +34,10 @@ const reducer = (state = initialState, action) => {
     let id;
     switch (action.type) {
         case CREATE_CARD:
-            const {id: cardId, category: categoryId} = action.card;
-            cloned.byId[categoryId].cards = [cardId, ...cloned.byId[categoryId].cards];
-            
+            const cardId = action.card.id;
+            const categoryId = action.card.category;
+            cloned.byId[categoryId]['cards'] = [cardId, ...cloned.byId[categoryId].cards];
+
             return cloned;
         case CREATE_CATEGORY:
             id = action.category.id;

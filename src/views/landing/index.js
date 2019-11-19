@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import CategoryIndex from "../category";
 
 const StartReview = () => {
-    const cards = useSelector((state) => state.cardWidget);
+    const cards = useSelector((state) => state.cards);
     
     return cards.allIds.length === 0
         ? <CategoryIndex/>

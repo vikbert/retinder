@@ -1,12 +1,12 @@
 import {combineReducers} from 'redux';
 import cardWidget from "../cardWidget";
 import userWidget from '../userWidget';
-import categories from '../categoryWidget';
+import categoryWidget from '../categoryWidget';
 
 const rootReducer = combineReducers({
-    cardWidget,
-    userWidget,
-    categories,
+    cards: cardWidget,
+    user: userWidget,
+    categories: categoryWidget,
 });
 
 export default rootReducer;

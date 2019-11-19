@@ -4,7 +4,7 @@ import {useSelector} from "react-redux";
 import Layout from "../views/Layout";
 
 const PrivateRoute = ({component: Component, ...routeProps}) => {
-    const user = useSelector((state) => state.userWidget);
+    const user = useSelector((state) => state.user);
     
     return (
         <Route {...routeProps} render={(props) => (

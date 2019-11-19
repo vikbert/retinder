@@ -1,7 +1,7 @@
 import {applyMiddleware, compose, createStore} from 'redux';
 import rootReducer from "./rootReducer";
 
-export default function configureStore() {
+export default function configureStore(initState) {
     const middlewares = [];
     const middlewareEnhancer = applyMiddleware(...middlewares);
 
@@ -10,7 +10,7 @@ export default function configureStore() {
 
     return createStore(
         rootReducer,
-        undefined,
+        initState,
         composedEnhancers(middlewareEnhancer),
     );
 }
