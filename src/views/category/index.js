@@ -5,6 +5,7 @@ import {deleteCategory} from "../../stores/categoryWidget";
 
 const CategoryIndex = () => {
     const categories = useSelector((state) => state.categories);
+    
     const dispatch = useDispatch();
     const handleDeleteCategory = (id) => {
         dispatch(deleteCategory(id));
