@@ -1,6 +1,6 @@
-const CREATE_CARD = 'card.create_card';
-const DELETE_CARD = 'card.delete_card';
-const LOAD_CARDS = 'card.load_cards';
+export const CREATE_CARD = 'card.create_card';
+export const DELETE_CARD = 'card.delete_card';
+export const LOAD_CARDS = 'card.load_cards';
 
 export const loadCards = (cards) => ({
     type: LOAD_CARDS,

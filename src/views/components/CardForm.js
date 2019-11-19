@@ -1,5 +1,5 @@
 import React, {useState} from 'react';
-import {useDispatch} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
 import {createCard} from "../../stores/cardWidget";
 import uuid from "../../utils/UUID";
 
@@ -11,6 +11,8 @@ const initialState = {
 
 const CardForm = ({closeModal = null}) => {
     const dispatch = useDispatch();
+    const categories = useSelector((state) => state.categories);
+    
     const [formData, setFormData] = useState(initialState);
     const [visible, setVisible] = useState(false);
 
@@ -43,6 +45,11 @@ const CardForm = ({closeModal = null}) => {
         setFormData(newData);
     };
 
+    const CategoryOption = ({category}) => {
+        const {id, name} = category;
+        return <option value={id}>{name}</option>;
+    };
+    
     return (
         <form className="box is-fullwidth" onSubmit={handleSubmit}>
             <div className="container">
@@ -61,14 +68,9 @@ const CardForm = ({closeModal = null}) => {
                 <div className="control is-expanded">
                     <div className="select is-primary is-fullwidth">
                         <select name={'category'} onChange={handleChange} required>
-                            <option value="" disabled>Choose Category</option>
-                            <option value="bash">Bash</option>
-                            <option value="bulma">Bulma</option>
-                            <option value="git">Git & GitHub</option>
-                            <option value="js">JavaScript</option>
-                            <option value="material">Material UI</option>
-                            <option value="php">PHP & Symfony</option>
-                            <option value="react">react</option>
+                            {categories.allIds.map((categoryId, index) => (
+                                <CategoryOption key={categoryId} category={categories.byId[categoryId]}/>
+                            ))}
                         </select>
                     </div>
                 </div>

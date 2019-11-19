@@ -6,7 +6,6 @@ import CategoryIndex from "../category";
 
 const ReviewIndex = ({cards}) => {
     const ids = cards.allIds;
-    console.log(ids);
     const [currentId, setCurrentId] = useState(ids.shift());
 
     const handleClickLove = (event) => {

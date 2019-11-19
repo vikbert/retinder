@@ -14,7 +14,7 @@ const CategoryIndex = () => {
     return (
         <>
             <nav className="panel is-warning">
-                <p className="panel-heading">Categories</p>
+                <p className="panel-heading">Add Categories</p>
                 <CategoryForm/>
                 {categories.allIds.map((id, index) => (
                     <div key={id} className="panel-block is-flexible">
@@ -25,7 +25,7 @@ const CategoryIndex = () => {
                                     }}>
                             </button>
                         </div>
-                        <span style={{paddingLeft: '1rem'}}>{categories.byId[id].name}</span>
+                        <a style={{paddingLeft: '1rem'}}>{categories.byId[id].name}</a>
                     </div>
                 ))}
             </nav>

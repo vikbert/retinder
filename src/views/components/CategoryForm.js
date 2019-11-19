@@ -12,7 +12,8 @@ const CategoryForm = () => {
         const formData = new FormData(formElement);
         dispatch(createCategory({
             id: uuid(),
-            name: formData.get('category'),
+            name: formData.get('category').trim(),
+            cards: [],
         }));
 
         formElement.reset();
