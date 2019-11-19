@@ -1,26 +1,31 @@
 import React from 'react';
 import CategoryForm from "../components/CategoryForm";
-import {useSelector} from "react-redux";
+import {useDispatch, useSelector} from "react-redux";
+import {deleteCategory} from "../../stores/categoryWidget";
 
 const CategoryIndex = () => {
     const categories = useSelector((state) => state.categories);
-    console.log('##', categories.byId);
-    console.log('##', categories.allIds);
+    const dispatch = useDispatch();
+    const handleDeleteCategory = (id) => {
+        dispatch(deleteCategory(id));
+    };
 
     return (
         <>
             <nav className="panel is-warning">
-                <p className="panel-heading">
-                    Categories-f
-                </p>
+                <p className="panel-heading">Categories</p>
                 <CategoryForm/>
                 {categories.allIds.map((id, index) => (
-                    <span key={id} className="panel-block is-active">
-                        <span className="panel-icon">●</span>
-                        {categories.byId[id].name}
-                        <span className="panel-icon is-right">●</span>
-                    </span>
-                    
+                    <div key={id} className="panel-block is-flexible">
+                        <div className="is-pulled-right">
+                            <button className="delete is-medium"
+                                    onClick={() => {
+                                        handleDeleteCategory(id);
+                                    }}>
+                            </button>
+                        </div>
+                        <span style={{paddingLeft: '1rem'}}>{categories.byId[id].name}</span>
+                    </div>
                 ))}
             </nav>
         </>

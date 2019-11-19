@@ -46,9 +46,8 @@ const reducer = (state = initialState, action) => {
 
         case DELETE_CATEGORY:
             delete cloned.byId[action.id];
-            cloned.allIds.filter((id) => {
-                return id !== action.id;
-            });
+            cloned.allIds = Object.keys(cloned.byId);
+            
             return cloned;
 
         case LIST_CATEGORY:
