@@ -4,7 +4,8 @@ import rootReducer from "./rootReducer";
 
 
 export default function configureStore() {
-    const middlewares = [loggerMiddleware];
+    // const middlewares = [loggerMiddleware];
+    const middlewares = [];
     const middlewareEnhancer = applyMiddleware(...middlewares);
 
     const composedEnhancers =

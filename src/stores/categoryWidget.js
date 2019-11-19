@@ -33,7 +33,7 @@ const reducer = (state = initialState, action) => {
     switch (action.type) {
         case CREATE_CATEGORY:
             id = action.category.id;
-            cloned.allIds.push(id);
+            cloned.allIds = [id, ...cloned.allIds];
             cloned.byId[id] = action.category;
             return cloned;
 
