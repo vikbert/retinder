@@ -5,23 +5,26 @@ import BulmaCard from "../components/BulmaCard";
 import CategoryIndex from "../category";
 
 const ReviewIndex = ({cards}) => {
-    const [count, setCount] = useState(0);
+    const ids = cards.allIds;
+    console.log(ids);
+    const [currentId, setCurrentId] = useState(ids.shift());
 
     const handleClickLove = (event) => {
-        setCount(count + 1);
+        setCurrentId(ids.shift());
     };
 
     const handleClickNope = (event) => {
-        setCount(count + 1);
+        setCurrentId(ids.shift());
     };
 
-    if (cards.length === count) {
+    if (cards.allIds.length === 0) {
         return <CategoryIndex/>;
     }
 
+
     return (
         <>
-            <BulmaCard card={cards[count]}/>
+            <BulmaCard card={cards.byId[currentId]}/>
             <div className="tinder--buttons">
                 <button id="nope" onClick={handleClickNope}>
                     <EyeBlocked/>

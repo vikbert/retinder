@@ -1,19 +1,19 @@
 import React, {useEffect} from 'react';
 import ReviewIndex from "../review";
 import {useDispatch, useSelector} from "react-redux";
-import {listCard} from "../../stores/cardWidget";
+import {loadCards} from "../../stores/cardWidget";
 
 const StartReview = () => {
     const dispatch = useDispatch();
     const cards = useSelector((state) => state.cardWidget);
 
-    useEffect(() => {
-        let itemData = window.localStorage.getItem('cards');
-
-        if (itemData) {
-            dispatch(listCard(JSON.parse(itemData)));
-        }
-    }, [dispatch]);
+    // useEffect(() => {
+    //     let retinder = window.localStorage.getItem('retinder');
+    //
+    //     if (retinder) {
+    //         dispatch(loadCards(JSON.parse(retinder.cards)));
+    //     }
+    // }, [dispatch]);
 
     const ErrorInfo = () => (
         <div className="notification is-warning">
@@ -21,7 +21,7 @@ const StartReview = () => {
         </div>
     );
 
-    return cards.length === 0
+    return cards.allIds.length === 0
         ? <ErrorInfo/>
         : <ReviewIndex cards={cards}/>;
 };

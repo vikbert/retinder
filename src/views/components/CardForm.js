@@ -1,6 +1,6 @@
 import React, {useState} from 'react';
 import {useDispatch} from "react-redux";
-import {addCard} from "../../stores/cardWidget";
+import {createCard} from "../../stores/cardWidget";
 import uuid from "../../utils/UUID";
 
 const initialState = {
@@ -15,7 +15,7 @@ const CardForm = ({closeModal = null}) => {
 
     const handleSubmit = (e) => {
         e.preventDefault();
-        dispatch(addCard({
+        dispatch(createCard({
             id: uuid(),
             ...formData,
         }));
