@@ -1,4 +1,5 @@
 import {CREATE_CARD} from './cardWidget';
+import initialState from "./initialState";
 
 export const CREATE_CATEGORY = 'category.create_category';
 export const UPDATE_CATEGORY = 'category.update_category';
@@ -24,12 +25,7 @@ export const listCategory = () => ({
     type: LIST_CATEGORY,
 });
 
-const initialState = {
-    byId: {},
-    allIds: [],
-};
-
-const reducer = (state = initialState, action) => {
+const reducer = (state = initialState.categories, action) => {
     let cloned = {...state};
     let id;
     switch (action.type) {

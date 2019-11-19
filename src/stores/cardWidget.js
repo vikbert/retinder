@@ -1,3 +1,4 @@
+import initialState from "./initialState";
 export const CREATE_CARD = 'card.create_card';
 export const DELETE_CARD = 'card.delete_card';
 export const LOAD_CARDS = 'card.load_cards';
@@ -17,11 +18,8 @@ export const deleteCard = (id) => ({
     id,
 });
 
-const initialState = {
-    byId: {},
-    allIds: [],
-};
-const reducer = (state = initialState, action) => {
+
+const reducer = (state = initialState.cards, action) => {
     let cloned = {...state};
     let id;
     switch (action.type) {

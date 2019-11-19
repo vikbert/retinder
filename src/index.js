@@ -7,10 +7,14 @@ import * as serviceWorker from './serviceWorker';
 import {Provider as ReduxProvider} from 'react-redux';
 import configureStore from "./stores/config/configureStore";
 import {storageGet, storageSet} from "./utils/LocalStorage";
+import App from "./App";
+import initialState from "./stores/initialState";
 
 let retinderReduxData = storageGet('retinder');
 if (retinderReduxData) {
     retinderReduxData = JSON.parse(retinderReduxData);
+} else {
+    retinderReduxData = initialState;
 }
 
 const store = configureStore(retinderReduxData);
@@ -28,16 +32,12 @@ store.subscribe(() => {
     storageSet('retinder', JSON.stringify(retinder));
 });
 
-if (module.hot && process.env.NODE_ENV === "development") {
-    module.hot.accept();
-    const NextApp = require('./App').default;
-    ReactDOM.render(
-        <ReduxProvider store={store}>
-            <NextApp/>
-        </ReduxProvider>,
-        document.getElementById('root'),
-    );
-}
+ReactDOM.render(
+    <ReduxProvider store={store}>
+        <App/>
+    </ReduxProvider>,
+    document.getElementById('root'),
+);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
