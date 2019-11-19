@@ -14,31 +14,24 @@ const CategoryForm = () => {
             id: uuid(),
             name: formData.get('category'),
         }));
-        
+
         formElement.reset();
     };
 
     return (
-        <form className="box" onSubmit={handleSubmit}>
-            <div className="field has-text-centered">
-                <div className="control">
+        <form onSubmit={handleSubmit}>
+            <div className="panel-block">
+                <p className="control">
                     <input type="text"
                            className="input"
                            name="category"
                            placeholder="add new category"
                            required
                            minLength={3}/>
-                </div>
-            </div>
-            <div className="field">
-                <div className="control">
-                    <button type="submit"
-                            className="button is-success is-fullwidth">
-                        Add category
-                    </button>
-                </div>
+                </p>
             </div>
         </form>
+
     );
 };
 

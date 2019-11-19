@@ -8,10 +8,11 @@ const Layout = ({children}) => {
             <div className="columns is-mobile is-centered" style={{marginTop: '60px'}}>
                 <div className="column">
                     <div className="container is-fluid" style={{padding: "0 16px"}}>
-                    {children}
+                        {children}
                     </div>
                 </div>
             </div>
+            <div className="container"></div>
         </>
     );
 };

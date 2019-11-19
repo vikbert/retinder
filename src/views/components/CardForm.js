@@ -11,16 +11,16 @@ const initialState = {
 
 const CardForm = ({closeModal = null}) => {
     const dispatch = useDispatch();
-
     const [formData, setFormData] = useState(initialState);
 
     const handleSubmit = (e) => {
+        e.preventDefault();
         dispatch(addCard({
             id: uuid(),
             ...formData,
         }));
         closeModal();
-        setFormData(initialState);
+        e.currentTarget.reset();
     };
 
     const handleChange = (e) => {

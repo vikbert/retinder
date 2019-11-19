@@ -4,20 +4,26 @@ import {useSelector} from "react-redux";
 
 const CategoryIndex = () => {
     const categories = useSelector((state) => state.categories);
-    console.log(categories);
+    console.log('##', categories.byId);
+    console.log('##', categories.allIds);
 
     return (
-        <div className="container">
-            <div className="columns is-centered">
-                <div className="column is-5-tablet is-4-desktop is-3-widescreen">
-                    <CategoryForm/>
-                    {categories.allIds.map((id, index) => (
-                        <p key={index}>{id}</p>
-                    ))}
+        <>
+            <nav className="panel is-warning">
+                <p className="panel-heading">
+                    Categories-f
+                </p>
+                <CategoryForm/>
+                {categories.allIds.map((id, index) => (
+                    <span key={id} className="panel-block is-active">
+                        <span className="panel-icon">●</span>
+                        {categories.byId[id].name}
+                        <span className="panel-icon is-right">●</span>
+                    </span>
                     
-                </div>
-            </div>
-        </div>
+                ))}
+            </nav>
+        </>
     );
 };
 
