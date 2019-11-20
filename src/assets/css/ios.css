@@ -1,0 +1,12 @@
+.navbar {
+  padding: 0.3rem 1rem;
+  min-height: 0 !important;
+}
+
+.section {
+  padding-right: 1rem;
+  padding-left: 1rem;
+}
+.title {
+  padding-bottom: 0rem;
+}
