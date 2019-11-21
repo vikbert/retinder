@@ -17,22 +17,22 @@ const CategoryIndex = () => {
           {inEdit ? "Abbrechen" : "Edit"}
         </div>
       </nav>
-      <nav class="nav bottom-nav">
+      <nav className="nav bottom-nav">
         {inEdit ? (
           <>
-            <div class="">delete all</div>
-            <div class="">delete selected</div>
+            <div className="">delete all</div>
+            <div className="">delete selected</div>
           </>
         ) : (
           <>
             <div></div>
-            <div class="text-right">Neuer Ordner</div>
+            <div className="text-right">Neuer Ordner</div>
           </>
         )}
       </nav>
-      <section class="page-content">
-        {[...Array(20)].map(value => (
-          <FolderItem key={value} />
+      <section className="page-content">
+        {[...Array(20)].map((value, index) => (
+          <FolderItem key={index} />
         ))}
       </section>
     </>

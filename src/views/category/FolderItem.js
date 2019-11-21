@@ -11,9 +11,9 @@ export default function FolderItem() {
   };
   return (
     <>
-      <div class={clsx("note-list-item-view", clicked && "selected")}>
+      <div className={clsx("note-list-item-view", clicked && "selected")}>
         <div className="note-list-item-container">
-          <div class="icon-container">
+          <div className="icon-container">
             {/* <FolderIcon /> */}
             <DeleteIcon />
           </div>
@@ -21,8 +21,8 @@ export default function FolderItem() {
             className="note-list-item-content"
             onClick={handleClickOnItemContent}
           >
-            <div class="item">item</div>
-            <div class="enter">❯</div>
+            <div className="item">item</div>
+            <div className="enter">❯</div>
           </div>
         </div>
       </div>
