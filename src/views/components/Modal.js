@@ -26,7 +26,7 @@ const ModalWrapper = styled.div`
   z-index: 100;
   left: 50%;
   right: 50%;
-  top: 40%;
+  top: 25%;
 
   transform: translate(-50%, -50%);
   background: white;
@@ -47,15 +47,20 @@ const ControlFooter = styled.div`
 const itemStyled = css`
   width: 50%;
   text-align: center;
-  padding: 8px;
+  padding: 12px 8px;
 `;
 const CancelButton = styled.div`
   color: #cf9707;
   ${itemStyled}
 `;
-const SaveButton = styled.div`
-  border-left: 1px solid #dedede;
+const InactiveSaveButton = styled.div`
   ${itemStyled}
+  border-left: 1px solid #dedede;
+`;
+const ActiveSaveButton = styled.div`
+  ${itemStyled}
+  border-left: 1px solid #dedede;
+  color: #cf9707;
 `;
 const Content = styled.div`
   text-align: center;
@@ -64,7 +69,7 @@ const Content = styled.div`
 
 const Input = styled.input`
   width: 100%;
-  margin: 16px 0;
+  margin: 12px 0;
   border: 1px solid #cf9707;
   padding: 8px;
   font-size: 1rem;
@@ -72,6 +77,15 @@ const Input = styled.input`
 
 export default function Modal({ closeModal }) {
   const [category, setCategory] = React.useState("");
+  const categoryFieldRef = React.useRef(null);
+
+  const SaveButton =
+    category.trim().length > 0 ? ActiveSaveButton : InactiveSaveButton;
+
+  React.useEffect(() => {
+    categoryFieldRef.current.focus();
+    console.log("bin focused");
+  });
 
   const handleClickOnCancel = event => {
     closeModal();
@@ -79,6 +93,10 @@ export default function Modal({ closeModal }) {
 
   const dispatch = useDispatch();
   const handleClickOnSave = () => {
+    if (category.trim().length === 0) {
+      return false;
+    }
+
     dispatch(
       createCategory({
         id: uuid(),
@@ -99,7 +117,13 @@ export default function Modal({ closeModal }) {
       <ModalWrapper>
         <Content>
           <H5>Neuer Ordner</H5>
-          <Input type="text" value={category} onChange={handleOnChange}></Input>
+          <Input
+            autoFocus
+            ref={categoryFieldRef}
+            type="text"
+            value={category}
+            onChange={handleOnChange}
+          ></Input>
         </Content>
         <ControlFooter>
           <CancelButton onClick={handleClickOnCancel}>Abbrechen</CancelButton>

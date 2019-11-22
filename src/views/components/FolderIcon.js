@@ -1,8 +1,8 @@
 import React from "react";
 
 export default function FolderIcon({
-  width = 18,
-  height = 18,
+  width = 25,
+  height = 25,
   fill = "#ae8b07"
 }) {
   return (

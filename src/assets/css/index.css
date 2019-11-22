@@ -5,8 +5,9 @@
   padding: 0;
   margin: 0;
 }
+
 body {
-  height: 100%;
+  height: 100vh;
   overflow: hidden;
   font-family: SFNSText, Helvetica Neue, sans-serif;
   background-color: #f6f6f6;

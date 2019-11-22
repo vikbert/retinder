@@ -1,10 +1,6 @@
 import React from "react";
 
-export default function DeleteIcon({
-  width = 18,
-  height = 18,
-  fill = "#ae8b07"
-}) {
+export default function DeleteIcon({ width = 25, height = 25, fill = "red" }) {
   return (
     <svg
       version="1.1"
