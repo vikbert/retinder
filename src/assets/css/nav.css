@@ -1,33 +1,48 @@
 /* navigation bar */
 .nav {
-  padding: 10px 8px;
+  padding: 20px;
 }
 nav > div {
-  min-width: 80px;
-  background-color: #565656;
-  color: transparent;
-  text-shadow: 0px 2px 3px rgba(255, 255, 255, 0.6);
-  -webkit-background-clip: text;
-  -moz-background-clip: text;
-  background-clip: text;
+  color: #cf9707;
+  text-shadow: 0 0.3px 0 rgba(155, 99, 4, 0.892);
+  /* -webkit-font-smoothing: antialiased; */
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 20px;
+  letter-spacing: -0.25px;
+  min-width: 33%;
+}
+.page-content {
+  margin: 60px 0;
+  height: 100vh;
 }
 .text-right {
   text-align: right;
+}
+.text-left {
+  text-align: left;
+}
+.text-center {
+  text-align: center;
+  color: rgb(11, 10, 10);
+  text-shadow: none;
 }
 .top-nav {
   display: flex;
   justify-content: space-between;
   position: fixed;
-  background-color: #ffffff;
+  background-color: #f7f7f7;
+  /* border-bottom: 1px solid red; */
   top: 0;
   left: 0;
   right: 0;
 }
+
 .bottom-nav {
   display: flex;
   justify-content: space-between;
   position: fixed;
-  background-color: #ffffff;
+  background-color: #f7f7f7;
   bottom: 0;
   left: 0;
   right: 0;

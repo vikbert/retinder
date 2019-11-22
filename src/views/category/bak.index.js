@@ -3,7 +3,6 @@ import CategoryForm from "../components/CategoryForm";
 import { useDispatch, useSelector } from "react-redux";
 import { deleteCategory } from "../../stores/categoryWidget";
 
-
 const CategoryIndex = () => {
   const categories = useSelector(state => state.categories);
   const [inEdit, setInEdit] = useState(false);
@@ -11,30 +10,6 @@ const CategoryIndex = () => {
   const dispatch = useDispatch();
   const handleDeleteCategory = id => {
     dispatch(deleteCategory(id));
-  };
-
-  /* eslint-disable-next-line*/
-  const CategoryList = () => {
-    return (
-      <nav className="panel is-warning">
-        <p className="panel-heading">Add Categories</p>
-        <CategoryForm />
-        {categories.allIds.map((id, index) => (
-          <div key={id} className="panel-block is-flexible">
-            <div className="is-pulled-right">
-              <button
-                className="delete is-medium"
-                onClick={() => {
-                  handleDeleteCategory(id);
-                }}
-              ></button>
-            </div>
-            {/* eslint-disable-next-line*/}
-            <a style={{ paddingLeft: "1rem" }}>{categories.byId[id].name}</a>
-          </div>
-        ))}
-      </nav>
-    );
   };
 
   const handleClickEdit = () => {
@@ -61,18 +36,12 @@ const CategoryIndex = () => {
           <a key={index} className="panel-block has-icons-right">
             {inEdit && (
               <span className="panel-icon">
-              <i
-                className="fa-check-circle far"
-                aria-hidden="true"
-              ></i>
-            </span>
+                <i className="fa-check-circle far" aria-hidden="true"></i>
+              </span>
             )}
             bulma - {index}
             <span className="panel-icon is-right">
-              <i
-                className="fa fa-angle-right"
-                aria-hidden="true"
-              ></i>
+              <i className="fa fa-angle-right" aria-hidden="true"></i>
             </span>
           </a>
         ))}

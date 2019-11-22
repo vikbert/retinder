@@ -1,21 +1,14 @@
-div {
-  text-transform: capitalize;
-}
-
-/* page content   */
-.page-content {
-  margin: 45px 0;
-}
-
 /* Ordner item */
 .item {
   margin-right: auto;
 }
-.enter {
+.icon-enter {
   color: rgb(145, 143, 137);
-  padding-right: 8px;
+  padding-right: 20px;
 }
-
+.icon-container {
+  padding: 10px 16px 4px 20px;
+}
 .list-item.is-selected {
   background-color: rgba(242, 206, 0, 0.24);
   border-bottom: 1px solid hsla(0, 0%, 52.9%, 0.2);
@@ -49,14 +42,11 @@ div {
 }
 .note-list-item-view.selected {
   background-color: rgba(247, 202, 0, 0.24);
-  border-bottom: 1px solid rgba(167, 132, 0, 0.32);
+  /* border-bottom: 1px solid rgba(167, 132, 0, 0.32); */
 }
 .note-list-item-content {
   display: flex;
   width: 100%;
   height: 100%;
   padding: 16px 0;
-}
-.icon-container {
-  padding: 10px 10px 4px 10px;
 }

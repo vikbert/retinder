@@ -1,24 +1,31 @@
-*, *:before, *:after {
+*,
+*:before,
+*:after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
 }
 body {
+  height: 100%;
   overflow: hidden;
-  font-family: sans-serif;
+  font-family: SFNSText, Helvetica Neue, sans-serif;
+  background-color: #f6f6f6;
+}
+div {
+  text-transform: capitalize;
 }
 .card {
   height: 70vh;
   overflow-x: hidden;
   overflow-y: auto;
   border-radius: 5px;
-  box-shadow: 0 3px 6px rgba(0,0,0,0.16), 0 3px 6px rgba(0,0,0,0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
 }
 .card-content {
- padding: 1rem; 
+  padding: 1rem;
 }
 .card-image {
-  padding: 8px
+  padding: 8px;
 }
 .modal-close {
   max-height: 40px;
