@@ -4,6 +4,8 @@ import { useDispatch } from "react-redux";
 import clsx from "clsx";
 import DeleteIcon from "../components/DeleteIcon";
 import FolderIcon from "../components/FolderIcon";
+import CheckedIcon from "../../assets/svg/CheckedIcon";
+import CircleIcon from "../../assets/svg/CircleIcon";
 import { deleteCategory } from "../../stores/categoryWidget";
 
 export default function CategoryItem({ inEdit, category }) {
@@ -31,7 +33,15 @@ export default function CategoryItem({ inEdit, category }) {
               handleDeleteCategory(category.id);
             }}
           >
-            {inEdit ? <DeleteIcon /> : <FolderIcon />}
+            {inEdit ? (
+              clicked ? (
+                <CheckedIcon />
+              ) : (
+                <CircleIcon />
+              )
+            ) : (
+              <FolderIcon />
+            )}
           </div>
           <div
             className="note-list-item-content"
