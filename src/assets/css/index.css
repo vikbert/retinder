@@ -14,6 +14,9 @@ body {
 div {
   text-transform: capitalize;
 }
+h1 {
+  font-size: 20px;
+}
 .card {
   height: 70vh;
   overflow-x: hidden;

@@ -1,11 +1,14 @@
 import React from "react";
+import styled from "styled-components";
+
+const TextLeft = styled.div`
+  text-align: left;
+`;
 
 export default function Reload() {
   return (
     <>
-      <div className="text-left" onClick={() => window.location.reload()}>
-        Reload
-      </div>
+      <TextLeft onClick={() => window.location.reload()}>Reload</TextLeft>
     </>
   );
 }

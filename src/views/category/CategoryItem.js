@@ -1,7 +1,10 @@
 import React, { useState } from "react";
+import { useDispatch } from "react-redux";
+
 import clsx from "clsx";
 import DeleteIcon from "../components/DeleteIcon";
 import FolderIcon from "../components/FolderIcon";
+import { deleteCategory } from "../../stores/categoryWidget";
 
 export default function CategoryItem({ inEdit, category }) {
   const [clicked, setClicked] = useState(false);
@@ -11,11 +14,23 @@ export default function CategoryItem({ inEdit, category }) {
     setClicked(!clicked);
   };
 
+  const dispatch = useDispatch();
+  const handleDeleteCategory = id => {
+    if (inEdit) {
+      dispatch(deleteCategory(category.id));
+    }
+  };
+
   return (
     <>
       <div className={clsx("note-list-item-view", clicked && "selected")}>
         <div className="note-list-item-container">
-          <div className="icon-container">
+          <div
+            className="icon-container"
+            onClick={() => {
+              handleDeleteCategory(category.id);
+            }}
+          >
             {inEdit ? <DeleteIcon /> : <FolderIcon />}
           </div>
           <div
