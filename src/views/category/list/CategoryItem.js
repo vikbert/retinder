@@ -1,10 +1,15 @@
 import React, { useState } from "react";
 import clsx from "clsx";
+import styled from "styled-components";
 import FolderIcon from "../../components/svg/FolderIcon";
 import CheckedIcon from "../../components/svg/CheckedIcon";
 import CircleIcon from "../../components/svg/CircleIcon";
 
+const CardCounter = styled.span`
+  padding-right: 6px;
+`;
 export default function CategoryItem({
+  cardCounter = 0,
   inEdit,
   category,
   selectCategory = () => {},
@@ -57,7 +62,7 @@ export default function CategoryItem({
           >
             <div className="item">{category.name}</div>
             <div className="icon-enter">
-              <span>0 </span>
+              <CardCounter>{cardCounter}</CardCounter>
               <span>❯</span>
             </div>
           </div>
