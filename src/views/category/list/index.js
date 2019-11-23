@@ -4,7 +4,7 @@ import HeaderTitle from "../../components/HeadTitle";
 import NavBottom from "../../components/NavBottom";
 import NavLink from "../../components/NavLink";
 import NavTop from "../../components/NavTop";
-import Reload from "../../components/Reload";
+import NavReload from "../../components/NavReload";
 import { deleteCategory } from "../categoryWidget";
 import Modal from "../form/CategoryForm";
 import CategoryItem from "./CategoryItem";
@@ -91,7 +91,7 @@ const CategoryIndex = () => {
       <NavBottom>
         {inEdit ? (
           <>
-            <Reload></Reload>
+            <NavReload></NavReload>
             <NavLink
               text="Löschen"
               position="right"
@@ -101,7 +101,7 @@ const CategoryIndex = () => {
           </>
         ) : (
           <>
-            <Reload></Reload>
+            <NavReload></NavReload>
             <NavLink
               text="Neuer Ordner"
               position="right"

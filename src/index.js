@@ -2,7 +2,6 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./assets/css/index.css";
 import "./assets/css/bulma.min.css";
-import "./assets/css/nav.css";
 import "./assets/css/category-list.css";
 
 import * as serviceWorker from "./serviceWorker";
