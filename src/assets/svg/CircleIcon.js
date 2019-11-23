@@ -9,10 +9,7 @@ export default function CircleIcon({ width = 25, height = 25, fill = "none" }) {
       viewBox="0 0 24 24"
       fill={fill}
       stroke="#ae8b07"
-      stroke-width="1"
-      stroke-linecap="round"
-      stroke-linejoin="round"
-      class="feather feather-circle"
+      className="feather feather-circle"
     >
       <circle cx="12" cy="12" r="10"></circle>
     </svg>

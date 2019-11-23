@@ -14,13 +14,7 @@ export default function CheckedIcon({
         version="1.1"
         xmlns="http://www.w3.org/2000/svg"
       >
-        <g
-          id="Icons"
-          stroke="none"
-          stroke-width="1"
-          fill="none"
-          fill-rule="evenodd"
-        >
+        <g id="Icons" stroke="none" fill="none" fillRule="evenodd">
           <g id="Rounded" transform="translate(-646.000000, -200.000000)">
             <g id="Action" transform="translate(100.000000, 100.000000)">
               <g

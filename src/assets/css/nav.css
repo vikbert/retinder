@@ -49,3 +49,6 @@ nav > div {
   color: rgb(11, 10, 10);
   text-shadow: none;
 }
+.text-disabled {
+  color: #b1aeae;
+}

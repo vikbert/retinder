@@ -1,15 +1,24 @@
 import React, { useState } from "react";
-import { useSelector } from "react-redux";
+import clsx from "clsx";
+import { useSelector, useDispatch } from "react-redux";
 import CategoryItem from "./CategoryItem";
 import Reload from "../components/Reload";
 import Modal from "../components/Modal";
+import { deleteCategory } from "../../stores/categoryWidget";
 
 const CategoryIndex = () => {
   const [inEdit, setInEdit] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
+  const [selectedIds, setSelectedIds] = useState([]);
+
   const categories = useSelector(state => state.categories);
+  const dispatch = useDispatch();
 
   const handleClickOnEdit = () => {
+    if (inEdit && selectedIds.length > 0) {
+      window.location.reload();
+    }
+
     setInEdit(!inEdit);
   };
 
@@ -17,8 +26,27 @@ const CategoryIndex = () => {
     setModalOpen(!modalOpen);
   };
 
-  const handleClickDeleteAll = e => {
-    console.log("TODO: implement delete all categories");
+  const handleClickDelete = e => {
+    if (selectedIds.length === 0) {
+      return;
+    }
+
+    selectedIds.forEach(id => {
+      dispatch(deleteCategory(id));
+    });
+    window.location.reload();
+  };
+
+  const selectCategory = id => {
+    setSelectedIds([id, ...selectedIds]);
+  };
+
+  const deselectCategory = id => {
+    setSelectedIds(
+      selectedIds.filter(selectedId => {
+        return id !== selectedId;
+      })
+    );
   };
 
   return (
@@ -39,6 +67,8 @@ const CategoryIndex = () => {
               key={index}
               inEdit={inEdit}
               category={categories.byId[id]}
+              selectCategory={selectCategory}
+              deselectCategory={deselectCategory}
             />
           ))}
       </section>
@@ -46,8 +76,14 @@ const CategoryIndex = () => {
         {inEdit ? (
           <>
             <Reload />
-            <div className="text-right" onClick={handleClickDeleteAll}>
-              Löschen All
+            <div
+              className={clsx(
+                "text-right",
+                selectedIds.length === 0 && "text-disabled"
+              )}
+              onClick={handleClickDelete}
+            >
+              Löschen
             </div>
           </>
         ) : (

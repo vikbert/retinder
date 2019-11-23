@@ -1,26 +1,36 @@
 import React, { useState } from "react";
-import { useDispatch } from "react-redux";
 
 import clsx from "clsx";
-import DeleteIcon from "../components/DeleteIcon";
 import FolderIcon from "../components/FolderIcon";
 import CheckedIcon from "../../assets/svg/CheckedIcon";
 import CircleIcon from "../../assets/svg/CircleIcon";
-import { deleteCategory } from "../../stores/categoryWidget";
 
-export default function CategoryItem({ inEdit, category }) {
+export default function CategoryItem({
+  inEdit,
+  category,
+  selectCategory,
+  deselectCategory
+}) {
   const [clicked, setClicked] = useState(false);
+  const [selected, setSelected] = useState(false);
 
   const handleClickOnItemContent = event => {
     event.preventDefault();
     setClicked(!clicked);
   };
 
-  const dispatch = useDispatch();
-  const handleDeleteCategory = id => {
-    if (inEdit) {
-      dispatch(deleteCategory(category.id));
+  const handleClickOnIcon = id => {
+    if (!inEdit) {
+      return;
     }
+    if (selected) {
+      deselectCategory(category.id);
+    } else {
+      selectCategory(category.id);
+    }
+
+    setSelected(!selected);
+    setClicked(!clicked);
   };
 
   return (
@@ -30,11 +40,11 @@ export default function CategoryItem({ inEdit, category }) {
           <div
             className="icon-container"
             onClick={() => {
-              handleDeleteCategory(category.id);
+              handleClickOnIcon(category.id);
             }}
           >
             {inEdit ? (
-              clicked ? (
+              selected ? (
                 <CheckedIcon />
               ) : (
                 <CircleIcon />
