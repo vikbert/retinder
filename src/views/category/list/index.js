@@ -2,9 +2,9 @@ import React, { useState } from "react";
 import clsx from "clsx";
 import { useSelector, useDispatch } from "react-redux";
 import CategoryItem from "./CategoryItem";
-import Reload from "../components/Reload";
-import Modal from "../components/Modal";
-import { deleteCategory } from "../../stores/categoryWidget";
+import Reload from "../../components/Reload";
+import Modal from "../../components/Modal";
+import { deleteCategory } from "../categoryWidget";
 
 const CategoryIndex = () => {
   const [inEdit, setInEdit] = useState(false);
