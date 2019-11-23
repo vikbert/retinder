@@ -5,7 +5,7 @@ import { history } from "./routing/history";
 import NotFound from "./views/NotFound";
 import Login from "./views/user/Login";
 import PrivateRoute from "./routing/PrivateRoute";
-import CardIndex from "./views/card";
+import CardIndex from "./views/card/list";
 import CategoryIndex from "./views/category/list";
 
 const App = () => {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 import { H1 } from "./Typography";
 
 const Title = styled.div`
-  padding: 5px 10px;
+  padding: 5px 20px;
 `;
 export default function HeaderTitle({ title = "HeaderTitle" }) {
   return (

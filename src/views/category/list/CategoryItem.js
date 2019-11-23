@@ -6,7 +6,7 @@ import CircleIcon from "../../components/svg/CircleIcon";
 import { lineItemSelected } from "../../components/Background";
 
 const ListItemIcon = styled.div`
-  padding: 10px 16px 4px 10px;
+  padding: 10px 16px 4px 20px;
 `;
 const ListItemContainer = styled.div`
   display: flex;
