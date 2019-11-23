@@ -1,11 +1,13 @@
 import React, { useState } from "react";
-import clsx from "clsx";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import HeaderTitle from "../../components/HeadTitle";
+import NavBottom from "../../components/NavBottom";
+import NavLink from "../../components/NavLink";
+import NavTop from "../../components/NavTop";
+import { deleteCategory } from "../categoryWidget";
+import Modal from "../form/CategoryForm";
 import CategoryItem from "./CategoryItem";
 import Reload from "../../components/Reload";
-import Modal from "../form/CategoryForm";
-import { deleteCategory } from "../categoryWidget";
-import HeaderTitle from "../../components/HeadTitle";
 
 const CategoryIndex = () => {
   const [inEdit, setInEdit] = useState(false);
@@ -17,6 +19,7 @@ const CategoryIndex = () => {
   const dispatch = useDispatch();
 
   const handleClickOnEdit = () => {
+    console.log("####");
     if (inEdit && selectedIds.length > 0) {
       window.location.reload();
     }
@@ -60,13 +63,15 @@ const CategoryIndex = () => {
 
   return (
     <>
-      <nav className="nav top-nav">
-        <div></div>
-        <div className="text-center">Ordner</div>
-        <div className="text-right" onClick={handleClickOnEdit}>
-          {inEdit ? "Fertig" : "Bearbeiten"}
-        </div>
-      </nav>
+      <NavTop>
+        <NavLink position="left" text=""></NavLink>
+        <NavLink position="center" text="Ordner"></NavLink>
+        <NavLink
+          position="right"
+          text={inEdit ? "Fertig" : "Bearbeiten"}
+          handleClick={handleClickOnEdit}
+        ></NavLink>
+      </NavTop>
 
       <section className="page-content">
         {modalOpen && <Modal closeModal={handleToggleModal} />}
@@ -83,29 +88,28 @@ const CategoryIndex = () => {
             />
           ))}
       </section>
-      <nav className="nav bottom-nav">
+      <NavBottom>
         {inEdit ? (
           <>
-            <Reload />
-            <div
-              className={clsx(
-                "text-right",
-                selectedIds.length === 0 && "text-disabled"
-              )}
-              onClick={handleClickDelete}
-            >
-              Löschen
-            </div>
+            <Reload></Reload>
+            <NavLink
+              text="Löschen"
+              position="right"
+              disabled={selectedIds.length === 0}
+              handleClick={handleClickDelete}
+            />
           </>
         ) : (
           <>
-            <Reload />
-            <div className="text-right" onClick={handleToggleModal}>
-              Neuer Ordner
-            </div>
+            <Reload></Reload>
+            <NavLink
+              text="Neuer Ordner"
+              position="right"
+              handleClick={handleToggleModal}
+            />
           </>
         )}
-      </nav>
+      </NavBottom>
     </>
   );
 };
