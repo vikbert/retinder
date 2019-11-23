@@ -1,11 +1,12 @@
 import styled, { css } from "styled-components";
 
 const fontWeight = css`
-  font-weight: 600;
+  font-weight: 700;
 `;
 
 export const H1 = styled.h1`
-  font-size: 2rem;
+  font-size: 1.8rem;
+  letter-spacing: -0.55px;
   ${fontWeight}
 `;
 

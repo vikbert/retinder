@@ -1,5 +1,4 @@
 import React, { useState } from "react";
-
 import clsx from "clsx";
 import FolderIcon from "../../components/FolderIcon";
 import CheckedIcon from "../../../assets/svg/CheckedIcon";
@@ -8,14 +7,13 @@ import CircleIcon from "../../../assets/svg/CircleIcon";
 export default function CategoryItem({
   inEdit,
   category,
-  selectCategory,
-  deselectCategory
+  selectCategory = () => {},
+  deselectCategory = () => {}
 }) {
   const [clicked, setClicked] = useState(false);
   const [selected, setSelected] = useState(false);
 
-  const handleClickOnItemContent = event => {
-    event.preventDefault();
+  const handleClickOnItemContent = () => {
     setClicked(!clicked);
   };
 
@@ -43,7 +41,7 @@ export default function CategoryItem({
               handleClickOnIcon(category.id);
             }}
           >
-            {inEdit ? (
+            {inEdit && category.id ? (
               selected ? (
                 <CheckedIcon />
               ) : (

@@ -3,13 +3,15 @@ import clsx from "clsx";
 import { useSelector, useDispatch } from "react-redux";
 import CategoryItem from "./CategoryItem";
 import Reload from "../../components/Reload";
-import Modal from "../../components/Modal";
+import Modal from "../form/CategoryForm";
 import { deleteCategory } from "../categoryWidget";
+import HeaderTitle from "../../components/HeadTitle";
 
 const CategoryIndex = () => {
   const [inEdit, setInEdit] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
+  const [title, setTitle] = useState("Ordner");
 
   const categories = useSelector(state => state.categories);
   const dispatch = useDispatch();
@@ -19,7 +21,7 @@ const CategoryIndex = () => {
       window.location.reload();
     }
 
-    setInEdit(!inEdit);
+    setInEdit(!inEdit && categories.allIds.length > 0);
   };
 
   const handleToggleModal = () => {
@@ -37,11 +39,18 @@ const CategoryIndex = () => {
     window.location.reload();
   };
 
+  const updateTitle = counter => {
+    const newTitle = counter ? `${counter} ausgewählt` : "Ordner";
+    setTitle(newTitle);
+  };
+
   const selectCategory = id => {
+    updateTitle(selectedIds.length + 1);
     setSelectedIds([id, ...selectedIds]);
   };
 
   const deselectCategory = id => {
+    updateTitle(selectedIds.length - 1);
     setSelectedIds(
       selectedIds.filter(selectedId => {
         return id !== selectedId;
@@ -61,6 +70,8 @@ const CategoryIndex = () => {
 
       <section className="page-content">
         {modalOpen && <Modal closeModal={handleToggleModal} />}
+        <HeaderTitle title={title} />
+        <CategoryItem inEdit={inEdit} category={{ name: "Alle karte" }} />
         {categories.allIds.length > 0 &&
           categories.allIds.map((id, index) => (
             <CategoryItem

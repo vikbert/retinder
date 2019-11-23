@@ -1,9 +1,9 @@
 import React from "react";
 import { useDispatch } from "react-redux";
-import uuid from "../../utils/UUID";
 import styled, { css } from "styled-components";
-import { H5 } from "./Typography";
-import { createCategory } from "../category/categoryWidget";
+import uuid from "../../../utils/UUID";
+import { H5 } from "../../components/Typography";
+import { createCategory } from "../categoryWidget";
 
 const ModalOverlay = styled.div`
   position: fixed;
