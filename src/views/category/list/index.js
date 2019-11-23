@@ -73,7 +73,7 @@ const CategoryIndex = () => {
         ></NavLink>
       </NavTop>
 
-      <section className="page-content">
+      <section className="page-content bg">
         {modalOpen && <Modal closeModal={handleToggleModal} />}
         <HeaderTitle title={title} />
         <CategoryItem inEdit={inEdit} category={{ name: "Alle karte" }} />

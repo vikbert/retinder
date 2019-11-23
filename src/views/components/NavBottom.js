@@ -13,5 +13,5 @@ const Bottom = styled.div`
 `;
 
 export default function NavBottom({ children }) {
-  return <Bottom>{children}</Bottom>;
+  return <Bottom className="bg">{children}</Bottom>;
 }
