@@ -4,10 +4,10 @@ import HeaderTitle from "../../components/HeadTitle";
 import NavBottom from "../../components/NavBottom";
 import NavLink from "../../components/NavLink";
 import NavTop from "../../components/NavTop";
+import Reload from "../../components/Reload";
 import { deleteCategory } from "../categoryWidget";
 import Modal from "../form/CategoryForm";
 import CategoryItem from "./CategoryItem";
-import Reload from "../../components/Reload";
 
 const CategoryIndex = () => {
   const [inEdit, setInEdit] = useState(false);
@@ -19,8 +19,8 @@ const CategoryIndex = () => {
   const dispatch = useDispatch();
 
   const handleClickOnEdit = () => {
-    console.log("####");
     if (inEdit && selectedIds.length > 0) {
+      setTitle("Ordner");
       window.location.reload();
     }
 

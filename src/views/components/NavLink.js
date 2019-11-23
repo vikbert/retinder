@@ -6,7 +6,7 @@ const defaultStyle = css`
   color: #cf9707;
   text-shadow: 0 0.3px 0 rgba(155, 99, 4, 0.892);
   font-weight: 600;
-  font-size: 16px;
+  font-size: 17px;
   line-height: 20px;
   letter-spacing: -0.25px;
   min-width: 33%;
