@@ -1,8 +1,8 @@
 import React, { useState } from "react";
 import clsx from "clsx";
-import FolderIcon from "../../components/FolderIcon";
-import CheckedIcon from "../../../assets/svg/CheckedIcon";
-import CircleIcon from "../../../assets/svg/CircleIcon";
+import FolderIcon from "../../components/svg/FolderIcon";
+import CheckedIcon from "../../components/svg/CheckedIcon";
+import CircleIcon from "../../components/svg/CircleIcon";
 
 export default function CategoryItem({
   inEdit,
