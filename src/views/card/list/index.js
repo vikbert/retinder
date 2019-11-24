@@ -15,7 +15,7 @@ const CardIndex = () => {
   const cards = useSelector(state => state.cards);
   const currentCategory = categories.byId[categoryId];
   const counter = currentCategory.cards.length === 0;
-
+i
   const [formInvisible, setFormInvisible] = useState(true);
 
   const handleOpenCardForm = () => {
@@ -25,7 +25,13 @@ const CardIndex = () => {
   return (
     <>
       <NavTop>
-        <NavLink text="❮" position="left" disabled={false} route="/category" />
+        <NavLink
+          text="❮"
+          position="left"
+          disabled={false}
+          route="/category"
+          isBack={true}
+        />
         {/* todo: show this title, if HeaderTitle not in view ports */}
         <NavLink text={""} position="center" />
         <NavLink text="Bearbeiten" position="right" disabled={counter} />

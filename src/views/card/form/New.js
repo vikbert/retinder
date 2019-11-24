@@ -83,6 +83,7 @@ const CardNew = ({ category, invisible = true, hideForm = () => {} }) => {
               <NavLink
                 text={"❮ " + category.name}
                 position="left"
+                isBack={true}
                 handleClick={hideForm}
               />
               <NavLink text="" position="center" />
