@@ -1,10 +1,11 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
+import { primary } from "./Color";
 
 const defaultStyle = css`
   cursor: pointer;
-  color: #cf9707;
+  color: ${primary};
   text-shadow: 0 0.3px 0 rgba(155, 99, 4, 0.892);
   font-weight: 600;
   font-size: 17px;
