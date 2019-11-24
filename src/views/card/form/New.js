@@ -47,13 +47,15 @@ const TextContent = styled.textarea`
   height: 40vh;
 `;
 
-const CardNew = ({
-  categoryId = undefined,
-  invisible = true,
-  hideForm = () => {}
-}) => {
+const ButtonWithoutStyle = styled.button`
+  padding: 0;
+  border: none;
+  background: none;
+`;
+
+const CardNew = ({ category, invisible = true, hideForm = () => {} }) => {
   const dispatch = useDispatch();
-  const hanleSubmitCardForm = event => {
+  const hanleSubmitForm = event => {
     event.preventDefault();
 
     const formElement = event.currentTarget;
@@ -63,7 +65,7 @@ const CardNew = ({
         id: uuid(),
         title: formData.get("title"),
         description: formData.get("description"),
-        category: categoryId
+        category: category.id
       })
     );
 
@@ -76,13 +78,17 @@ const CardNew = ({
     !invisible && (
       <>
         <FullscreenModal>
-          <form onSubmit={hanleSubmitCardForm}>
+          <form onSubmit={hanleSubmitForm}>
             <NavTop>
-              <NavLink text="Zurück" position="left" />
+              <NavLink
+                text={"❮ " + category.name}
+                position="left"
+                handleClick={hideForm}
+              />
               <NavLink text="" position="center" />
-              <button type="submit">
+              <ButtonWithoutStyle type="submit">
                 <NavLink text="Fertig" position="right" />
-              </button>
+              </ButtonWithoutStyle>
             </NavTop>
             <div className="page-content bg">
               <ContentContainer>

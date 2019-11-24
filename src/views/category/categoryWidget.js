@@ -32,7 +32,6 @@ const reducer = (state = initialState.categories, action) => {
     case CREATE_CARD:
       const cardId = action.card.id;
       const categoryId = action.card.category;
-      console.log("#### action:", cardId, categoryId);
       cloned.byId[categoryId]["cards"] = [
         cardId,
         ...cloned.byId[categoryId].cards

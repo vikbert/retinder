@@ -84,7 +84,6 @@ export default function Modal({ closeModal }) {
 
   React.useEffect(() => {
     categoryFieldRef.current.focus();
-    console.log("bin focused");
   });
 
   const handleClickOnCancel = event => {
