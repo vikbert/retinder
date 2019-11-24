@@ -1,5 +1,4 @@
 import React from "react";
-import { category } from "../../routing/routes";
 import { useDispatch } from "react-redux";
 import { login } from "../../stores/userWidget";
 import uuid from "../../utils/UUID";
@@ -16,7 +15,7 @@ const Login = ({ history }) => {
         token: uuid()
       })
     );
-    history.push(category);
+    history.push("/category");
   };
 
   const LoginForm = () => (
