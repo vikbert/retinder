@@ -15,7 +15,6 @@ const CardIndex = () => {
   const cards = useSelector(state => state.cards);
   const currentCategory = categories.byId[categoryId];
   const counter = currentCategory.cards.length === 0;
-i
   const [formInvisible, setFormInvisible] = useState(true);
 
   const handleOpenCardForm = () => {
