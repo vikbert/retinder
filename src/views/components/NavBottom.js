@@ -8,9 +8,7 @@ const Bottom = styled.div`
   bottom: 0;
   left: 0;
   right: 0;
-  background-color: #f7f7f7;
   padding: 10px 20px;
-  height: 45px;
 `;
 
 export default function NavBottom({ children }) {

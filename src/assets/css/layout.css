@@ -1,0 +1,24 @@
+body {
+  overflow: hidden;
+}
+
+/* make real paper effect with bg image */
+.bg {
+  background-image: url(../images/bg.png);
+  background-repeat: repeat;
+}
+
+/* 100 View Height to make the page can fill the full screen */
+.page-content {
+  margin: 40px 0;
+  height: 100vh;
+}
+
+/* clickable DIV as href link */
+a.clickable-item {
+  width: 100%;
+  height: 100%;
+  top: 0;
+  left: 0;
+  color: #4a4a4a;
+}

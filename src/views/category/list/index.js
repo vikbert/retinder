@@ -9,7 +9,7 @@ import { deleteCategory } from "../categoryWidget";
 import Modal from "../form/CategoryForm";
 import CategoryItem from "./CategoryItem";
 
-const CategoryIndex = () => {
+const CategoryIndex = ({ props }) => {
   const [inEdit, setInEdit] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   const [selectedIds, setSelectedIds] = useState([]);
@@ -65,10 +65,11 @@ const CategoryIndex = () => {
     <>
       <NavTop>
         <NavLink position="left" text=""></NavLink>
-        <NavLink position="center" text="Ordner"></NavLink>
+        {/* todo: use ref, if headtile not in view ports, then show the title */}
+        <NavLink position="center" text=""></NavLink>
         <NavLink
           position="right"
-          text={inEdit ? "Fertig" : "Bearbeiten"}
+          text={inEdit ? "Abbrechen" : "Bearbeiten"}
           handleClick={handleClickOnEdit}
         ></NavLink>
       </NavTop>

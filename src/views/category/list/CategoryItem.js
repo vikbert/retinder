@@ -1,9 +1,10 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import styled from "styled-components";
-import FolderIcon from "../../components/svg/FolderIcon";
+import { lineItemSelected } from "../../components/Color";
 import CheckedIcon from "../../components/svg/CheckedIcon";
 import CircleIcon from "../../components/svg/CircleIcon";
-import { lineItemSelected } from "../../components/Background";
+import FolderIcon from "../../components/svg/FolderIcon";
 
 const ListItemIcon = styled.div`
   padding: 10px 16px 4px 20px;
@@ -88,13 +89,21 @@ export default function CategoryItem({
               <FolderIcon />
             )}
           </ListItemIcon>
-          <LineItemContent onClick={handleClickOnItemContent}>
-            <ContentText>{category.name}</ContentText>
-            <ContentCounter>
-              <CardCounter>{cardCounter}</CardCounter>
-              <span>❯</span>
-            </ContentCounter>
-          </LineItemContent>
+          <Link
+            to={{
+              pathname: category.id ? `/card/${category.id}` : "/card",
+              state: { categoryName: category.name, categoryId: category.id }
+            }}
+            className="clickable-item"
+          >
+            <LineItemContent onClick={handleClickOnItemContent}>
+              <ContentText>{category.name}</ContentText>
+              <ContentCounter>
+                <CardCounter>{cardCounter}</CardCounter>
+                <span>❯</span>
+              </ContentCounter>
+            </LineItemContent>
+          </Link>
         </ListItemContainer>
       </ListItemView>
     </>

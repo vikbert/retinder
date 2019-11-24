@@ -1,0 +1,21 @@
+Retinder Feature Plan:
+    Category:
+        manage the category or folders
+        ✔ show list of categories
+        ✔ add a new category
+        ✔ delete one or multiple items
+        ☐ inEdit: click to edit the single category
+        ✔ normal: click to jump to card page
+
+    Card:
+        can list/add/edit/delete card
+        ✔ show initial view, if no cards exist
+        ☐ add new card
+        ☐ list cards
+        ☐ edit card
+
+    Review:
+        ☐ can start the review on a Category: e.g. `php`
+        ☐ can select the cards from a category as a review list
+        ☐ can select the cards from different category as a review list
+        ☐ can delete exist review list

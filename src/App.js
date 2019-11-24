@@ -13,10 +13,11 @@ const App = () => {
   return (
     <Router history={history} basename={"/"}>
       <Switch>
-        <Route exact path={home} component={Login} />
-        <Route exact path={login} component={Login} />
+        <Route exact path={"/"} component={Login} />
+        <Route exact path={"/login"} component={Login} />
+        <PrivateRoute exact path={"/card"} component={CardIndex} />
+        <PrivateRoute path={"/card/:categoryId"} component={CardIndex} />
         <PrivateRoute exact path={category} component={CategoryIndex} />
-        <PrivateRoute exact path={card} component={CardIndex} />
         <PrivateRoute exact path={review} component={StartReview} />
         <Route component={NotFound} />
       </Switch>

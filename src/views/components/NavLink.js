@@ -1,5 +1,6 @@
 import React from "react";
 import styled, { css } from "styled-components";
+import { Link } from "react-router-dom";
 
 const defaultStyle = css`
   cursor: pointer;
@@ -17,7 +18,8 @@ export default function NavLink({
   text = "",
   position = "center",
   disabled = false,
-  handleClick = () => {}
+  handleClick = () => {},
+  route = null
 }) {
   const TextLeft = styled.div`
     ${defaultStyle}
@@ -52,7 +54,19 @@ export default function NavLink({
     default:
       TextWithPosition = TextCenter;
   }
-  console.log("render link");
 
-  return <TextWithPosition onClick={handleClick}>{text}</TextWithPosition>;
+  const delegateClickHandling = () => {
+    if (disabled) {
+      return;
+    }
+    handleClick();
+  };
+
+  return route ? (
+    <Link to={route}>
+      <TextWithPosition>{text}</TextWithPosition>
+    </Link>
+  ) : (
+    <TextWithPosition onClick={delegateClickHandling}>{text}</TextWithPosition>
+  );
 }
