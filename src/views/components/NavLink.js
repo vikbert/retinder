@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
 import { primary } from "./Color";
@@ -16,8 +17,8 @@ const defaultStyle = css`
 `;
 
 export default function NavLink({
-  text = "",
-  position = "center",
+  text,
+  position,
   disabled = false,
   handleClick = () => {},
   route = null
@@ -71,3 +72,11 @@ export default function NavLink({
     <TextWithPosition onClick={delegateClickHandling}>{text}</TextWithPosition>
   );
 }
+
+NavLink.propTypes = {
+  text: PropTypes.string.isRequired,
+  position: PropTypes.string.isRequired,
+  disabled: PropTypes.bool,
+  handleClick: PropTypes.func,
+  route: PropTypes.string
+};

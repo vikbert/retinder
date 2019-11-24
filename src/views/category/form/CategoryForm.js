@@ -100,7 +100,8 @@ export default function Modal({ closeModal }) {
     dispatch(
       createCategory({
         id: uuid(),
-        name: category
+        name: category,
+        cards: []
       })
     );
 
