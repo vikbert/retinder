@@ -77,7 +77,9 @@ const CategoryIndex = ({ props }) => {
       <section className="page-content bg">
         {modalOpen && <Modal closeModal={handleToggleModal} />}
         <HeaderTitle title={title} />
+        {/* all cards for all categories */}
         <CategoryItem inEdit={inEdit} category={{ name: "Alle karte" }} />
+        {/* category list with cards counter */}
         {categories.allIds.length > 0 &&
           categories.allIds.map((id, index) => (
             <CategoryItem

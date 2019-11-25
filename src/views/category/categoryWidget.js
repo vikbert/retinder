@@ -1,4 +1,4 @@
-import { CREATE_CARD } from "../../stores/cardWidget";
+import { CREATE_CARD, DELETE_CARD } from "../card/cardWidget";
 import initialState from "../../stores/initialState";
 
 export const CREATE_CATEGORY = "category.create_category";
@@ -36,6 +36,15 @@ const reducer = (state = initialState.categories, action) => {
         cardId,
         ...cloned.byId[categoryId].cards
       ];
+
+      return cloned;
+    case DELETE_CARD:
+      const category = action.card.category;
+      cloned.byId[category]["cards"] = cloned.byId[category].cards.filter(
+        cardId => {
+          return cardId !== action.card.id;
+        }
+      );
 
       return cloned;
     case CREATE_CATEGORY:

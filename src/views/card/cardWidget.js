@@ -1,4 +1,4 @@
-import initialState from "./initialState";
+import initialState from "../../stores/initialState";
 export const CREATE_CARD = "card.create_card";
 export const DELETE_CARD = "card.delete_card";
 export const LOAD_CARDS = "card.load_cards";
@@ -13,9 +13,9 @@ export const createCard = card => ({
   card
 });
 
-export const deleteCard = id => ({
+export const deleteCard = card => ({
   type: DELETE_CARD,
-  id
+  card
 });
 
 const reducer = (state = initialState.cards, action) => {
@@ -29,9 +29,9 @@ const reducer = (state = initialState.cards, action) => {
       return cloned;
 
     case DELETE_CARD:
-      delete cloned.byId[action.id];
+      delete cloned.byId[action.card.id];
       cloned.allIds.filter(id => {
-        return id !== action.id;
+        return id !== action.card.id;
       });
       return cloned;
 

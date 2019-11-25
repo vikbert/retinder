@@ -4,7 +4,7 @@ import styled, { css } from "styled-components";
 import { disabled, primary } from "../../components/Color";
 import NavLink from "../../components/NavLink";
 import NavTop from "../../components/NavTop";
-import { createCard } from "../../../stores/cardWidget";
+import { createCard } from "../cardWidget";
 import uuid from "../../../utils/UUID";
 
 const FullscreenModal = styled.div`
@@ -53,8 +53,13 @@ const ButtonWithoutStyle = styled.button`
   background: none;
 `;
 
-const CardNew = ({ category, invisible = true, hideForm = () => {} }) => {
+export default function CardForm({
+  category,
+  invisible = true,
+  hideForm = () => {}
+}) {
   const dispatch = useDispatch();
+
   const hanleSubmitForm = event => {
     event.preventDefault();
 
@@ -111,6 +116,4 @@ const CardNew = ({ category, invisible = true, hideForm = () => {} }) => {
       </>
     )
   );
-};
-
-export default CardNew;
+}

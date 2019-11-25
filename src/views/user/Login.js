@@ -15,7 +15,7 @@ const Login = ({ history }) => {
         token: uuid()
       })
     );
-    history.push("/category");
+    history.push("/categories");
   };
 
   const LoginForm = () => (

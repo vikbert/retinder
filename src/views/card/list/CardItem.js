@@ -1,10 +1,9 @@
 import React, { useState } from "react";
-import { Link } from "react-router-dom";
 import styled from "styled-components";
 import { lineItemSelected } from "../../components/Color";
 import CheckedIcon from "../../components/svg/CheckedIcon";
 import CircleIcon from "../../components/svg/CircleIcon";
-import FolderIcon from "../../components/svg/FolderIcon";
+import CardIcon from "../../components/svg/CardIcon";
 
 const ListItemIcon = styled.div`
   padding: 10px 16px 4px 20px;
@@ -30,21 +29,15 @@ const LineItemContent = styled.div`
   height: 100%;
   padding: 16px 0;
 `;
-const CardCounter = styled.span`
-  padding-right: 6px;
-`;
-const ContentCounter = styled.div`
-  color: rgb(145, 143, 137);
-  padding-right: 20px;
-`;
 const ContentText = styled.div`
   margin-right: auto;
 `;
-export default function CategoryItem({
+
+export default function CardItem({
   inEdit,
-  category,
-  selectCategory = () => {},
-  deselectCategory = () => {}
+  card,
+  select = () => {},
+  deselect = () => {}
 }) {
   const [clicked, setClicked] = useState(false);
   const [selected, setSelected] = useState(false);
@@ -55,56 +48,45 @@ export default function CategoryItem({
     ${(selected || clicked) && lineItemSelected}
   `;
 
-  const handleClickOnItemContent = () => {
-    setClicked(!clicked);
-  };
-
-  const handleClickOnIcon = id => {
+  const handleClickOnItem = id => {
     if (!inEdit) {
       return;
     }
     if (selected) {
-      deselectCategory(category.id);
+      deselect(card.id);
     } else {
-      selectCategory(category.id);
+      select(card.id);
     }
 
     setSelected(!selected);
     setClicked(!clicked);
   };
 
+  if (!card) {
+    return null;
+  }
   return (
     <>
       <ListItemView>
         <ListItemContainer>
-          <ListItemIcon onClick={() => handleClickOnIcon(category.id)}>
-            {inEdit && category.id ? (
+          <ListItemIcon onClick={() => handleClickOnItem(card.id)}>
+            {inEdit && card.id ? (
               selected ? (
                 <CheckedIcon />
               ) : (
                 <CircleIcon />
               )
             ) : (
-              <FolderIcon />
+              <CardIcon />
             )}
           </ListItemIcon>
-          <Link
-            to={{
-              pathname: category.id ? `/cards/${category.id}` : "/cards",
-              state: { categoryName: category.name, categoryId: category.id }
+          <LineItemContent
+            onClick={() => {
+              handleClickOnItem(card.id);
             }}
-            className="clickable-item"
           >
-            <LineItemContent onClick={handleClickOnItemContent}>
-              <ContentText>{category.name}</ContentText>
-              <ContentCounter>
-                {category.cards && (
-                  <CardCounter>{category.cards.length}</CardCounter>
-                )}
-                <span>❯</span>
-              </ContentCounter>
-            </LineItemContent>
-          </Link>
+            <ContentText>{card.title}</ContentText>
+          </LineItemContent>
         </ListItemContainer>
       </ListItemView>
     </>

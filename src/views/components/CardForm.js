@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from "react-redux";
-import { createCard } from "../../stores/cardWidget";
+import { createCard } from "../card/cardWidget";
 import uuid from "../../utils/UUID";
 
 const CardForm = ({closeModal = null}) => {

@@ -1,5 +1,5 @@
 import { combineReducers } from "redux";
-import cardWidget from "../cardWidget";
+import cardWidget from "../../views/card/cardWidget";
 import userWidget from "../userWidget";
 import categoryWidget from "../../views/category/categoryWidget";
 

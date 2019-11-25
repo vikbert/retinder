@@ -1,0 +1,7 @@
+{
+  "compilerOptions": {
+    "baseUrl": ".",
+    "js": "react"
+  },
+  "exclude": ["node_modules", "build"]
+}
