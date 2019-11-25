@@ -14,10 +14,14 @@ const defaultStyle = css`
   min-width: 33%;
   -webkit-font-smoothing: antialiased;
 `;
-
+const StyledDiv = styled.div`
+  font-size: 17px;
+  padding: 2px 0 0 10px;
+`;
 export default function NavLink({
   text,
   position,
+  title,
   disabled = false,
   isBack = false,
   handleClick = () => {},
@@ -28,6 +32,8 @@ export default function NavLink({
     text-align: left;
     color: ${props => (disabled ? `#b1aeae` : `#cf9707`)};
     margin-left: ${isBack ? `-10px` : `0`};
+    font-size: ${isBack ? `30px` : `17px`};
+    display: flex;
   `;
 
   const TextRight = styled.div`
@@ -46,16 +52,16 @@ export default function NavLink({
     text-shadow: none;
   `;
 
-  let TextWithPosition;
+  let TextWithAlignment;
   switch (position) {
     case "left":
-      TextWithPosition = TextLeft;
+      TextWithAlignment = TextLeft;
       break;
     case "right":
-      TextWithPosition = TextRight;
+      TextWithAlignment = TextRight;
       break;
     default:
-      TextWithPosition = TextCenter;
+      TextWithAlignment = TextCenter;
   }
 
   const delegateClickHandling = () => {
@@ -65,11 +71,17 @@ export default function NavLink({
     handleClick();
   };
 
-  return route ? (
-    <Link to={route}>
-      <TextWithPosition>{text}</TextWithPosition>
-    </Link>
-  ) : (
-    <TextWithPosition onClick={delegateClickHandling}>{text}</TextWithPosition>
+  if (route) {
+    return (
+      <Link to={route}>
+        <TextWithAlignment>{text}</TextWithAlignment>
+      </Link>
+    );
+  }
+
+  return (
+    <TextWithAlignment onClick={delegateClickHandling}>
+      {text} {isBack && <StyledDiv>{title}</StyledDiv>}
+    </TextWithAlignment>
   );
 }

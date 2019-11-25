@@ -86,7 +86,8 @@ export default function CardForm({
           <form onSubmit={hanleSubmitForm}>
             <NavTop>
               <NavLink
-                text={"❮ " + category.name}
+                text="❮"
+                title={category.name}
                 position="left"
                 isBack={true}
                 handleClick={hideForm}

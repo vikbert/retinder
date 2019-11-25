@@ -6,8 +6,9 @@ import NavBottom from "../../components/NavBottom";
 import NavLink from "../../components/NavLink";
 import NavLinkNote from "../../components/NavLinkNote";
 import NavTop from "../../components/NavTop";
-import CardItem from "./CardItem";
+import NavBack from "../../components/NavBack";
 import CardForm from "../form/CardForm";
+import CardItem from "./CardItem";
 import { deleteCard } from "../cardWidget";
 
 const CardList = () => {
@@ -71,6 +72,8 @@ const CardList = () => {
           route="/categories"
           isBack={true}
         />
+
+        {/* <NavBack route="/categories" /> */}
         {/* todo: show this title, if HeaderTitle not in view ports */}
         <NavLink text={""} position="center" />
         <NavLink

@@ -1,5 +1,6 @@
 body {
   overflow: hidden;
+  background-image: url(../images/bg.png);
 }
 
 /* make real paper effect with bg image */
