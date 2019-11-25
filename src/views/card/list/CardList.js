@@ -26,9 +26,12 @@ const CardList = () => {
   const dispatch = useDispatch();
 
   const handleDeleteOrAddCard = () => {
-    if (inEdit) {
-      console.log("handling delete cards", selectedCards);
-      selectedCards.forEach(cardId => {
+    if (inEdit && selectedCards.length) {
+      const clone = [...selectedCards];
+      setSelectedCards(() => {
+        return [];
+      });
+      clone.forEach(cardId => {
         dispatch(deleteCard(cards.byId[cardId]));
       });
     } else {
@@ -100,7 +103,7 @@ const CardList = () => {
           text={cardCounter ? `${cardCounter} Karten` : "Keinen Karten"}
         />
         <NavLink
-          text={inEdit ? "Löschen" : "Neue karte"}
+          text={inEdit && selectedCards.length ? "Löschen" : "Neue karte"}
           position="right"
           handleClick={handleDeleteOrAddCard}
         />
