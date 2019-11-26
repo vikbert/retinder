@@ -10,6 +10,7 @@ import NavBack from '../../components/NavBack';
 import CardForm from '../form/CardForm';
 import CardItem from './CardItem';
 import { deleteCard } from '../cardWidget';
+import ReviewSlide from 'src/views/review/ReviewSlide';
 
 const CardList = () => {
   const [formInvisible, setFormInvisible] = useState(true);
@@ -98,7 +99,7 @@ const CardList = () => {
       </section>
       <NavBottom>
         <NavLink
-          text="ReviewAll"
+          text="Start Review"
           position="left"
           disabled={cardCounter === 0}
         />
@@ -118,6 +119,7 @@ const CardList = () => {
           setFormInvisible(true);
         }}
       />
+      <ReviewSlide />
     </>
   );
 };

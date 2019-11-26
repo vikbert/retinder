@@ -1,6 +1,7 @@
 import React from "react";
 import { useDispatch } from "react-redux";
 import styled, { css } from "styled-components";
+import { ControlFooter } from "../../components/StyledComponents";
 import uuid from "../../../utils/UUID";
 import { H5 } from "../../components/Typography";
 import { createCategory } from "../categoryWidget";
@@ -36,12 +37,6 @@ const ModalWrapper = styled.div`
   -webkit-border-radius: 5px;
   border-radius: 5px;
   -khtml-border-radius: 5px;
-`;
-const ControlFooter = styled.div`
-  display: flex;
-  justify-content: space-around;
-  margin-top: auto;
-  border-top: 1px solid #dedede;
 `;
 
 const itemStyled = css`
