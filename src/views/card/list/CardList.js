@@ -137,7 +137,6 @@ const CardList = () => {
       />
       <ReviewSlide
         slideVisible={slideVisible}
-        car={cards.byId[currentCardId]}
         skipCard={handleSkipCard}
         repeatCard={handleRepeatCard}
         closeSlide={handleCloseSlide}
