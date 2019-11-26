@@ -3,6 +3,11 @@ import styled, { css } from "styled-components";
 import { FullscreenModal, ControlFooter } from "../components/StyledComponents";
 import NavTop from "../components/NavTop";
 import NavLink from "../components/NavLink";
+import RepeatIcon from "../components/svg/RepeatIcon";
+import SkipIcon from "../components/svg/SkipIcon";
+import CheckedIcon from "../components/svg/CheckedIcon";
+import FolderIcon from "../components/svg/FolderIcon";
+
 const Slide = styled.div`
   display: flex;
   flex-direction: column;
@@ -25,7 +30,7 @@ const SlideTitle = styled.div`
 const itemStyled = css`
   width: 50%;
   text-align: center;
-  padding: 12px 8px;
+  padding: 8px 8px;
 `;
 const LeftButton = styled.div`
   ${itemStyled}
@@ -74,8 +79,12 @@ export default function ReviewSlide({ card }) {
               aliqua mollit.
             </SlideContent>
             <ControlFooter>
-              <LeftButton onClick={handleDislike}>dislike</LeftButton>
-              <RightButton onClick={handleLike}>like</RightButton>
+              <LeftButton onClick={handleDislike}>
+                <FolderIcon />
+              </LeftButton>
+              <RightButton onClick={handleLike}>
+                <RepeatIcon />
+              </RightButton>
             </ControlFooter>
           </Slide>
         </section>
