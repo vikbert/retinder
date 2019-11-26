@@ -16,6 +16,12 @@ const Slide = styled.div`
 const SlideContent = styled.div`
   padding: 10px;
 `;
+const SlideTitle = styled.div`
+  font-size: 20px;
+  font-weight: 500;
+  text-transform: capitalize;
+  margin-bottom: 10px;
+`;
 const itemStyled = css`
   width: 50%;
   text-align: center;
@@ -29,10 +35,19 @@ const RightButton = styled.div`
   border-left: 1px solid #dedede;
 `;
 
-export default function ReviewSlide() {
+export default function ReviewSlide({ card }) {
   const handleCloseSlideView = () => {
     console.log("close slide view, back to cards list");
   };
+
+  const handleDislike = () => {
+    console.log("handle click on dislike");
+  };
+
+  const handleLike = () => {
+    console.log("handle click on like");
+  };
+
   return (
     <>
       <FullscreenModal>
@@ -49,6 +64,7 @@ export default function ReviewSlide() {
         <section className="page-content bg default-padding">
           <Slide>
             <SlideContent>
+              <SlideTitle>{"card title"}</SlideTitle>
               Dolor velit sit aliqua ut nisi mollit mollit eu excepteur eiusmod.
               Voluptate eiusmod veniam ullamco deserunt consequat qui fugiat in
               anim commodo amet occaecat ea Lorem. Culpa enim occaecat duis
@@ -58,8 +74,8 @@ export default function ReviewSlide() {
               aliqua mollit.
             </SlideContent>
             <ControlFooter>
-              <LeftButton>dislike</LeftButton>
-              <RightButton>like</RightButton>
+              <LeftButton onClick={handleDislike}>dislike</LeftButton>
+              <RightButton onClick={handleLike}>like</RightButton>
             </ControlFooter>
           </Slide>
         </section>
