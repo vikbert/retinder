@@ -1,16 +1,15 @@
-import React, { useState } from 'react';
-import { useSelector, useDispatch } from 'react-redux';
-import { useLocation } from 'react-router-dom';
-import HeaderTitle from '../../components/HeadTitle';
-import NavBottom from '../../components/NavBottom';
-import NavLink from '../../components/NavLink';
-import NavLinkNote from '../../components/NavLinkNote';
-import NavTop from '../../components/NavTop';
-import NavBack from '../../components/NavBack';
-import CardForm from '../form/CardForm';
-import CardItem from './CardItem';
-import { deleteCard } from '../cardWidget';
-import ReviewSlide from 'src/views/review/ReviewSlide';
+import React, { useState } from "react";
+import { useSelector, useDispatch } from "react-redux";
+import { useLocation } from "react-router-dom";
+import HeaderTitle from "../../components/HeadTitle";
+import NavBottom from "../../components/NavBottom";
+import NavLink from "../../components/NavLink";
+import NavLinkNote from "../../components/NavLinkNote";
+import NavTop from "../../components/NavTop";
+import CardForm from "../form/CardForm";
+import CardItem from "./CardItem";
+import { deleteCard } from "../cardWidget";
+import ReviewSlide from "src/views/review/ReviewSlide";
 
 const CardList = () => {
   const [formInvisible, setFormInvisible] = useState(true);
@@ -20,8 +19,8 @@ const CardList = () => {
   const location = useLocation();
   const { categoryName, categoryId } = location.state;
 
-  const categories = useSelector((state) => state.categories);
-  const cards = useSelector((state) => state.cards);
+  const categories = useSelector(state => state.categories);
+  const cards = useSelector(state => state.cards);
   const currentCategory = categoryId ? categories.byId[categoryId] : null;
   const cardCounter = currentCategory ? currentCategory.cards.length : 0;
 
@@ -33,7 +32,7 @@ const CardList = () => {
       setSelectedCards(() => {
         return [];
       });
-      clone.forEach((cardId) => {
+      clone.forEach(cardId => {
         dispatch(deleteCard(cards.byId[cardId]));
       });
     } else {
@@ -49,18 +48,22 @@ const CardList = () => {
     setInEdit(!inEdit);
   };
 
-  const selectCard = (cardId) => {
-    setSelectedCards((prevState) => {
+  const selectCard = cardId => {
+    setSelectedCards(prevState => {
       return [...prevState, cardId];
     });
   };
 
-  const deselectCard = (cardId) => {
-    setSelectedCards((prevState) => {
-      return prevState.filter((id) => {
+  const deselectCard = cardId => {
+    setSelectedCards(prevState => {
+      return prevState.filter(id => {
         return id !== cardId;
       });
     });
+  };
+
+  const handleCloseSlide = () => {
+    console.log();
   };
 
   return (
@@ -74,9 +77,8 @@ const CardList = () => {
           isBack={true}
         />
 
-        {/* <NavBack route="/categories" /> */}
         {/* todo: show this title, if HeaderTitle not in view ports */}
-        <NavLink text={''} position="center" />
+        <NavLink text={""} position="center" />
         <NavLink
           text="Bearbeiten"
           position="right"
@@ -85,7 +87,7 @@ const CardList = () => {
         />
       </NavTop>
       <section className="page-content bg">
-        <HeaderTitle title={categoryName || 'Alle Karte'} />
+        <HeaderTitle title={categoryName || "Alle Karte"} />
         {cardCounter > 0 &&
           categories.byId[categoryId].cards.map((cardId, index) => (
             <CardItem
@@ -104,10 +106,10 @@ const CardList = () => {
           disabled={cardCounter === 0}
         />
         <NavLinkNote
-          text={cardCounter ? `${cardCounter} Karten` : 'Keinen Karten'}
+          text={cardCounter ? `${cardCounter} Karten` : "Keinen Karten"}
         />
         <NavLink
-          text={inEdit && selectedCards.length ? 'Löschen' : 'Neue karte'}
+          text={inEdit && selectedCards.length ? "Löschen" : "Neue karte"}
           position="right"
           handleClick={handleDeleteOrAddCard}
         />
@@ -119,7 +121,7 @@ const CardList = () => {
           setFormInvisible(true);
         }}
       />
-      <ReviewSlide />
+      <ReviewSlide closeSlide={handleCloseSlide} />
     </>
   );
 };

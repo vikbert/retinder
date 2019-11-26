@@ -1,25 +1,33 @@
 import React from "react";
-import styled, { css } from "styled-components";
-import { FullscreenModal, ControlFooter } from "../components/StyledComponents";
-import NavTop from "../components/NavTop";
+import styled from "styled-components";
+import NavBottom from "../components/NavBottom";
 import NavLink from "../components/NavLink";
-import RepeatIcon from "../components/svg/RepeatIcon";
-import SkipIcon from "../components/svg/SkipIcon";
-import CheckedIcon from "../components/svg/CheckedIcon";
-import FolderIcon from "../components/svg/FolderIcon";
+import NavTop from "../components/NavTop";
+import {
+  FullscreenModal,
+  ScreenCentered
+} from "../components/StyledComponents";
+import { primary, defaultPadding } from "../components/Style";
+import SadIcon from "../components/svg/SadIcon";
+import SmileIcon from "../components/svg/SmileIcon";
 
 const Slide = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 70vh;
+  height: 60vh;
   overflow-x: hidden;
   overflow-y: auto;
   border-radius: 5px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
+  background-color: #fff;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
+  position: relative;
+  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
+    0 0 40px rgba(0, 0, 0, 0.1) inset;
 `;
+
 const SlideContent = styled.div`
-  padding: 10px;
+  padding: 20px;
 `;
 const SlideTitle = styled.div`
   font-size: 20px;
@@ -27,29 +35,21 @@ const SlideTitle = styled.div`
   text-transform: capitalize;
   margin-bottom: 10px;
 `;
-const itemStyled = css`
-  width: 50%;
-  text-align: center;
-  padding: 8px 8px;
-`;
-const LeftButton = styled.div`
-  ${itemStyled}
-`;
-const RightButton = styled.div`
-  ${itemStyled}
-  border-left: 1px solid #dedede;
+const H4 = styled.h4`
+  ${defaultPadding}
 `;
 
-export default function ReviewSlide({ card }) {
+export default function ReviewSlide({ card = null, closeSlide = () => true }) {
   const handleCloseSlideView = () => {
     console.log("close slide view, back to cards list");
+    closeSlide();
   };
 
-  const handleDislike = () => {
+  const handleSkipCard = () => {
     console.log("handle click on dislike");
   };
 
-  const handleLike = () => {
+  const handleRepeatCard = () => {
     console.log("handle click on like");
   };
 
@@ -67,27 +67,33 @@ export default function ReviewSlide({ card }) {
           />
         </NavTop>
         <section className="page-content bg default-padding">
-          <Slide>
-            <SlideContent>
-              <SlideTitle>{"card title"}</SlideTitle>
-              Dolor velit sit aliqua ut nisi mollit mollit eu excepteur eiusmod.
-              Voluptate eiusmod veniam ullamco deserunt consequat qui fugiat in
-              anim commodo amet occaecat ea Lorem. Culpa enim occaecat duis
-              exercitation in quis reprehenderit. Ipsum quis eiusmod cillum
-              eiusmod ea sit nostrud et tempor non culpa. Enim proident sint
-              excepteur magna do anim ipsum. Nisi sit irure velit occaecat
-              aliqua mollit.
-            </SlideContent>
-            <ControlFooter>
-              <LeftButton onClick={handleDislike}>
-                <FolderIcon />
-              </LeftButton>
-              <RightButton onClick={handleLike}>
-                <RepeatIcon />
-              </RightButton>
-            </ControlFooter>
-          </Slide>
+          {card ? (
+            <Slide>
+              <SlideContent>
+                <SlideTitle>{"card title"}</SlideTitle>
+                Dolor velit sit aliqua ut nisi mollit mollit eu excepteur
+                eiusmod. Voluptate eiusmod veniam ullamco deserunt consequat qui
+                fugiat in anim commodo amet occaecat ea Lorem. Culpa enim
+                occaecat duis
+              </SlideContent>
+            </Slide>
+          ) : (
+            <ScreenCentered>
+              <SmileIcon fill={primary} />
+              <H4>Keine Karte gefunden!</H4>
+            </ScreenCentered>
+          )}
         </section>
+        {card && (
+          <NavBottom contentCentered={true}>
+            <div onClick={handleSkipCard}>
+              <SmileIcon />
+            </div>
+            <div onClick={handleRepeatCard}>
+              <SadIcon />
+            </div>
+          </NavBottom>
+        )}
       </FullscreenModal>
     </>
   );

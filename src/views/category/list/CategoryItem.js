@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
-import { lineItemSelected } from "../../components/Color";
+import { lineItemSelected } from "../../components/Style";
 import CheckedIcon from "../../components/svg/CheckedIcon";
 import CircleIcon from "../../components/svg/CircleIcon";
 import FolderIcon from "../../components/svg/FolderIcon";

@@ -16,3 +16,8 @@ export const ControlFooter = styled.div`
   position: relative;
   bottom: 0;
 `;
+export const ScreenCentered = styled.div`
+  position: relative;
+  top: 30%;
+  text-align: center;
+`;

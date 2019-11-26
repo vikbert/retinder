@@ -1,7 +1,7 @@
 import React from "react";
 import styled, { css } from "styled-components";
 import { Link } from "react-router-dom";
-import { primary } from "./Color";
+import { primary } from "./Style";
 
 const defaultStyle = css`
   cursor: pointer;
