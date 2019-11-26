@@ -11,7 +11,7 @@ const Slide = styled.div`
   overflow-x: hidden;
   overflow-y: auto;
   border-radius: 5px;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16), 0 3px 6px rgba(0, 0, 0, 0.23);
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.16);
 `;
 const SlideContent = styled.div`
   padding: 10px;
