@@ -39,62 +39,70 @@ const H4 = styled.h4`
   ${defaultPadding}
 `;
 
-export default function ReviewSlide({ card = null, closeSlide = () => true }) {
+export default function ReviewSlide({
+  slideVisible,
+  card = null,
+  closeSlide = () => true,
+  skipCard = () => true,
+  repeatCard = () => true
+}) {
   const handleCloseSlideView = () => {
     console.log("close slide view, back to cards list");
     closeSlide();
   };
 
-  const handleSkipCard = () => {
-    console.log("handle click on dislike");
+  const handleSkipCard = cardId => {
+    skipCard(cardId);
   };
 
-  const handleRepeatCard = () => {
-    console.log("handle click on like");
+  const handleRepeatCard = cardId => {
+    repeatCard(cardId);
   };
 
   return (
-    <>
-      <FullscreenModal>
-        <NavTop>
-          <NavLink text="" position="left" />
-          <NavLink text="" position="center" disabled={false} />
-          <NavLink
-            text="fertig"
-            position="right"
-            disabled={false}
-            handleClick={handleCloseSlideView}
-          />
-        </NavTop>
-        <section className="page-content bg default-padding">
-          {card ? (
-            <Slide>
-              <SlideContent>
-                <SlideTitle>{"card title"}</SlideTitle>
-                Dolor velit sit aliqua ut nisi mollit mollit eu excepteur
-                eiusmod. Voluptate eiusmod veniam ullamco deserunt consequat qui
-                fugiat in anim commodo amet occaecat ea Lorem. Culpa enim
-                occaecat duis
-              </SlideContent>
-            </Slide>
-          ) : (
-            <ScreenCentered>
-              <SmileIcon fill={primary} />
-              <H4>Keine Karte gefunden!</H4>
-            </ScreenCentered>
+    slideVisible && (
+      <>
+        <FullscreenModal>
+          <NavTop>
+            <NavLink text="" position="left" />
+            <NavLink text="" position="center" disabled={false} />
+            <NavLink
+              text="fertig"
+              position="right"
+              disabled={false}
+              handleClick={handleCloseSlideView}
+            />
+          </NavTop>
+          <section className="page-content bg default-padding">
+            {card ? (
+              <Slide>
+                <SlideContent>
+                  <SlideTitle>{"card title"}</SlideTitle>
+                  Dolor velit sit aliqua ut nisi mollit mollit eu excepteur
+                  eiusmod. Voluptate eiusmod veniam ullamco deserunt consequat
+                  qui fugiat in anim commodo amet occaecat ea Lorem. Culpa enim
+                  occaecat duis
+                </SlideContent>
+              </Slide>
+            ) : (
+              <ScreenCentered>
+                <SmileIcon fill={primary} />
+                <H4>Keine Karte gefunden!</H4>
+              </ScreenCentered>
+            )}
+          </section>
+          {card && (
+            <NavBottom spaceEvenly={true}>
+              <div onClick={handleSkipCard}>
+                <SmileIcon />
+              </div>
+              <div onClick={handleRepeatCard}>
+                <SadIcon />
+              </div>
+            </NavBottom>
           )}
-        </section>
-        {card && (
-          <NavBottom contentCentered={true}>
-            <div onClick={handleSkipCard}>
-              <SmileIcon />
-            </div>
-            <div onClick={handleRepeatCard}>
-              <SadIcon />
-            </div>
-          </NavBottom>
-        )}
-      </FullscreenModal>
-    </>
+        </FullscreenModal>
+      </>
+    )
   );
 }

@@ -55,11 +55,10 @@ const ButtonWithoutStyle = styled.button`
 
 export default function CardForm({
   category,
-  invisible = true,
+  formVisible = false,
   hideForm = () => {}
 }) {
   const dispatch = useDispatch();
-
   const hanleSubmitForm = event => {
     event.preventDefault();
 
@@ -80,7 +79,7 @@ export default function CardForm({
   };
 
   return (
-    !invisible && (
+    formVisible && (
       <>
         <FullscreenModal>
           <form onSubmit={hanleSubmitForm}>
@@ -100,6 +99,7 @@ export default function CardForm({
             <div className="page-content bg">
               <ContentContainer>
                 <InputTitle
+                  autoFocus
                   name="title"
                   type="text"
                   placeholder="Titel eingeben"

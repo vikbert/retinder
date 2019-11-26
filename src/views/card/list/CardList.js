@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useLocation } from "react-router-dom";
 import HeaderTitle from "../../components/HeadTitle";
@@ -12,7 +12,8 @@ import { deleteCard } from "../cardWidget";
 import ReviewSlide from "src/views/review/ReviewSlide";
 
 const CardList = () => {
-  const [formInvisible, setFormInvisible] = useState(true);
+  const [formVisible, setFormVisible] = useState(false);
+  const [slideVisible, setSlideVisible] = useState(false);
   const [inEdit, setInEdit] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
 
@@ -23,7 +24,6 @@ const CardList = () => {
   const cards = useSelector(state => state.cards);
   const currentCategory = categoryId ? categories.byId[categoryId] : null;
   const cardCounter = currentCategory ? currentCategory.cards.length : 0;
-
   const dispatch = useDispatch();
 
   const handleDeleteOrAddCard = () => {
@@ -36,7 +36,7 @@ const CardList = () => {
         dispatch(deleteCard(cards.byId[cardId]));
       });
     } else {
-      setFormInvisible(false);
+      setFormVisible(true);
     }
   };
 
@@ -62,13 +62,26 @@ const CardList = () => {
     });
   };
 
+  const handleSkipCard = cardId => {
+    console.log("skip card: " + cardId);
+  };
+
+  const handleRepeatCard = cardId => {
+    console.log("repeat card: " + cardId);
+  };
+
+  const handleOpenSlide = () => {
+    setSlideVisible(true);
+  };
+
   const handleCloseSlide = () => {
-    console.log();
+    setSlideVisible(false);
   };
 
   return (
     <>
       <NavTop>
+        {console.log("rendered CardList #######")}
         <NavLink
           text="❮"
           position="left"
@@ -104,6 +117,7 @@ const CardList = () => {
           text="Start Review"
           position="left"
           disabled={cardCounter === 0}
+          handleClick={handleOpenSlide}
         />
         <NavLinkNote
           text={cardCounter ? `${cardCounter} Karten` : "Keinen Karten"}
@@ -116,12 +130,18 @@ const CardList = () => {
       </NavBottom>
       <CardForm
         category={currentCategory}
-        invisible={formInvisible}
+        formVisible={formVisible}
         hideForm={() => {
-          setFormInvisible(true);
+          setFormVisible(false);
         }}
       />
-      <ReviewSlide closeSlide={handleCloseSlide} />
+      <ReviewSlide
+        slideVisible={slideVisible}
+        car={cards.byId[currentCardId]}
+        skipCard={handleSkipCard}
+        repeatCard={handleRepeatCard}
+        closeSlide={handleCloseSlide}
+      />
     </>
   );
 };
