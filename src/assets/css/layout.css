@@ -27,3 +27,7 @@ a.clickable-item {
 .default-padding {
     padding: 10px 20px;
 }
+pre {
+    padding: 0;
+    background-color: #ffffff;
+}
