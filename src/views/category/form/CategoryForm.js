@@ -27,7 +27,7 @@ const ModalWrapper = styled.div`
   z-index: 100;
   left: 50%;
   right: 50%;
-  top: 25%;
+  top: 35%;
 
   transform: translate(-50%, -50%);
   background: white;

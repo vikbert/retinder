@@ -17,15 +17,16 @@ const CardList = () => {
     const [selectedCards, setSelectedCards] = useState([]);
     const [inEdit, setInEdit] = useState(false);
     const [index, setIndex] = useState(0);
+    
+    const categories = useSelector(state => state.categories);
+    const cards = useSelector(state => state.cards);
 
     const location = useLocation();
     const {categoryName, categoryId} = location.state;
-
-    const categories = useSelector(state => state.categories);
-    const cards = useSelector(state => state.cards);
-    const cardIdsByCategory = categories.byId[categoryId].cards;
     const currentCategory = categoryId ? categories.byId[categoryId] : null;
-    const cardCounter = currentCategory ? currentCategory.cards.length : 0;
+    
+    const cardIdsForList = categoryId ? categories.byId[categoryId].cards : cards.allIds;
+    const cardCounter = cardIdsForList.length;
     const dispatch = useDispatch();
 
     const handleDeleteOrAddCard = () => {
@@ -66,7 +67,7 @@ const CardList = () => {
 
     const renderedCards = React.useMemo(() => {
         return (
-            cardIdsByCategory.map((cardId, index) => (
+            cardIdsForList.map((cardId, index) => (
                 <CardItem
                     key={cardId}
                     inEdit={inEdit}
@@ -76,7 +77,7 @@ const CardList = () => {
                 />
             ))
         );
-    }, [inEdit, cardIdsByCategory, cards, selectCard, deselectCard]);
+    }, [inEdit, cardIdsForList, cards, selectCard, deselectCard]);
 
     const rotateIndex = () => {
         setIndex((prevIndex) => {
@@ -148,7 +149,7 @@ const CardList = () => {
                 }}
             />
             <ReviewSlide
-                card={(cardCounter && index < cardCounter) ? cards.byId[cardIdsByCategory[index]] : null}
+                card={(cardCounter && index < cardCounter) ? cards.byId[cardIdsForList[index]] : null}
                 slideVisible={slideVisible}
                 skipCard={handleSkipCard}
                 repeatCard={handleRepeatCard}

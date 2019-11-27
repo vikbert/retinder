@@ -53,18 +53,20 @@ const ButtonWithoutStyle = styled.button`
   background: none;
 `;
 
-export default function CardForm({
-                                     category,
-                                     formVisible = false,
-                                     hideForm = () => {
-                                     },
-                                 }) {
+export default function CardForm(
+    {
+        category,
+        formVisible = false,
+        hideForm = null,
+    }) {
     const dispatch = useDispatch();
-    const hanleSubmitForm = event => {
+    
+    const handleSubmitForm = event => {
         event.preventDefault();
 
         const formElement = event.currentTarget;
         const formData = new FormData(formElement);
+        
         dispatch(
             createCard({
                 id: uuid(),
@@ -75,7 +77,6 @@ export default function CardForm({
         );
 
         formElement.reset();
-
         hideForm();
     };
 
@@ -83,7 +84,7 @@ export default function CardForm({
         formVisible && (
             <>
                 <FullscreenModal>
-                    <form onSubmit={hanleSubmitForm}>
+                    <form onSubmit={handleSubmitForm}>
                         <NavTop>
                             <NavLink
                                 text="❮"
