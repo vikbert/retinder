@@ -1,6 +1,6 @@
-import React, { useState } from "react";
+import React, {useState} from "react";
 import styled from "styled-components";
-import { lineItemSelected } from "../../components/Style";
+import {lineItemSelected} from "../../components/Style";
 import CheckedIcon from "../../components/svg/CheckedIcon";
 import CircleIcon from "../../components/svg/CircleIcon";
 import CardIcon from "../../components/svg/CardIcon";
@@ -34,61 +34,63 @@ const ContentText = styled.div`
 `;
 
 export default function CardItem({
-  inEdit,
-  card,
-  select = () => {},
-  deselect = () => {}
-}) {
-  const [clicked, setClicked] = useState(false);
-  const [selected, setSelected] = useState(false);
+                                     inEdit,
+                                     card,
+                                     select = () => {
+                                     },
+                                     deselect = () => {
+                                     },
+                                 }) {
+    const [clicked, setClicked] = useState(false);
+    const [selected, setSelected] = useState(false);
 
-  const ListItemView = styled.div`
+    const ListItemView = styled.div`
     display: flex;
     cursor: pointer;
     ${(selected || clicked) && lineItemSelected}
   `;
 
-  const handleClickOnItem = id => {
-    if (!inEdit) {
-      return;
-    }
-    if (selected) {
-      deselect(card.id);
-    } else {
-      select(card.id);
-    }
+    const handleClickOnItem = id => {
+        if (!inEdit) {
+            return;
+        }
+        if (selected) {
+            deselect(card.id);
+        } else {
+            select(card.id);
+        }
 
-    setSelected(!selected);
-    setClicked(!clicked);
-  };
+        setSelected(!selected);
+        setClicked(!clicked);
+    };
 
-  if (!card) {
-    return null;
-  }
-  return (
-    <>
-      <ListItemView>
-        <ListItemContainer>
-          <ListItemIcon onClick={() => handleClickOnItem(card.id)}>
-            {inEdit && card.id ? (
-              selected ? (
-                <CheckedIcon />
-              ) : (
-                <CircleIcon />
-              )
-            ) : (
-              <CardIcon />
-            )}
-          </ListItemIcon>
-          <LineItemContent
-            onClick={() => {
-              handleClickOnItem(card.id);
-            }}
-          >
-            <ContentText>{card.title}</ContentText>
-          </LineItemContent>
-        </ListItemContainer>
-      </ListItemView>
-    </>
-  );
+    if (!card) {
+        return null;
+    }
+    return (
+        <>
+            <ListItemView>
+                <ListItemContainer>
+                    <ListItemIcon onClick={() => handleClickOnItem(card.id)}>
+                        {inEdit && card.id ? (
+                            selected ? (
+                                <CheckedIcon/>
+                            ) : (
+                                <CircleIcon/>
+                            )
+                        ) : (
+                            <CardIcon/>
+                        )}
+                    </ListItemIcon>
+                    <LineItemContent
+                        onClick={() => {
+                            handleClickOnItem(card.id);
+                        }}
+                    >
+                        <ContentText>{card.title}</ContentText>
+                    </LineItemContent>
+                </ListItemContainer>
+            </ListItemView>
+        </>
+    );
 }

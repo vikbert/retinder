@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import styled, { css } from "styled-components";
-import { disabled, primary } from "../../components/Style";
+import {useDispatch} from "react-redux";
+import styled, {css} from "styled-components";
+import {disabled, primary} from "../../components/Style";
 import NavLink from "../../components/NavLink";
 import NavTop from "../../components/NavTop";
-import { createCard } from "../cardWidget";
+import {createCard} from "../cardWidget";
 import uuid from "../../../utils/UUID";
 
 const FullscreenModal = styled.div`
@@ -54,67 +54,68 @@ const ButtonWithoutStyle = styled.button`
 `;
 
 export default function CardForm({
-  category,
-  formVisible = false,
-  hideForm = () => {}
-}) {
-  const dispatch = useDispatch();
-  const hanleSubmitForm = event => {
-    event.preventDefault();
+                                     category,
+                                     formVisible = false,
+                                     hideForm = () => {
+                                     },
+                                 }) {
+    const dispatch = useDispatch();
+    const hanleSubmitForm = event => {
+        event.preventDefault();
 
-    const formElement = event.currentTarget;
-    const formData = new FormData(formElement);
-    dispatch(
-      createCard({
-        id: uuid(),
-        title: formData.get("title"),
-        description: formData.get("description"),
-        category: category.id
-      })
+        const formElement = event.currentTarget;
+        const formData = new FormData(formElement);
+        dispatch(
+            createCard({
+                id: uuid(),
+                title: formData.get("title"),
+                description: formData.get("description"),
+                category: category.id,
+            }),
+        );
+
+        formElement.reset();
+
+        hideForm();
+    };
+
+    return (
+        formVisible && (
+            <>
+                <FullscreenModal>
+                    <form onSubmit={hanleSubmitForm}>
+                        <NavTop>
+                            <NavLink
+                                text="❮"
+                                title={category.name}
+                                position="left"
+                                isBack={true}
+                                handleClick={hideForm}
+                            />
+                            <NavLink text="" position="center"/>
+                            <ButtonWithoutStyle type="submit">
+                                <NavLink text="Fertig" position="right"/>
+                            </ButtonWithoutStyle>
+                        </NavTop>
+                        <div className="page-content bg">
+                            <ContentContainer>
+                                <InputTitle
+                                    autoFocus
+                                    name="title"
+                                    type="text"
+                                    placeholder="Titel eingeben"
+                                    required
+                                />
+                                <TextContent
+                                    name="description"
+                                    placeholder="Beschreibung eingeben"
+                                    required
+                                ></TextContent>
+                            </ContentContainer>
+                        </div>
+                    </form>
+                </FullscreenModal>
+            </>
+        )
     );
-
-    formElement.reset();
-
-    hideForm();
-  };
-
-  return (
-    formVisible && (
-      <>
-        <FullscreenModal>
-          <form onSubmit={hanleSubmitForm}>
-            <NavTop>
-              <NavLink
-                text="❮"
-                title={category.name}
-                position="left"
-                isBack={true}
-                handleClick={hideForm}
-              />
-              <NavLink text="" position="center" />
-              <ButtonWithoutStyle type="submit">
-                <NavLink text="Fertig" position="right" />
-              </ButtonWithoutStyle>
-            </NavTop>
-            <div className="page-content bg">
-              <ContentContainer>
-                <InputTitle
-                  autoFocus
-                  name="title"
-                  type="text"
-                  placeholder="Titel eingeben"
-                  required
-                />
-                <TextContent
-                  name="description"
-                  placeholder="Beschreibung eingeben"
-                  required
-                ></TextContent>
-              </ContentContainer>
-            </div>
-          </form>
-        </FullscreenModal>
-      </>
-    )
-  );
 }

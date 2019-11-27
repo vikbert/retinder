@@ -1,10 +1,10 @@
 import React from "react";
-import { useDispatch } from "react-redux";
-import styled, { css } from "styled-components";
-import { ControlFooter } from "../../components/StyledComponents";
+import {useDispatch} from "react-redux";
+import styled, {css} from "styled-components";
+import {ControlFooter} from "../../components/StyledComponents";
 import uuid from "../../../utils/UUID";
-import { H5 } from "../../components/Typography";
-import { createCategory } from "../categoryWidget";
+import {H5} from "../../components/Typography";
+import {createCategory} from "../categoryWidget";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -70,61 +70,61 @@ const Input = styled.input`
   font-size: 1rem;
 `;
 
-export default function Modal({ closeModal }) {
-  const [category, setCategory] = React.useState("");
-  const categoryFieldRef = React.useRef(null);
+export default function Modal({closeModal}) {
+    const [category, setCategory] = React.useState("");
+    const categoryFieldRef = React.useRef(null);
 
-  const SaveButton =
-    category.trim().length > 0 ? ActiveSaveButton : InactiveSaveButton;
+    const SaveButton =
+        category.trim().length > 0 ? ActiveSaveButton : InactiveSaveButton;
 
-  React.useEffect(() => {
-    categoryFieldRef.current.focus();
-  });
+    React.useEffect(() => {
+        categoryFieldRef.current.focus();
+    });
 
-  const handleClickOnCancel = event => {
-    closeModal();
-  };
+    const handleClickOnCancel = event => {
+        closeModal();
+    };
 
-  const dispatch = useDispatch();
-  const handleClickOnSave = () => {
-    if (category.trim().length === 0) {
-      return false;
-    }
+    const dispatch = useDispatch();
+    const handleClickOnSave = () => {
+        if (category.trim().length === 0) {
+            return false;
+        }
 
-    dispatch(
-      createCategory({
-        id: uuid(),
-        name: category,
-        cards: []
-      })
+        dispatch(
+            createCategory({
+                id: uuid(),
+                name: category,
+                cards: [],
+            }),
+        );
+
+        closeModal();
+    };
+
+    const handleOnChange = e => {
+        setCategory(e.target.value);
+    };
+
+    return (
+        <>
+            <ModalOverlay></ModalOverlay>
+            <ModalWrapper>
+                <Content>
+                    <H5>Neuer Ordner</H5>
+                    <Input
+                        autoFocus
+                        ref={categoryFieldRef}
+                        type="text"
+                        value={category}
+                        onChange={handleOnChange}
+                    ></Input>
+                </Content>
+                <ControlFooter>
+                    <CancelButton onClick={handleClickOnCancel}>Abbrechen</CancelButton>
+                    <SaveButton onClick={handleClickOnSave}>Speichern</SaveButton>
+                </ControlFooter>
+            </ModalWrapper>
+        </>
     );
-
-    closeModal();
-  };
-
-  const handleOnChange = e => {
-    setCategory(e.target.value);
-  };
-
-  return (
-    <>
-      <ModalOverlay></ModalOverlay>
-      <ModalWrapper>
-        <Content>
-          <H5>Neuer Ordner</H5>
-          <Input
-            autoFocus
-            ref={categoryFieldRef}
-            type="text"
-            value={category}
-            onChange={handleOnChange}
-          ></Input>
-        </Content>
-        <ControlFooter>
-          <CancelButton onClick={handleClickOnCancel}>Abbrechen</CancelButton>
-          <SaveButton onClick={handleClickOnSave}>Speichern</SaveButton>
-        </ControlFooter>
-      </ModalWrapper>
-    </>
-  );
 }

@@ -11,6 +11,6 @@ const Top = styled.div`
   padding: 10px 20px;
 `;
 
-export default function NavTop({ children }) {
-  return <Top className="bg">{children}</Top>;
+export default function NavTop({children}) {
+    return <Top className="bg">{children}</Top>;
 }

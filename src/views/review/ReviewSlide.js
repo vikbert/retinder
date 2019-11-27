@@ -3,11 +3,8 @@ import styled from "styled-components";
 import NavBottom from "../components/NavBottom";
 import NavLink from "../components/NavLink";
 import NavTop from "../components/NavTop";
-import {
-  FullscreenModal,
-  ScreenCentered
-} from "../components/StyledComponents";
-import { primary, defaultPadding } from "../components/Style";
+import {FullscreenModal, ScreenCentered} from "../components/StyledComponents";
+import {defaultPadding, primary} from "../components/Style";
 import SadIcon from "../components/svg/SadIcon";
 import SmileIcon from "../components/svg/SmileIcon";
 
@@ -40,69 +37,69 @@ const H4 = styled.h4`
 `;
 
 export default function ReviewSlide({
-  slideVisible,
-  card = null,
-  closeSlide = () => true,
-  skipCard = () => true,
-  repeatCard = () => true
-}) {
-  const handleCloseSlideView = () => {
-    console.log("close slide view, back to cards list");
-    closeSlide();
-  };
+                                        slideVisible,
+                                        card = null,
+                                        closeSlide = () => true,
+                                        skipCard = () => true,
+                                        repeatCard = () => true,
+                                    }) {
+    const handleCloseSlideView = () => {
+        console.log("close slide view, back to cards list");
+        closeSlide();
+    };
 
-  const handleSkipCard = cardId => {
-    skipCard(cardId);
-  };
+    const handleSkipCard = cardId => {
+        skipCard(cardId);
+    };
 
-  const handleRepeatCard = cardId => {
-    repeatCard(cardId);
-  };
+    const handleRepeatCard = cardId => {
+        repeatCard(cardId);
+    };
 
-  return (
-    slideVisible && (
-      <>
-        <FullscreenModal>
-          <NavTop>
-            <NavLink text="" position="left" />
-            <NavLink text="" position="center" disabled={false} />
-            <NavLink
-              text="fertig"
-              position="right"
-              disabled={false}
-              handleClick={handleCloseSlideView}
-            />
-          </NavTop>
-          <section className="page-content bg default-padding">
-            {card ? (
-              <Slide>
-                <SlideContent>
-                  <SlideTitle>{"card title"}</SlideTitle>
-                  Dolor velit sit aliqua ut nisi mollit mollit eu excepteur
-                  eiusmod. Voluptate eiusmod veniam ullamco deserunt consequat
-                  qui fugiat in anim commodo amet occaecat ea Lorem. Culpa enim
-                  occaecat duis
-                </SlideContent>
-              </Slide>
-            ) : (
-              <ScreenCentered>
-                <SmileIcon fill={primary} />
-                <H4>Keine Karte gefunden!</H4>
-              </ScreenCentered>
-            )}
-          </section>
-          {card && (
-            <NavBottom spaceEvenly={true}>
-              <div onClick={handleSkipCard}>
-                <SmileIcon />
-              </div>
-              <div onClick={handleRepeatCard}>
-                <SadIcon />
-              </div>
-            </NavBottom>
-          )}
-        </FullscreenModal>
-      </>
-    )
-  );
+    return (
+        slideVisible && (
+            <>
+                <FullscreenModal>
+                    <NavTop>
+                        <NavLink text="" position="left"/>
+                        <NavLink text="" position="center" disabled={false}/>
+                        <NavLink
+                            text="fertig"
+                            position="right"
+                            disabled={false}
+                            handleClick={handleCloseSlideView}
+                        />
+                    </NavTop>
+                    <section className="page-content bg default-padding">
+                        {card ? (
+                            <Slide>
+                                <SlideContent>
+                                    <SlideTitle>{"card title"}</SlideTitle>
+                                    Dolor velit sit aliqua ut nisi mollit mollit eu excepteur
+                                    eiusmod. Voluptate eiusmod veniam ullamco deserunt consequat
+                                    qui fugiat in anim commodo amet occaecat ea Lorem. Culpa enim
+                                    occaecat duis
+                                </SlideContent>
+                            </Slide>
+                        ) : (
+                            <ScreenCentered>
+                                <SmileIcon fill={primary}/>
+                                <H4>Keine Karte gefunden!</H4>
+                            </ScreenCentered>
+                        )}
+                    </section>
+                    {card && (
+                        <NavBottom spaceEvenly={true}>
+                            <div onClick={handleSkipCard}>
+                                <SmileIcon/>
+                            </div>
+                            <div onClick={handleRepeatCard}>
+                                <SadIcon/>
+                            </div>
+                        </NavBottom>
+                    )}
+                </FullscreenModal>
+            </>
+        )
+    );
 }

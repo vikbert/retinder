@@ -1,4 +1,4 @@
-import { css } from "styled-components";
+import {css} from "styled-components";
 
 export const primary = "#cf9707";
 export const disabled = "#b1aeae";

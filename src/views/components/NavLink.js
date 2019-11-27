@@ -1,7 +1,7 @@
 import React from "react";
-import styled, { css } from "styled-components";
-import { Link } from "react-router-dom";
-import { primary } from "./Style";
+import styled, {css} from "styled-components";
+import {Link} from "react-router-dom";
+import {primary} from "./Style";
 
 const defaultStyle = css`
   cursor: pointer;
@@ -19,15 +19,16 @@ const StyledDiv = styled.div`
   padding: 2px 0 0 10px;
 `;
 export default function NavLink({
-  text,
-  position,
-  title,
-  disabled = false,
-  isBack = false,
-  handleClick = () => {},
-  route = null
-}) {
-  const TextLeft = styled.div`
+                                    text,
+                                    position,
+                                    title,
+                                    disabled = false,
+                                    isBack = false,
+                                    handleClick = () => {
+                                    },
+                                    route = null,
+                                }) {
+    const TextLeft = styled.div`
     ${defaultStyle}
     text-align: left;
     color: ${props => (disabled ? `#b1aeae` : `#cf9707`)};
@@ -36,13 +37,13 @@ export default function NavLink({
     display: flex;
   `;
 
-  const TextRight = styled.div`
+    const TextRight = styled.div`
     ${defaultStyle}
     text-align: right;
     color: ${props => (disabled ? `#b1aeae` : `#cf9707`)};
   `;
 
-  const TextCenter = styled.div`
+    const TextCenter = styled.div`
     ${defaultStyle}
     text-align: center;
     font-size: 18px;
@@ -52,36 +53,36 @@ export default function NavLink({
     text-shadow: none;
   `;
 
-  let TextWithAlignment;
-  switch (position) {
-    case "left":
-      TextWithAlignment = TextLeft;
-      break;
-    case "right":
-      TextWithAlignment = TextRight;
-      break;
-    default:
-      TextWithAlignment = TextCenter;
-  }
-
-  const delegateClickHandling = () => {
-    if (disabled) {
-      return;
+    let TextWithAlignment;
+    switch (position) {
+        case "left":
+            TextWithAlignment = TextLeft;
+            break;
+        case "right":
+            TextWithAlignment = TextRight;
+            break;
+        default:
+            TextWithAlignment = TextCenter;
     }
-    handleClick();
-  };
 
-  if (route) {
+    const delegateClickHandling = () => {
+        if (disabled) {
+            return;
+        }
+        handleClick();
+    };
+
+    if (route) {
+        return (
+            <Link to={route}>
+                <TextWithAlignment>{text}</TextWithAlignment>
+            </Link>
+        );
+    }
+
     return (
-      <Link to={route}>
-        <TextWithAlignment>{text}</TextWithAlignment>
-      </Link>
+        <TextWithAlignment onClick={delegateClickHandling}>
+            {text} {isBack && <StyledDiv>{title}</StyledDiv>}
+        </TextWithAlignment>
     );
-  }
-
-  return (
-    <TextWithAlignment onClick={delegateClickHandling}>
-      {text} {isBack && <StyledDiv>{title}</StyledDiv>}
-    </TextWithAlignment>
-  );
 }
