@@ -18,16 +18,18 @@ const StyledDiv = styled.div`
   font-size: 17px;
   padding: 2px 0 0 10px;
 `;
-export default function NavLink({
-                                    text,
-                                    position,
-                                    title,
-                                    disabled = false,
-                                    isBack = false,
-                                    handleClick = () => {
-                                    },
-                                    route = null,
-                                }) {
+export default function NavLink
+    ({
+         text,
+         position,
+         title,
+         disabled = false,
+         isBack = false,
+         handleClick = () => {
+         },
+         route = null,
+     }) {
+    
     const TextLeft = styled.div`
     ${defaultStyle}
     text-align: left;

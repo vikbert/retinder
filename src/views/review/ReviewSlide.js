@@ -36,15 +36,15 @@ const H4 = styled.h4`
   ${defaultPadding}
 `;
 
-export default function ReviewSlide({
-                                        slideVisible,
-                                        card = null,
-                                        closeSlide = () => true,
-                                        skipCard = () => true,
-                                        repeatCard = () => true,
-                                    }) {
+export default function ReviewSlide
+    ({
+         slideVisible,
+         card = null,
+         closeSlide = () => true,
+         skipCard = () => true,
+         repeatCard = () => true,
+     }) {
     const handleCloseSlideView = () => {
-        console.log("close slide view, back to cards list");
         closeSlide();
     };
 
@@ -64,7 +64,7 @@ export default function ReviewSlide({
                         <NavLink text="" position="left"/>
                         <NavLink text="" position="center" disabled={false}/>
                         <NavLink
-                            text="fertig"
+                            text="Fertig"
                             position="right"
                             disabled={false}
                             handleClick={handleCloseSlideView}
@@ -74,11 +74,8 @@ export default function ReviewSlide({
                         {card ? (
                             <Slide>
                                 <SlideContent>
-                                    <SlideTitle>{"card title"}</SlideTitle>
-                                    Dolor velit sit aliqua ut nisi mollit mollit eu excepteur
-                                    eiusmod. Voluptate eiusmod veniam ullamco deserunt consequat
-                                    qui fugiat in anim commodo amet occaecat ea Lorem. Culpa enim
-                                    occaecat duis
+                                    <SlideTitle>{card.title}</SlideTitle>
+                                    <pre>{card.description}</pre>
                                 </SlideContent>
                             </Slide>
                         ) : (

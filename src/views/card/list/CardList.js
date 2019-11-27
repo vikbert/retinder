@@ -1,4 +1,4 @@
-import React, {useState} from "react";
+import React, {useCallback, useState} from "react";
 import {useDispatch, useSelector} from "react-redux";
 import {useLocation} from "react-router-dom";
 import HeaderTitle from "../../components/HeadTitle";
@@ -14,14 +14,16 @@ import ReviewSlide from "src/views/review/ReviewSlide";
 const CardList = () => {
     const [formVisible, setFormVisible] = useState(false);
     const [slideVisible, setSlideVisible] = useState(false);
-    const [inEdit, setInEdit] = useState(false);
     const [selectedCards, setSelectedCards] = useState([]);
+    const [inEdit, setInEdit] = useState(false);
+    const [index, setIndex] = useState(0);
 
     const location = useLocation();
     const {categoryName, categoryId} = location.state;
 
     const categories = useSelector(state => state.categories);
     const cards = useSelector(state => state.cards);
+    const cardIdsByCategory = categories.byId[categoryId].cards;
     const currentCategory = categoryId ? categories.byId[categoryId] : null;
     const cardCounter = currentCategory ? currentCategory.cards.length : 0;
     const dispatch = useDispatch();
@@ -48,26 +50,46 @@ const CardList = () => {
         setInEdit(!inEdit);
     };
 
-    const selectCard = cardId => {
+    const selectCard = useCallback(cardId => {
         setSelectedCards(prevState => {
             return [...prevState, cardId];
         });
-    };
+    }, []);
 
-    const deselectCard = cardId => {
+    const deselectCard = useCallback(cardId => {
         setSelectedCards(prevState => {
             return prevState.filter(id => {
                 return id !== cardId;
             });
         });
+    }, []);
+
+    const renderedCards = React.useMemo(() => {
+        return (
+            cardIdsByCategory.map((cardId, index) => (
+                <CardItem
+                    key={cardId}
+                    inEdit={inEdit}
+                    card={cards.byId[cardId]}
+                    select={selectCard}
+                    deselect={deselectCard}
+                />
+            ))
+        );
+    }, [inEdit, cardIdsByCategory, cards, selectCard, deselectCard]);
+
+    const rotateIndex = () => {
+        setIndex((prevIndex) => {
+            return (prevIndex === (cardCounter - 1)) ? 0 : prevIndex + 1;
+        });
     };
 
     const handleSkipCard = cardId => {
-        console.log("skip card: " + cardId);
+        rotateIndex();
     };
 
     const handleRepeatCard = cardId => {
-        console.log("repeat card: " + cardId);
+        rotateIndex();
     };
 
     const handleOpenSlide = () => {
@@ -81,7 +103,6 @@ const CardList = () => {
     return (
         <>
             <NavTop>
-                {console.log("rendered CardList #######")}
                 <NavLink
                     text="❮"
                     position="left"
@@ -101,20 +122,11 @@ const CardList = () => {
             </NavTop>
             <section className="page-content bg">
                 <HeaderTitle title={categoryName || "Alle Karte"}/>
-                {cardCounter > 0 &&
-                categories.byId[categoryId].cards.map((cardId, index) => (
-                    <CardItem
-                        key={cardId}
-                        inEdit={inEdit}
-                        card={cards.byId[cardId]}
-                        select={selectCard}
-                        deselect={deselectCard}
-                    />
-                ))}
+                {cardCounter > 0 && renderedCards}
             </section>
             <NavBottom>
                 <NavLink
-                    text="Start Review"
+                    text="Review"
                     position="left"
                     disabled={cardCounter === 0}
                     handleClick={handleOpenSlide}
@@ -136,6 +148,7 @@ const CardList = () => {
                 }}
             />
             <ReviewSlide
+                card={(cardCounter && index < cardCounter) ? cards.byId[cardIdsByCategory[index]] : null}
                 slideVisible={slideVisible}
                 skipCard={handleSkipCard}
                 repeatCard={handleRepeatCard}
