@@ -1,22 +1,26 @@
 import React from "react";
 import styled from "styled-components";
 import ReloadIcon from "./svg/ReloadIcon";
-import ReloadIconAnimation from "./svg/ReloadAnimationIcon";
+import Sync from "./Sync";
 
 export default function NavReload() {
-    const [clicked, setClicked] = React.useState(false);
+    const [syncOpen, setSyncOpen] = React.useState(false);
     const IconWrapper = styled.div`
     cursor: pointer;
   `;
+
+    const closeSync = () => {
+        setSyncOpen(false);
+    };
     const handleOnClick = () => {
-        setClicked(!clicked);
-        setTimeout(() => {
-            window.location.reload();
-        }, 970);
+        setSyncOpen(true);
     };
     return (
-        <IconWrapper onClick={handleOnClick}>
-            {clicked ? <ReloadIconAnimation/> : <ReloadIcon/>}
-        </IconWrapper>
+        <>
+            <Sync isOpen={syncOpen} closeSync={closeSync}/>
+            <IconWrapper onClick={handleOnClick}>
+                <ReloadIcon/>
+            </IconWrapper>
+        </>
     );
 }
