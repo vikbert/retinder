@@ -2,7 +2,7 @@ import React from "react";
 import {useDispatch} from "react-redux";
 import styled, {css} from "styled-components";
 import {ControlFooter} from "../../components/StyledComponents";
-import uuid from "../../../utils/UUID";
+import {uuid} from "../../../utils/UUID";
 import {H5} from "../../components/Typography";
 import {createCategory} from "../categoryWidget";
 
