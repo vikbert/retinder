@@ -106,6 +106,12 @@ export default function Modal({closeModal}) {
         setCategory(e.target.value);
     };
 
+    const handleKeyDown = (e) => {
+        if (e.key === 'Enter') {
+            handleClickOnSave();
+        }
+    };
+
     return (
         <>
             <ModalOverlay></ModalOverlay>
@@ -118,7 +124,8 @@ export default function Modal({closeModal}) {
                         type="text"
                         value={category}
                         onChange={handleOnChange}
-                    ></Input>
+                        onKeyDown={handleKeyDown}
+                    />
                 </Content>
                 <ControlFooter>
                     <CancelButton onClick={handleClickOnCancel}>Abbrechen</CancelButton>
