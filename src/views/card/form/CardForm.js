@@ -5,7 +5,7 @@ import {disabled, primary} from "../../components/Style";
 import NavLink from "../../components/NavLink";
 import NavTop from "../../components/NavTop";
 import {createCard} from "../cardWidget";
-import uuid from "../../../utils/UUID";
+import {uuid} from "../../../utils/UUID";
 
 const FullscreenModal = styled.div`
   z-index: 100;
@@ -111,7 +111,7 @@ export default function CardForm(
                                     name="description"
                                     placeholder="Beschreibung eingeben"
                                     required
-                                ></TextContent>
+                                />
                             </ContentContainer>
                         </div>
                     </form>
