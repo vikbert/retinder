@@ -3,8 +3,11 @@ import styled from "styled-components";
 import NavBottom from "../components/NavBottom";
 import NavLink from "../components/NavLink";
 import NavTop from "../components/NavTop";
-import {FullscreenModal, ScreenCentered} from "../components/StyledComponents";
-import {defaultPadding, primary} from "../components/Style";
+import { defaultPadding, primary } from "../components/Style";
+import {
+  FullscreenModal,
+  ScreenCentered
+} from "../components/StyledComponents";
 import SadIcon from "../components/svg/SadIcon";
 import SmileIcon from "../components/svg/SmileIcon";
 
@@ -40,67 +43,66 @@ const Pre = styled.pre`
   padding: 0;
 `;
 
-export default function ReviewSlide
-    ({
-         slideVisible,
-         card = null,
-         closeSlide = () => true,
-         skipCard = () => true,
-         repeatCard = () => true,
-     }) {
-    const handleCloseSlideView = () => {
-        closeSlide();
-    };
+export default function ReviewSlide({
+  slideVisible,
+  card = null,
+  closeSlide = () => true,
+  skipCard = () => true,
+  repeatCard = () => true
+}) {
+  const handleCloseSlideView = () => {
+    closeSlide();
+  };
 
-    const handleSkipCard = cardId => {
-        skipCard(cardId);
-    };
+  const handleSkipCard = cardId => {
+    skipCard(cardId);
+  };
 
-    const handleRepeatCard = cardId => {
-        repeatCard(cardId);
-    };
+  const handleRepeatCard = cardId => {
+    repeatCard(cardId);
+  };
 
-    return (
-        slideVisible && (
-            <>
-                <FullscreenModal>
-                    <NavTop>
-                        <NavLink text="" position="left"/>
-                        <NavLink text="" position="center" disabled={false}/>
-                        <NavLink
-                            text="Fertig"
-                            position="right"
-                            disabled={false}
-                            handleClick={handleCloseSlideView}
-                        />
-                    </NavTop>
-                    <section className="page-content bg default-padding">
-                        {card ? (
-                            <Slide>
-                                <SlideContent>
-                                    <SlideTitle>{card.title}</SlideTitle>
-                                    <Pre>{card.description}</Pre>
-                                </SlideContent>
-                            </Slide>
-                        ) : (
-                            <ScreenCentered>
-                                <SmileIcon fill={primary}/>
-                                <H4>Keine Karte gefunden!</H4>
-                            </ScreenCentered>
-                        )}
-                    </section>
-                    {card && (
-                        <NavBottom spaceEvenly={true}>
-                            <div onClick={handleSkipCard}>
-                                <SmileIcon/>
-                            </div>
-                            <div onClick={handleRepeatCard}>
-                                <SadIcon/>
-                            </div>
-                        </NavBottom>
-                    )}
-                </FullscreenModal>
-            </>
-        )
-    );
+  return (
+    slideVisible && (
+      <>
+        <FullscreenModal>
+          <NavTop>
+            <NavLink text="" position="left" />
+            <NavLink text="" position="center" disabled={false} />
+            <NavLink
+              text="Fertig"
+              position="right"
+              disabled={false}
+              handleClick={handleCloseSlideView}
+            />
+          </NavTop>
+          <section className="page-content bg default-padding">
+            {card ? (
+              <Slide>
+                <SlideContent>
+                  <SlideTitle>{card.title}</SlideTitle>
+                  <Pre>{card.description}</Pre>
+                </SlideContent>
+              </Slide>
+            ) : (
+              <ScreenCentered>
+                <SmileIcon fill={primary} />
+                <H4>Keine Karte gefunden!</H4>
+              </ScreenCentered>
+            )}
+          </section>
+          {card && (
+            <NavBottom spaceEvenly={true}>
+              <div onClick={handleSkipCard}>
+                <SmileIcon />
+              </div>
+              <div onClick={handleRepeatCard}>
+                <SadIcon />
+              </div>
+            </NavBottom>
+          )}
+        </FullscreenModal>
+      </>
+    )
+  );
 }

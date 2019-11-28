@@ -26,47 +26,47 @@ export const listCategory = () => ({
 });
 
 const reducer = (state = initialState.categories, action) => {
-    let cloned = {...state};
+    let clonedCategories = {...state};
     let id;
     switch (action.type) {
         case CREATE_CARD:
             const cardId = action.card.id;
             const categoryId = action.card.category;
-            cloned.byId[categoryId]["cards"] = [
+            clonedCategories.byId[categoryId]["cards"] = [
                 cardId,
-                ...cloned.byId[categoryId].cards,
+                ...clonedCategories.byId[categoryId].cards,
             ];
 
-            return cloned;
+            return clonedCategories;
         case DELETE_CARD:
             const category = action.card.category;
-            cloned.byId[category]["cards"] = cloned.byId[category].cards.filter(
+            clonedCategories.byId[category]["cards"] = clonedCategories.byId[category].cards.filter(
                 cardId => {
                     return cardId !== action.card.id;
                 },
             );
 
-            return cloned;
+            return clonedCategories;
         case CREATE_CATEGORY:
             id = action.category.id;
-            cloned.allIds = [id, ...cloned.allIds];
-            cloned.byId[id] = action.category;
+            clonedCategories.allIds = [id, ...clonedCategories.allIds];
+            clonedCategories.byId[id] = action.category;
 
-            return cloned;
+            return clonedCategories;
 
         case UPDATE_CATEGORY:
             id = action.category.id;
-            if (cloned.allIds.includes(id)) {
-                cloned.byId[id] = action.category;
+            if (clonedCategories.allIds.includes(id)) {
+                clonedCategories.byId[id] = action.category;
             }
 
-            return cloned;
+            return clonedCategories;
 
         case DELETE_CATEGORY:
-            delete cloned.byId[action.id];
-            cloned.allIds = Object.keys(cloned.byId);
+            delete clonedCategories.byId[action.id];
+            clonedCategories.allIds = Object.keys(clonedCategories.byId);
 
-            return cloned;
+            return clonedCategories;
 
         case LIST_CATEGORY:
         default:
