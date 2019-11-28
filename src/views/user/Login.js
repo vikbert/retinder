@@ -1,7 +1,7 @@
 import React from "react";
 import {useDispatch} from "react-redux";
 import {login} from "../../stores/userWidget";
-import uuid from "../../utils/UUID";
+import {uuid3} from "../../utils/UUID";
 import LogoImage from "../../assets/images/logo.jpg";
 
 const Login = ({history}) => {
@@ -12,7 +12,7 @@ const Login = ({history}) => {
         dispatch(
             login({
                 username: formData.get("username"),
-                token: uuid(),
+                token: uuid3(formData.get("username")),
             }),
         );
         history.push("/categories");
