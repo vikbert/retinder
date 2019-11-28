@@ -1,5 +1,5 @@
-const uuidv4 = require('uuid/v4');
+const crypto = require("crypto");
 
 export default function uuid() {
-    return uuidv4();
+    return crypto.randomBytes(16).toString("hex");
 }
