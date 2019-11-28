@@ -64,14 +64,14 @@ const CategoryIndex = ({props}) => {
     return (
         <>
             <NavTop>
-                <NavLink position="left" text=""></NavLink>
+                <NavLink position="left" text=""/>
                 {/* todo: use ref, if headtile not in view ports, then show the title */}
-                <NavLink position="center" text=""></NavLink>
+                <NavLink position="center" text=""/>
                 <NavLink
                     position="right"
                     text={inEdit ? "Abbrechen" : "Bearbeiten"}
                     handleClick={handleClickOnEdit}
-                ></NavLink>
+                />
             </NavTop>
 
             <section className="page-content bg">
@@ -94,7 +94,7 @@ const CategoryIndex = ({props}) => {
             <NavBottom>
                 {inEdit ? (
                     <>
-                        <NavReload></NavReload>
+                        <NavReload/>
                         <NavLink
                             text="Löschen"
                             position="right"
