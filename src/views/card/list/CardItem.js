@@ -86,8 +86,8 @@ export default function CardItem({
             }}
           >
             <ContentText>
-              {card.description.length > 18
-                ? card.description.slice(0, 18) + "..."
+              {card.description.length > 23
+                ? card.description.slice(0, 23) + "..."
                 : card.description}
             </ContentText>
           </LineItemContent>

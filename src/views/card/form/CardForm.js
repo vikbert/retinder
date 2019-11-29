@@ -83,7 +83,11 @@ export default function CardForm({
             <NavTop>
               <NavLink
                 text="❮"
-                title={category.name}
+                title={
+                  category.name.length > 18
+                    ? category.name.slice(0, 15) + "..."
+                    : category.name
+                }
                 position="left"
                 isBack={true}
                 handleClick={hideForm}

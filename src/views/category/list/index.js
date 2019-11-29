@@ -41,8 +41,10 @@ const CategoryIndex = ({ props }) => {
       return;
     }
 
-    selectedIds.forEach(id => {
-      dispatch(deleteCategory(id));
+    selectedIds.forEach(categoryId => {
+      if (categories.byId[categoryId].cards.length === 0) {
+        dispatch(deleteCategory(categoryId));
+      }
     });
     window.location.reload();
   };
