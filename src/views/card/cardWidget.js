@@ -27,7 +27,6 @@ export const updateCard = card => ({
 const reducer = (state = initialState.cards, action) => {
   let cloned = { ...state };
   let id;
-  console.log(action);
   switch (action.type) {
     case CREATE_CARD:
       id = action.card.id;
