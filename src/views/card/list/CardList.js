@@ -79,18 +79,10 @@ const CardList = () => {
     ));
   }, [inEdit, cardIdsForList, cards, selectCard, deselectCard]);
 
-  const rotateslideIndex = () => {
+  const handleUpdateSlideIndex = () => {
     setSlideIndex(prevslideIndex => {
       return prevslideIndex === cardCounter - 1 ? 0 : prevslideIndex + 1;
     });
-  };
-
-  const handleSkipCard = cardId => {
-    rotateslideIndex();
-  };
-
-  const handleRepeatCard = cardId => {
-    rotateslideIndex();
   };
 
   const handleOpenSlide = () => {
@@ -155,9 +147,8 @@ const CardList = () => {
             : null
         }
         slideVisible={slideVisible}
-        skipCard={handleSkipCard}
-        repeatCard={handleRepeatCard}
         closeSlide={handleCloseSlide}
+        updateSlideIndex={handleUpdateSlideIndex}
       />
     </>
   );

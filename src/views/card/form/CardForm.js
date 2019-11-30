@@ -66,6 +66,7 @@ export default function CardForm({
       createCard({
         id: uuid(),
         title: "",
+        ranking: 100,
         description: descriptionContent,
         category: (category && category.id) || null
       })

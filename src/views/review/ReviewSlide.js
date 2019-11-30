@@ -1,4 +1,5 @@
 import React from "react";
+import { useDispatch } from "react-redux";
 import styled from "styled-components";
 import NavBottom from "../components/NavBottom";
 import NavLink from "../components/NavLink";
@@ -10,6 +11,7 @@ import {
 } from "../components/StyledComponents";
 import SadIcon from "../components/svg/SadIcon";
 import SmileIcon from "../components/svg/SmileIcon";
+import { updateCard } from "../card/cardWidget";
 
 const Slide = styled.div`
   display: flex;
@@ -47,19 +49,31 @@ export default function ReviewSlide({
   slideVisible,
   card = null,
   closeSlide = () => true,
-  skipCard = () => true,
-  repeatCard = () => true
+  updateSlideIndex = () => true
 }) {
+  const dispatch = useDispatch();
   const handleCloseSlideView = () => {
     closeSlide();
   };
 
-  const handleSkipCard = cardId => {
-    skipCard(cardId);
+  const handleDecrementCardRanking = cardId => {
+    dispatch(
+      updateCard({
+        ...card,
+        ranking: card.ranking - 1
+      })
+    );
+    updateSlideIndex();
   };
 
-  const handleRepeatCard = cardId => {
-    repeatCard(cardId);
+  const handleIncrementCardRanking = cardId => {
+    dispatch(
+      updateCard({
+        ...card,
+        ranking: card.ranking + 1
+      })
+    );
+    updateSlideIndex();
   };
 
   return (
@@ -93,10 +107,10 @@ export default function ReviewSlide({
           </section>
           {card && (
             <NavBottom spaceEvenly={true}>
-              <div onClick={handleSkipCard}>
+              <div onClick={handleDecrementCardRanking}>
                 <SmileIcon />
               </div>
-              <div onClick={handleRepeatCard}>
+              <div onClick={handleIncrementCardRanking}>
                 <SadIcon />
               </div>
             </NavBottom>
