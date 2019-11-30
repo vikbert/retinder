@@ -16,7 +16,7 @@ const CardList = () => {
   const [slideVisible, setSlideVisible] = useState(false);
   const [selectedCards, setSelectedCards] = useState([]);
   const [inEdit, setInEdit] = useState(false);
-  const [index, setIndex] = useState(0);
+  const [slideIndex, setSlideIndex] = useState(0);
 
   const categories = useSelector(state => state.categories);
   const cards = useSelector(state => state.cards);
@@ -68,7 +68,7 @@ const CardList = () => {
   }, []);
 
   const renderedCards = React.useMemo(() => {
-    return cardIdsForList.map((cardId, index) => (
+    return cardIdsForList.map((cardId, slideIndex) => (
       <CardItem
         key={cardId}
         inEdit={inEdit}
@@ -79,18 +79,18 @@ const CardList = () => {
     ));
   }, [inEdit, cardIdsForList, cards, selectCard, deselectCard]);
 
-  const rotateIndex = () => {
-    setIndex(prevIndex => {
-      return prevIndex === cardCounter - 1 ? 0 : prevIndex + 1;
+  const rotateslideIndex = () => {
+    setSlideIndex(prevslideIndex => {
+      return prevslideIndex === cardCounter - 1 ? 0 : prevslideIndex + 1;
     });
   };
 
   const handleSkipCard = cardId => {
-    rotateIndex();
+    rotateslideIndex();
   };
 
   const handleRepeatCard = cardId => {
-    rotateIndex();
+    rotateslideIndex();
   };
 
   const handleOpenSlide = () => {
@@ -150,8 +150,8 @@ const CardList = () => {
       />
       <ReviewSlide
         card={
-          cardCounter && index < cardCounter
-            ? cards.byId[cardIdsForList[index]]
+          cardCounter && slideIndex < cardCounter
+            ? cards.byId[cardIdsForList[slideIndex]]
             : null
         }
         slideVisible={slideVisible}

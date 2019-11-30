@@ -85,8 +85,7 @@ export default function Sync({ isOpen, closeSync }) {
         })
         .finally(function() {
           setLoading(false);
-          closeSync();
-          // window.location.reload();
+          window.location.reload();
         });
     }
   };
