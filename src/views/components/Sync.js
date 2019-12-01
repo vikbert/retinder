@@ -1,71 +1,48 @@
 import React from "react";
 import axios from "axios";
-import styled, { css } from "styled-components";
+import styled from "styled-components";
 import { storageGet, storageSet } from "../../utils/LocalStorage";
-import { ControlFooter } from "../components/StyledComponents";
-import ReloadIconAnimation from "./svg/ReloadAnimationIcon";
+import { primary } from "../components/Style";
 
 const ModalOverlay = styled.div`
+  z-index: 50;
   position: fixed;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  z-index: 50;
-  background-color: rgba(0, 0, 0, 0.3);
+  background-color: rgba(0, 0, 0, 0.5);
 `;
 const ModalWrapper = styled.div`
-  display: flex;
-  flex-direction: column;
-  width: 280px;
-  max-width: 100%;
-  height: 160px;
-  max-height: 100%;
-
-  position: fixed;
   z-index: 100;
-  left: 50%;
-  right: 50%;
-  top: 35%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 200px;
+  height: 100%;
+  color: "#dedede";
+  background-color: white;
 
-  transform: translate(-50%, -50%);
-  background: white;
-  box-shadow: 0 0 6 1px rbga(0, 0, 0, 9);
-
-  -moz-border-radius: 5px;
-  -webkit-border-radius: 5px;
-  border-radius: 5px;
-  -khtml-border-radius: 5px;
+  padding: 20px 0;
 `;
 
-const itemStyled = css`
-  width: 50%;
-  text-align: center;
-  padding: 12px 8px;
-`;
-const CancelButton = styled.div`
-  color: #cf9707;
-  ${itemStyled}
-`;
-const SaveButton = styled.div`
-  ${itemStyled}
-  border-left: 1px solid #dedede;
-  color: #cf9707;
-`;
-const Content = styled.div`
-  text-align: center;
-  padding: 10px;
-`;
-const Text = styled.div`
-  margin-bottom: 10px;
+const StyledButton = styled.button`
+  padding: 20px;
+  text-align: left;
+  border: none;
+  width: 100%;
+  font-size: 14px;
+  background: #fff;
+  :focus {
+    outline: none;
+    background-color: rgba(247, 202, 0, 0.24);
+  }
 `;
 
 export default function Sync({ isOpen, closeSync }) {
   let requestBaseUrl = "https://vikbert-software.de/api/retinder.php";
-  const [loading, setLoading] = React.useState(false);
 
   const handleDownload = event => {
-    setLoading(true);
     let retinderReduxData = storageGet("retinder");
     const token = storageGet("token");
     if (retinderReduxData) {
@@ -84,14 +61,12 @@ export default function Sync({ isOpen, closeSync }) {
           console.error(error);
         })
         .finally(function() {
-          setLoading(false);
           window.location.reload();
         });
     }
   };
 
   const handleUpload = event => {
-    setLoading(true);
     const requestBaseUrl = "https://vikbert-software.de/api/retinder.php";
     let token;
     const retinderObject = JSON.parse(storageGet("retinder"));
@@ -113,7 +88,6 @@ export default function Sync({ isOpen, closeSync }) {
         console.log(error);
       })
       .finally(() => {
-        setLoading(false);
         closeSync();
       });
   };
@@ -121,16 +95,18 @@ export default function Sync({ isOpen, closeSync }) {
   return (
     isOpen && (
       <>
-        <ModalOverlay></ModalOverlay>
+        <ModalOverlay onClick={closeSync}></ModalOverlay>
         <ModalWrapper>
-          <Content>
-            <Text>wähle die Option aus, um die Daten zu synchronisieren</Text>
-            {loading && <ReloadIconAnimation />}
-          </Content>
-          <ControlFooter>
-            <CancelButton onClick={handleDownload}>Herunterladen</CancelButton>
-            <SaveButton onClick={handleUpload}>Hochladen</SaveButton>
-          </ControlFooter>
+          <ul>
+            <li>
+              <StyledButton onClick={handleDownload}>
+                Herunterladen
+              </StyledButton>
+            </li>
+            <li>
+              <StyledButton onClick={handleUpload}>Hochladen</StyledButton>
+            </li>
+          </ul>
         </ModalWrapper>
       </>
     )
