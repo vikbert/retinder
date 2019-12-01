@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import ReloadIcon from "./svg/ReloadIcon";
+import SettingIcon from "./svg/SettingIcon";
 import Sync from "./Sync";
 
 export default function NavReload() {
@@ -19,7 +19,7 @@ export default function NavReload() {
         <>
             <Sync isOpen={syncOpen} closeSync={closeSync}/>
             <IconWrapper onClick={handleOnClick}>
-                <ReloadIcon/>
+                <SettingIcon/>
             </IconWrapper>
         </>
     );

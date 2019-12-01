@@ -51,6 +51,12 @@ export default function CategoryItem({
   const [selected, setSelected] = useState(false);
   const [editFormOpen, setEditFormOpen] = useState(false);
 
+  const countAllCards = category.countAllCards
+    ? category.countAllCards
+    : category.cards
+    ? category.cards.length
+    : 0;
+
   const ListItemView = styled.div`
     display: flex;
     cursor: pointer;
@@ -106,9 +112,7 @@ export default function CategoryItem({
             <LineItemContent onClick={handleClickOnItemContent}>
               <ContentText>{category.name}</ContentText>
               <ContentCounter>
-                {category.cards && (
-                  <CardCounter>{category.cards.length}</CardCounter>
-                )}
+                <CardCounter>{countAllCards}</CardCounter>
                 <span>❯</span>
               </ContentCounter>
             </LineItemContent>

@@ -77,7 +77,8 @@ export default function CardForm({
   };
 
   return (
-    formVisible && (
+    formVisible &&
+    category && (
       <>
         <FullscreenModal>
           <form onSubmit={handleSubmitForm}>

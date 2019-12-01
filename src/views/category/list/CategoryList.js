@@ -42,7 +42,7 @@ const CategoryIndex = ({ props }) => {
         dispatch(deleteCategory(categoryId));
       }
     });
-    window.location.reload();
+    // window.location.reload();
   };
 
   const updateTitle = counter => {
@@ -83,7 +83,7 @@ const CategoryIndex = ({ props }) => {
         {/* all cards for all categories */}
         <CategoryItem
           inEdit={inEdit}
-          category={{ name: "Alle karte", counter: counterOfAllCards }}
+          category={{ name: "Alle karte", countAllCards: counterOfAllCards }}
         />
         {/* category list with cards counter */}
         {categories.allIds.length > 0 &&
