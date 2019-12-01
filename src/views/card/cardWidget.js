@@ -43,7 +43,7 @@ const reducer = (state = initialState.cards, action) => {
 
     case DELETE_CARD:
       delete cloned.byId[action.card.id];
-      cloned.allIds.filter(id => {
+      cloned.allIds = cloned.allIds.filter(id => {
         return id !== action.card.id;
       });
 

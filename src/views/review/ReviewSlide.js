@@ -60,7 +60,7 @@ export default function ReviewSlide({
     dispatch(
       updateCard({
         ...card,
-        ranking: card.ranking - 1
+        ranking: card.ranking ? card.ranking - 1 : 100
       })
     );
     updateSlideIndex();
@@ -70,7 +70,7 @@ export default function ReviewSlide({
     dispatch(
       updateCard({
         ...card,
-        ranking: card.ranking + 1
+        ranking: card.ranking ? card.ranking + 1 : 100
       })
     );
     updateSlideIndex();

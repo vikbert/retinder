@@ -1,7 +1,7 @@
 import React from "react";
 import ReviewIndex from "../review";
 import {useSelector} from "react-redux";
-import CategoryIndex from "../category/list";
+import CategoryIndex from "../category/list/CategoryList";
 
 const StartReview = () => {
     const cards = useSelector(state => state.cards);

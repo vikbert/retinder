@@ -6,7 +6,7 @@ import NotFound from "./views/NotFound";
 import Login from "./views/user/Login";
 import PrivateRoute from "./routing/PrivateRoute";
 import CardList from "./views/card/list/CardList";
-import CategoryIndex from "./views/category/list";
+import CategoryIndex from "./views/category/list/CategoryList";
 
 const App = () => {
     return (

@@ -2,7 +2,7 @@ import React, {useState} from "react";
 import EyeBlocked from "../../assets/svg/EyeBlocked";
 import EyePlus from "../../assets/svg/EyePlus";
 import BulmaCard from "../components/BulmaCard";
-import CategoryIndex from "../category/list";
+import CategoryIndex from "../category/list/CategoryList";
 
 const ReviewIndex = ({cards}) => {
     const ids = cards.allIds;

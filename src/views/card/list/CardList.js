@@ -14,21 +14,21 @@ import CardItem from "./CardItem";
 const CardList = () => {
   const [formVisible, setFormVisible] = useState(false);
   const [slideVisible, setSlideVisible] = useState(false);
-  const [selectedCards, setSelectedCards] = useState([]);
   const [inEdit, setInEdit] = useState(false);
   const [slideIndex, setSlideIndex] = useState(0);
+  const [selectedCards, setSelectedCards] = useState([]);
 
   const categories = useSelector(state => state.categories);
-  const cards = useSelector(state => state.cards);
+  const allCards = useSelector(state => state.cards);
 
   const location = useLocation();
   const { categoryName, categoryId } = location.state;
   const currentCategory = categoryId ? categories.byId[categoryId] : null;
 
-  const cardIdsForList = categoryId
+  const idsForCurrentList = categoryId
     ? categories.byId[categoryId].cards
-    : cards.allIds;
-  const cardCounter = cardIdsForList.length;
+    : allCards.allIds;
+  const cardCounter = idsForCurrentList.length;
   const dispatch = useDispatch();
 
   const handleDeleteOrAddCard = () => {
@@ -38,7 +38,7 @@ const CardList = () => {
         return [];
       });
       clone.forEach(cardId => {
-        dispatch(deleteCard(cards.byId[cardId]));
+        dispatch(deleteCard(allCards.byId[cardId]));
       });
     } else {
       setFormVisible(true);
@@ -68,16 +68,16 @@ const CardList = () => {
   }, []);
 
   const renderedCards = React.useMemo(() => {
-    return cardIdsForList.map((cardId, slideIndex) => (
+    return idsForCurrentList.map((cardId, slideIndex) => (
       <CardItem
         key={cardId}
         inEdit={inEdit}
-        card={cards.byId[cardId]}
+        card={allCards.byId[cardId]}
         select={selectCard}
         deselect={deselectCard}
       />
     ));
-  }, [inEdit, cardIdsForList, cards, selectCard, deselectCard]);
+  }, [idsForCurrentList, inEdit, allCards.byId, selectCard, deselectCard]);
 
   const handleUpdateSlideIndex = () => {
     setSlideIndex(prevslideIndex => {
@@ -140,10 +140,11 @@ const CardList = () => {
           setFormVisible(false);
         }}
       />
+      {}
       <ReviewSlide
         card={
           cardCounter && slideIndex < cardCounter
-            ? cards.byId[cardIdsForList[slideIndex]]
+            ? allCards.byId[idsForCurrentList[slideIndex]]
             : null
         }
         slideVisible={slideVisible}
