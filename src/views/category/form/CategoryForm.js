@@ -1,10 +1,10 @@
 import React from "react";
-import {useDispatch} from "react-redux";
-import styled, {css} from "styled-components";
-import {ControlFooter} from "../../components/StyledComponents";
-import {uuid} from "../../../utils/UUID";
-import {H5} from "../../components/Typography";
-import {createCategory} from "../categoryWidget";
+import { useDispatch } from "react-redux";
+import styled, { css } from "styled-components";
+import { ControlFooter } from "../../components/StyledComponents";
+import { uuid } from "../../../utils/UUID";
+import { H5 } from "../../components/Typography";
+import { createCategory, updateCategory } from "../categoryWidget";
 
 const ModalOverlay = styled.div`
   position: fixed;
@@ -70,68 +70,79 @@ const Input = styled.input`
   font-size: 1rem;
 `;
 
-export default function Modal({closeModal}) {
-    const [category, setCategory] = React.useState("");
-    const categoryFieldRef = React.useRef(null);
+export default function CategoryForm({ closeModal, category = null }) {
+  const [categoryName, setCategoryName] = React.useState(
+    (category && category.name) || ""
+  );
+  const categoryFieldRef = React.useRef(null);
 
-    const SaveButton =
-        category.trim().length > 0 ? ActiveSaveButton : InactiveSaveButton;
+  const SaveButton =
+    categoryName.trim().length > 0 ? ActiveSaveButton : InactiveSaveButton;
 
-    React.useEffect(() => {
-        categoryFieldRef.current.focus();
-    });
+  React.useEffect(() => {
+    categoryFieldRef.current.focus();
+  });
 
-    const handleClickOnCancel = event => {
-        closeModal();
-    };
+  const handleClickOnCancel = event => {
+    closeModal();
+  };
 
-    const dispatch = useDispatch();
-    const handleClickOnSave = () => {
-        if (category.trim().length === 0) {
-            return false;
-        }
+  const dispatch = useDispatch();
+  const handleClickOnSave = () => {
+    if (categoryName.trim().length === 0) {
+      return false;
+    }
 
-        dispatch(
-            createCategory({
-                id: uuid(),
-                name: category,
-                cards: [],
-            }),
-        );
+    if (category) {
+      dispatch(
+        updateCategory({
+          ...category,
+          name: categoryName
+        })
+      );
+    } else {
+      dispatch(
+        createCategory({
+          id: uuid(),
+          name: categoryName,
+          cards: []
+        })
+      );
+    }
 
-        closeModal();
-    };
+    closeModal();
+  };
 
-    const handleOnChange = e => {
-        setCategory(e.target.value);
-    };
+  const handleOnChange = e => {
+    setCategoryName(e.target.value);
+  };
 
-    const handleKeyDown = (e) => {
-        if (e.key === 'Enter') {
-            handleClickOnSave();
-        }
-    };
+  const handleKeyDown = e => {
+    if (e.key === "Enter") {
+      handleClickOnSave();
+    }
+  };
 
-    return (
-        <>
-            <ModalOverlay></ModalOverlay>
-            <ModalWrapper>
-                <Content>
-                    <H5>Neuer Ordner</H5>
-                    <Input
-                        autoFocus
-                        ref={categoryFieldRef}
-                        type="text"
-                        value={category}
-                        onChange={handleOnChange}
-                        onKeyDown={handleKeyDown}
-                    />
-                </Content>
-                <ControlFooter>
-                    <CancelButton onClick={handleClickOnCancel}>Abbrechen</CancelButton>
-                    <SaveButton onClick={handleClickOnSave}>Speichern</SaveButton>
-                </ControlFooter>
-            </ModalWrapper>
-        </>
-    );
+  return (
+    <>
+      <ModalOverlay></ModalOverlay>
+      <ModalWrapper>
+        <Content>
+          <H5>Neuer Ordner</H5>
+          <Input
+            autoFocus
+            ref={categoryFieldRef}
+            type="text"
+            value={categoryName}
+            onChange={handleOnChange}
+            onKeyDown={handleKeyDown}
+          />
+        </Content>
+        <ControlFooter>
+          <CancelButton onClick={handleClickOnCancel}>Abbrechen</CancelButton>
+          <SaveButton onClick={handleClickOnSave}>Speichern</SaveButton>
+        </ControlFooter>
+      </ModalWrapper>
+    </>
+  );
 }

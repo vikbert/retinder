@@ -6,8 +6,8 @@ import NavLink from "../../components/NavLink";
 import NavReload from "../../components/NavReload";
 import NavTop from "../../components/NavTop";
 import { deleteCategory } from "../categoryWidget";
-import Modal from "../form/CategoryForm";
 import CategoryItem from "./CategoryItem";
+import CategoryForm from "../form/CategoryForm";
 
 const CategoryIndex = ({ props }) => {
   const [inEdit, setInEdit] = useState(false);
@@ -16,12 +16,8 @@ const CategoryIndex = ({ props }) => {
   const [title, setTitle] = useState("Ordner");
 
   const categories = useSelector(state => state.categories);
+  const counterOfAllCards = useSelector(state => state.cards.count);
   const dispatch = useDispatch();
-
-  let counterOfAllCards = 0;
-  categories.allIds.forEach(categoryId => {
-    counterOfAllCards += categories.byId[categoryId].cards.length;
-  });
 
   const handleClickOnEdit = () => {
     if (inEdit && selectedIds.length > 0) {
@@ -82,7 +78,7 @@ const CategoryIndex = ({ props }) => {
       </NavTop>
 
       <section className="page-content bg">
-        {modalOpen && <Modal closeModal={handleToggleModal} />}
+        {modalOpen && <CategoryForm closeModal={handleToggleModal} />}
         <HeaderTitle title={title} />
         {/* all cards for all categories */}
         <CategoryItem
@@ -95,11 +91,7 @@ const CategoryIndex = ({ props }) => {
             <CategoryItem
               key={index}
               inEdit={inEdit}
-              category={{
-                id: categories.byId[id].id,
-                name: categories.byId[id].name,
-                counter: categories.byId[id].cards.length
-              }}
+              category={categories.byId[id]}
               selectCategory={selectCategory}
               deselectCategory={deselectCategory}
             />

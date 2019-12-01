@@ -5,6 +5,7 @@ import { lineItemSelected } from "../../components/Style";
 import CheckedIcon from "../../components/svg/CheckedIcon";
 import CircleIcon from "../../components/svg/CircleIcon";
 import FolderIcon from "../../components/svg/FolderIcon";
+import CategoryForm from "../form/CategoryForm";
 
 const ListItemIcon = styled.div`
   padding: 10px 16px 4px 20px;
@@ -48,6 +49,7 @@ export default function CategoryItem({
 }) {
   const [clicked, setClicked] = useState(false);
   const [selected, setSelected] = useState(false);
+  const [editFormOpen, setEditFormOpen] = useState(false);
 
   const ListItemView = styled.div`
     display: flex;
@@ -55,7 +57,13 @@ export default function CategoryItem({
     ${(selected || clicked) && lineItemSelected}
   `;
 
-  const handleClickOnItemContent = () => {
+  const handleClickOnItemContent = e => {
+    if (inEdit) {
+      e.preventDefault();
+      setEditFormOpen(true);
+      return;
+    }
+
     setClicked(!clicked);
   };
 
@@ -98,8 +106,8 @@ export default function CategoryItem({
             <LineItemContent onClick={handleClickOnItemContent}>
               <ContentText>{category.name}</ContentText>
               <ContentCounter>
-                {category.counter && (
-                  <CardCounter>{category.counter}</CardCounter>
+                {category.cards && (
+                  <CardCounter>{category.cards.length}</CardCounter>
                 )}
                 <span>❯</span>
               </ContentCounter>
@@ -107,6 +115,12 @@ export default function CategoryItem({
           </Link>
         </ListItemContainer>
       </ListItemView>
+      {editFormOpen && (
+        <CategoryForm
+          category={category}
+          closeModal={() => setEditFormOpen(false)}
+        />
+      )}
     </>
   );
 }

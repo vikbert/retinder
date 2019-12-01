@@ -32,6 +32,7 @@ const reducer = (state = initialState.cards, action) => {
       id = action.card.id;
       cloned.byId[id] = action.card;
       cloned.allIds = Object.keys(cloned.byId);
+      cloned.count = cloned.allIds.length;
 
       return cloned;
 
@@ -46,6 +47,7 @@ const reducer = (state = initialState.cards, action) => {
       cloned.allIds = cloned.allIds.filter(id => {
         return id !== action.card.id;
       });
+      cloned.count = cloned.allIds.length;
 
       return cloned;
 
