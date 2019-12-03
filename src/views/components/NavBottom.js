@@ -12,5 +12,5 @@ export default function NavBottom({ children, ...props }) {
     padding: 10px 20px;
   `;
 
-  return <Bottom>{children}</Bottom>;
+  return <Bottom className="bg">{children}</Bottom>;
 }
