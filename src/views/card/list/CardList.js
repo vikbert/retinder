@@ -157,7 +157,8 @@ const CardList = () => {
       <NavBottom>
         <NavLink
           text="Review"
-          position="left"i
+          position="left"
+          i
           disabled={cardCounter === 0 || inEdit}
           handleClick={handleOpenSlide}
         />
@@ -168,7 +169,7 @@ const CardList = () => {
           text={inEdit && selectedCards.length ? "Löschen" : "Neue karte"}
           position="right"
           handleClick={handleDeleteOrAddCard}
-          disabled={inEdit || inSlide}
+          disabled={inSlide}
         />
       </NavBottom>
       {renderCardForm}

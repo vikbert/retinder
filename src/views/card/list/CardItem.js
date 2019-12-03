@@ -106,12 +106,6 @@ export default function CardItem({
           </LineItemContent>
         </ListItemContainer>
       </ListItemView>
-      {/* <CardForm
-        category={category}
-        formVisible={formVisible}
-        hideForm={() => true}
-        card={card}
-      /> */}
     </>
   );
 }

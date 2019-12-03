@@ -76,6 +76,7 @@ export default function CardForm({
       dispatch(createCard(cardData));
     }
 
+    setText("");
     hideForm();
   };
 
@@ -84,7 +85,7 @@ export default function CardForm({
   };
 
   useEffect(() => {
-    setText(card ? card.title + "\n\n" + card.description : "");
+    setText(card ? card.description : "");
   }, [card]);
 
   return (

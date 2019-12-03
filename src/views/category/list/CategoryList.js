@@ -33,6 +33,7 @@ const CategoryIndex = ({ props }) => {
   };
 
   const handleClickDelete = e => {
+    console.log(selectedIds);
     if (selectedIds.length === 0) {
       return;
     }
