@@ -2,7 +2,6 @@ import React from "react";
 import axios from "axios";
 import styled from "styled-components";
 import { storageGet, storageSet } from "../../utils/LocalStorage";
-import { primary } from "../components/Style";
 
 const ModalOverlay = styled.div`
   z-index: 50;

@@ -4,6 +4,7 @@ import { lineItemSelected } from "../../components/Style";
 import CheckedIcon from "../../components/svg/CheckedIcon";
 import CircleIcon from "../../components/svg/CircleIcon";
 import CardIcon from "../../components/svg/CardIcon";
+import CardForm from "../form/CardForm";
 
 const ListItemIcon = styled.div`
   padding: 10px 16px 4px 20px;
@@ -31,16 +32,23 @@ const LineItemContent = styled.div`
 `;
 const ContentText = styled.div`
   margin-right: auto;
+  display: block;
+`;
+
+const RankingContainer = styled.div`
+  font-size: 10px;
 `;
 
 export default function CardItem({
   inEdit,
   card,
   select = () => {},
-  deselect = () => {}
+  deselect = () => {},
+  category = null
 }) {
   const [clicked, setClicked] = useState(false);
   const [selected, setSelected] = useState(false);
+  const [formVisible, setFormVisible] = useState(true);
 
   const ListItemView = styled.div`
     display: flex;
@@ -48,7 +56,7 @@ export default function CardItem({
     ${(selected || clicked) && lineItemSelected}
   `;
 
-  const handleClickOnItem = id => {
+  const handleClickOnItemIcon = id => {
     if (!inEdit) {
       return;
     }
@@ -62,14 +70,25 @@ export default function CardItem({
     setClicked(!clicked);
   };
 
+  const handleClickOnItemContent = () => {
+    setFormVisible(true);
+    if (inEdit) {
+      setFormVisible(prevFormVisible => {
+        return true;
+      });
+      console.log("set form visible to true for editing card", formVisible);
+    }
+  };
+
   if (!card) {
     return null;
   }
+
   return (
     <>
       <ListItemView>
         <ListItemContainer>
-          <ListItemIcon onClick={() => handleClickOnItem(card.id)}>
+          <ListItemIcon onClick={() => handleClickOnItemIcon(card.id)}>
             {inEdit && card.id ? (
               selected ? (
                 <CheckedIcon />
@@ -82,17 +101,24 @@ export default function CardItem({
           </ListItemIcon>
           <LineItemContent
             onClick={() => {
-              handleClickOnItem(card.id);
+              handleClickOnItemContent(card.id);
             }}
           >
             <ContentText>
-              {card.description.length > 23
-                ? card.description.slice(0, 23) + "..."
-                : card.description}
+              {card.title.length > 23
+                ? card.title.slice(0, 23) + "..."
+                : card.title}
+              <RankingContainer>Ranking: {card.ranking}</RankingContainer>
             </ContentText>
           </LineItemContent>
         </ListItemContainer>
       </ListItemView>
+      <CardForm
+        category={category}
+        formVisible={formVisible}
+        hideForm={() => true}
+        card={card}
+      />
     </>
   );
 }

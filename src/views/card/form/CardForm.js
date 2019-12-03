@@ -45,11 +45,13 @@ const ButtonWithoutStyle = styled.button`
 `;
 
 export default function CardForm({
-  category,
+  category = null,
   formVisible = false,
-  hideForm = null
+  hideForm = null,
+  card = null
 }) {
   const dispatch = useDispatch();
+  console.log("#### ");
 
   const handleSubmitForm = event => {
     event.preventDefault();
@@ -62,10 +64,12 @@ export default function CardForm({
       return false;
     }
 
+    const firstLine = descriptionContent.split("\n")[0].slice(0, 30);
+
     dispatch(
       createCard({
         id: uuid(),
-        title: "",
+        title: firstLine,
         ranking: 100,
         description: descriptionContent,
         category: (category && category.id) || null

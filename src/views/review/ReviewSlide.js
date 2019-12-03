@@ -40,10 +40,6 @@ const SlideTitle = styled.div`
 const H4 = styled.h4`
   ${defaultPadding}
 `;
-const Pre = styled.pre`
-  background-color: #fff;
-  padding: 0;
-`;
 
 export default function ReviewSlide({
   slideVisible,
@@ -95,7 +91,7 @@ export default function ReviewSlide({
               <Slide>
                 <SlideContent>
                   <SlideTitle>{card.title}</SlideTitle>
-                  <Pre>{card.description}</Pre>
+                  {card.description}
                 </SlideContent>
               </Slide>
             ) : (

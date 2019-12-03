@@ -1,8 +1,8 @@
 import React from "react";
 import styled from "styled-components";
 
-export default function NavBottom({children, ...props}) {
-    const Bottom = styled.div`
+export default function NavBottom({ children, ...props }) {
+  const Bottom = styled.div`
     display: flex;
     justify-content: ${props.spaceEvenly ? `space-evenly` : `space-between`};
     position: fixed;
@@ -12,5 +12,5 @@ export default function NavBottom({children, ...props}) {
     padding: 10px 20px;
   `;
 
-    return <Bottom className="bg">{children}</Bottom>;
+  return <Bottom>{children}</Bottom>;
 }

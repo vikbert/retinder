@@ -75,9 +75,17 @@ const CardList = () => {
         card={allCards.byId[cardId]}
         select={selectCard}
         deselect={deselectCard}
+        cartegoy={currentCategory ? currentCategory : null}
       />
     ));
-  }, [idsForCurrentList, inEdit, allCards.byId, selectCard, deselectCard]);
+  }, [
+    idsForCurrentList,
+    inEdit,
+    allCards.byId,
+    selectCard,
+    deselectCard,
+    currentCategory
+  ]);
 
   const handleUpdateSlideIndex = () => {
     setSlideIndex(prevslideIndex => {
@@ -107,7 +115,7 @@ const CardList = () => {
         {/* todo: show this title, if HeaderTitle not in view ports */}
         <NavLink text={""} position="center" />
         <NavLink
-          text="Bearbeiten"
+          text={inEdit ? "Abbrechen" : "Bearbeiten"}
           position="right"
           disabled={cardCounter === 0}
           handleClick={handleClickOnEdit}
