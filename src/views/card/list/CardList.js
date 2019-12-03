@@ -13,10 +13,11 @@ import CardItem from "./CardItem";
 
 const CardList = () => {
   const [formVisible, setFormVisible] = useState(false);
-  const [slideVisible, setSlideVisible] = useState(false);
+  const [inSlide, setInSlide] = useState(false);
   const [inEdit, setInEdit] = useState(false);
   const [slideIndex, setSlideIndex] = useState(0);
   const [selectedCards, setSelectedCards] = useState([]);
+  const [cardInEdit, setCardInEdit] = useState(null);
 
   const categories = useSelector(state => state.categories);
   const allCards = useSelector(state => state.cards);
@@ -28,6 +29,7 @@ const CardList = () => {
   const idsForCurrentList = categoryId
     ? categories.byId[categoryId].cards
     : allCards.allIds;
+
   const cardCounter = idsForCurrentList.length;
   const dispatch = useDispatch();
 
@@ -41,6 +43,7 @@ const CardList = () => {
         dispatch(deleteCard(allCards.byId[cardId]));
       });
     } else {
+      setCardInEdit(null);
       setFormVisible(true);
     }
   };
@@ -67,12 +70,37 @@ const CardList = () => {
     });
   }, []);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  const editCard = cardId => {
+    setCardInEdit(prevCard => {
+      const currentCard = allCards.byId[cardId];
+
+      return currentCard;
+    });
+
+    setFormVisible(true);
+  };
+
+  const renderCardForm = React.useMemo(() => {
+    return (
+      <CardForm
+        category={currentCategory}
+        formVisible={formVisible}
+        hideForm={() => {
+          setFormVisible(false);
+        }}
+        card={cardInEdit}
+      />
+    );
+  }, [cardInEdit, currentCategory, formVisible]);
+
   const renderedCards = React.useMemo(() => {
     return idsForCurrentList.map((cardId, slideIndex) => (
       <CardItem
         key={cardId}
         inEdit={inEdit}
         card={allCards.byId[cardId]}
+        edit={editCard}
         select={selectCard}
         deselect={deselectCard}
         cartegoy={currentCategory ? currentCategory : null}
@@ -82,6 +110,7 @@ const CardList = () => {
     idsForCurrentList,
     inEdit,
     allCards.byId,
+    editCard,
     selectCard,
     deselectCard,
     currentCategory
@@ -94,11 +123,11 @@ const CardList = () => {
   };
 
   const handleOpenSlide = () => {
-    setSlideVisible(true);
+    setInSlide(true);
   };
 
   const handleCloseSlide = () => {
-    setSlideVisible(false);
+    setInSlide(false);
   };
 
   return (
@@ -128,8 +157,8 @@ const CardList = () => {
       <NavBottom>
         <NavLink
           text="Review"
-          position="left"
-          disabled={cardCounter === 0}
+          position="left"i
+          disabled={cardCounter === 0 || inEdit}
           handleClick={handleOpenSlide}
         />
         <NavLinkNote
@@ -139,23 +168,17 @@ const CardList = () => {
           text={inEdit && selectedCards.length ? "Löschen" : "Neue karte"}
           position="right"
           handleClick={handleDeleteOrAddCard}
+          disabled={inEdit || inSlide}
         />
       </NavBottom>
-      <CardForm
-        category={currentCategory}
-        formVisible={formVisible}
-        hideForm={() => {
-          setFormVisible(false);
-        }}
-      />
-      {}
+      {renderCardForm}
       <ReviewSlide
         card={
           cardCounter && slideIndex < cardCounter
             ? allCards.byId[idsForCurrentList[slideIndex]]
             : null
         }
-        slideVisible={slideVisible}
+        slideVisible={inSlide}
         closeSlide={handleCloseSlide}
         updateSlideIndex={handleUpdateSlideIndex}
       />

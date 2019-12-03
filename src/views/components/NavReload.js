@@ -1,7 +1,7 @@
 import React from "react";
 import styled from "styled-components";
 import SettingIcon from "./svg/SettingIcon";
-import Sync from "./Sync";
+import Sidebar from "./Sidebar";
 
 export default function NavReload() {
   const [syncOpen, setSyncOpen] = React.useState(false);
@@ -17,7 +17,7 @@ export default function NavReload() {
   };
   return (
     <>
-      <Sync isOpen={syncOpen} closeSync={closeSync} />
+      <Sidebar isOpen={syncOpen} closeSync={closeSync} />
       <IconWrapper onClick={handleOnClick}>
         <SettingIcon />
       </IconWrapper>

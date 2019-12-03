@@ -1,10 +1,10 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import styled, { css } from "styled-components";
 import { primary } from "../../components/Style";
 import NavLink from "../../components/NavLink";
 import NavTop from "../../components/NavTop";
-import { createCard } from "../cardWidget";
+import { createCard, updateCard } from "../cardWidget";
 import { uuid } from "../../../utils/UUID";
 
 const FullscreenModal = styled.div`
@@ -51,34 +51,41 @@ export default function CardForm({
   card = null
 }) {
   const dispatch = useDispatch();
-  console.log("#### ");
+  const [text, setText] = useState("");
 
   const handleSubmitForm = event => {
     event.preventDefault();
-
-    const formElement = event.currentTarget;
-    const formData = new FormData(formElement);
-    const descriptionContent = formData.get("description").trim();
+    const descriptionContent = text.trim();
 
     if (descriptionContent.length === 0) {
       return false;
     }
 
     const firstLine = descriptionContent.split("\n")[0].slice(0, 30);
+    const cardData = {
+      id: card ? card.id : uuid(),
+      title: firstLine,
+      ranking: 100,
+      description: descriptionContent,
+      category: (category && category.id) || null
+    };
 
-    dispatch(
-      createCard({
-        id: uuid(),
-        title: firstLine,
-        ranking: 100,
-        description: descriptionContent,
-        category: (category && category.id) || null
-      })
-    );
+    if (card) {
+      dispatch(updateCard(cardData));
+    } else {
+      dispatch(createCard(cardData));
+    }
 
-    formElement.reset();
     hideForm();
   };
+
+  const handleOnChange = event => {
+    setText(event.target.value);
+  };
+
+  useEffect(() => {
+    setText(card ? card.title + "\n\n" + card.description : "");
+  }, [card]);
 
   return (
     formVisible &&
@@ -109,6 +116,8 @@ export default function CardForm({
                   autoFocus
                   name="description"
                   placeholder="Kontent von Karte eingeben"
+                  value={text}
+                  onChange={handleOnChange}
                   required
                 />
               </ContentContainer>

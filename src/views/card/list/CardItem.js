@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import styled from "styled-components";
 import { lineItemSelected } from "../../components/Style";
+import CardIcon from "../../components/svg/CardIcon";
 import CheckedIcon from "../../components/svg/CheckedIcon";
 import CircleIcon from "../../components/svg/CircleIcon";
-import CardIcon from "../../components/svg/CardIcon";
-import CardForm from "../form/CardForm";
 
 const ListItemIcon = styled.div`
   padding: 10px 16px 4px 20px;
@@ -44,11 +43,11 @@ export default function CardItem({
   card,
   select = () => {},
   deselect = () => {},
+  edit = () => {},
   category = null
 }) {
   const [clicked, setClicked] = useState(false);
   const [selected, setSelected] = useState(false);
-  const [formVisible, setFormVisible] = useState(true);
 
   const ListItemView = styled.div`
     display: flex;
@@ -70,13 +69,11 @@ export default function CardItem({
     setClicked(!clicked);
   };
 
-  const handleClickOnItemContent = () => {
-    setFormVisible(true);
+  const handleClickOnItemContent = e => {
     if (inEdit) {
-      setFormVisible(prevFormVisible => {
-        return true;
-      });
-      console.log("set form visible to true for editing card", formVisible);
+      e.preventDefault();
+
+      edit(card.id);
     }
   };
 
@@ -99,11 +96,7 @@ export default function CardItem({
               <CardIcon />
             )}
           </ListItemIcon>
-          <LineItemContent
-            onClick={() => {
-              handleClickOnItemContent(card.id);
-            }}
-          >
+          <LineItemContent onClick={handleClickOnItemContent}>
             <ContentText>
               {card.title.length > 23
                 ? card.title.slice(0, 23) + "..."
@@ -113,12 +106,12 @@ export default function CardItem({
           </LineItemContent>
         </ListItemContainer>
       </ListItemView>
-      <CardForm
+      {/* <CardForm
         category={category}
         formVisible={formVisible}
         hideForm={() => true}
         card={card}
-      />
+      /> */}
     </>
   );
 }

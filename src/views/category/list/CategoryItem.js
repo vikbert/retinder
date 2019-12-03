@@ -24,6 +24,9 @@ const ListItemContainer = styled.div`
   height: 100%;
   overflow: hidden;
   border-bottom: 1px solid hsla(0, 0%, 52.9%, 0.2);
+  :focus {
+    background-color: rgba(247, 202, 0, 0.24);
+  }
 `;
 const LineItemContent = styled.div`
   display: flex;
