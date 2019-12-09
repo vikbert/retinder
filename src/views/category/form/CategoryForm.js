@@ -18,9 +18,9 @@ const ModalOverlay = styled.div`
 const ModalWrapper = styled.div`
   display: flex;
   flex-direction: column;
-  width: 280px;
+  width: 340px;
   max-width: 100%;
-  height: 160px;
+  height: 210px;
   max-height: 100%;
 
   position: fixed;
@@ -63,7 +63,6 @@ const Content = styled.div`
 `;
 
 const Input = styled.input`
-  width: 100%;
   margin: 12px 0;
   border: 1px solid #cf9707;
   padding: 8px;

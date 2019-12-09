@@ -1,20 +1,25 @@
+html * {
+  font-family: Arial !important;
+}
 body {
   overflow: hidden;
   background-image: url(../images/bg.png);
-}
-#root {
-  height: 100vh;
 }
 
 /* make real paper effect with bg image */
 .bg {
   background-image: url(../images/bg.png);
   background-repeat: repeat;
+  
 }
 
 /* 100 View Height to make the page can fill the full screen */
 .page-content {
   margin: 40px 0;
+  height: 100vh;
+}
+a{
+  text-decoration: none;
 }
 
 /* clickable DIV as href link */
