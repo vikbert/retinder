@@ -37,6 +37,8 @@ const H4 = styled.h4`
 `;
 
 export default function ReviewSlide({
+  cardCounter,
+  slideIndex,
   slideVisible,
   card = null,
   closeSlide = () => true,
@@ -55,6 +57,9 @@ export default function ReviewSlide({
       })
     );
     updateSlideIndex();
+    if (cardCounter === slideIndex) {
+      handleCloseSlideView();
+    }
   };
 
   const handleIncrementCardRanking = cardId => {
@@ -65,6 +70,17 @@ export default function ReviewSlide({
       })
     );
     updateSlideIndex();
+    if (cardCounter === slideIndex) {
+      handleCloseSlideView();
+    }
+  };
+
+  const getDescriptionWithoutFirstLine = textblock => {
+    var lines = textblock.split("\n");
+    // remove one line, starting at the first position
+    lines.splice(0, 1);
+    // join the array back into a single string
+    return lines.join("\n");
   };
 
   return (
@@ -73,7 +89,11 @@ export default function ReviewSlide({
         <FullscreenModal>
           <NavTop style={{ zIndex: 101 }}>
             <NavLink text="" position="left" />
-            <NavLink text="" position="center" disabled={false} />
+            <NavLink
+              text={`${slideIndex} von ${cardCounter}`}
+              position="center"
+              disabled={false}
+            />
             <NavLink
               text="Fertig"
               position="right"
@@ -86,7 +106,7 @@ export default function ReviewSlide({
               <Slide>
                 <SlideContent>
                   <SlideTitle>{card.title}</SlideTitle>
-                  {card.description}
+                  {getDescriptionWithoutFirstLine(card.description)}
                 </SlideContent>
               </Slide>
             ) : (

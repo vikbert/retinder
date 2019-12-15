@@ -174,6 +174,8 @@ const CardList = () => {
       </NavBottom>
       {renderCardForm}
       <ReviewSlide
+        cardCounter={cardCounter}
+        slideIndex={slideIndex + 1}
         card={
           cardCounter && slideIndex < cardCounter
             ? allCards.byId[idsForCurrentList[slideIndex]]
