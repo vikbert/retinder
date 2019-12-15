@@ -24,6 +24,16 @@ export const updateCard = card => ({
   card
 });
 
+const sortCardIdsByRankingDesc = cloned => {
+  const sortedIds = cloned.allIds.sort((keyA, keyB) => {
+    return cloned.byId[keyB].ranking - cloned.byId[keyA].ranking;
+  });
+
+  cloned.allIds = sortedIds;
+
+  return cloned;
+};
+
 const reducer = (state = initialState.cards, action) => {
   let cloned = { ...state };
   let id;
@@ -34,13 +44,13 @@ const reducer = (state = initialState.cards, action) => {
       cloned.allIds = Object.keys(cloned.byId);
       cloned.count = cloned.allIds.length;
 
-      return cloned;
+      return sortCardIdsByRankingDesc(cloned);
 
     case UPDATE_CARD:
       id = action.card.id;
       cloned.byId[id] = action.card;
 
-      return cloned;
+      return sortCardIdsByRankingDesc(cloned);
 
     case DELETE_CARD:
       delete cloned.byId[action.card.id];
