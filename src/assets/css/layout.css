@@ -10,15 +10,14 @@ body {
 .bg {
   background-image: url(../images/bg.png);
   background-repeat: repeat;
-  
 }
 
 /* 100 View Height to make the page can fill the full screen */
 .page-content {
-  margin: 40px 0;
+  margin: 40px -10px;
   height: 100vh;
 }
-a{
+a {
   text-decoration: none;
 }
 

@@ -17,15 +17,10 @@ const Slide = styled.div`
   display: flex;
   flex-direction: column;
   justify-content: space-between;
-  height: 60vh;
+  height: 100%;
   overflow-x: hidden;
   overflow-y: auto;
-  border-radius: 5px;
-  background-color: #fff;
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.4);
   position: relative;
-  -moz-box-shadow: 0 1px 4px rgba(0, 0, 0, 0.3),
-    0 0 40px rgba(0, 0, 0, 0.1) inset;
 `;
 
 const SlideContent = styled.div`
@@ -76,7 +71,7 @@ export default function ReviewSlide({
     slideVisible && (
       <>
         <FullscreenModal>
-          <NavTop>
+          <NavTop style={{ zIndex: 101 }}>
             <NavLink text="" position="left" />
             <NavLink text="" position="center" disabled={false} />
             <NavLink

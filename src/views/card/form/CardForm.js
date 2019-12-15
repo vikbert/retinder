@@ -30,7 +30,7 @@ const inputWithoutBorder = css`
   }
 `;
 const ContentContainer = styled.div`
-  padding: 10px 20px;
+  padding: 10px 30px;
 `;
 
 const TextContent = styled.textarea`
@@ -116,7 +116,6 @@ export default function CardForm({
                 <TextContent
                   autoFocus
                   name="description"
-                  placeholder="Kontent von Karte eingeben"
                   value={text}
                   onChange={handleOnChange}
                   required

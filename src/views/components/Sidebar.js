@@ -102,7 +102,7 @@ export default function Sidebar({ isOpen, closeSync }) {
       <>
         <ModalOverlay onClick={closeSync}></ModalOverlay>
         <ModalWrapper>
-          <ul>
+          <ul style={{ listStyle: "none", paddingLeft: "0" }}>
             <li>
               <StyledButton onClick={handleDownload}>
                 Herunterladen
