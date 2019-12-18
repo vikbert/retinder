@@ -67,6 +67,9 @@ const Input = styled.input`
   border: 1px solid #cf9707;
   padding: 8px;
   font-size: 1rem;
+  :focus {
+    outline: none;
+  }
 `;
 
 export default function CategoryForm({ closeModal, category = null }) {

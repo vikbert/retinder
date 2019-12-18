@@ -26,7 +26,7 @@ export const H4 = styled.h4`
 `;
 
 export const H5 = styled.h5`
-  font-size: 0.83rem;
+  font-size: 1rem;
   ${fontWeight}
 `;
 

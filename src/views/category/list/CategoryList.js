@@ -33,7 +33,6 @@ const CategoryIndex = ({ props }) => {
   };
 
   const handleClickDelete = e => {
-    console.log(selectedIds);
     if (selectedIds.length === 0) {
       return;
     }
@@ -43,7 +42,6 @@ const CategoryIndex = ({ props }) => {
         dispatch(deleteCategory(categoryId));
       }
     });
-    // window.location.reload();
   };
 
   const updateTitle = counter => {
@@ -81,12 +79,10 @@ const CategoryIndex = ({ props }) => {
       <section className="page-content bg">
         {modalOpen && <CategoryForm closeModal={handleToggleModal} />}
         <HeaderTitle title={title} />
-        {/* all cards for all categories */}
         <CategoryItem
           inEdit={inEdit}
           category={{ name: "Alle karte", countAllCards: counterOfAllCards }}
         />
-        {/* category list with cards counter */}
         {categories.allIds.length > 0 &&
           categories.allIds.map((id, index) => (
             <CategoryItem

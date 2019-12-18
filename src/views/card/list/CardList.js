@@ -146,7 +146,7 @@ const CardList = () => {
         <NavLink
           text={inEdit ? "Abbrechen" : "Bearbeiten"}
           position="right"
-          disabled={cardCounter === 0}
+          disabled={cardCounter === 0 || currentCategory === null}
           handleClick={handleClickOnEdit}
         />
       </NavTop>
@@ -169,7 +169,7 @@ const CardList = () => {
           text={inEdit && selectedCards.length ? "Löschen" : "Neue karte"}
           position="right"
           handleClick={handleDeleteOrAddCard}
-          disabled={inSlide}
+          disabled={inSlide || currentCategory === null}
         />
       </NavBottom>
       {renderCardForm}
