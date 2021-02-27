@@ -1,5 +1,11 @@
 <div align="center">
-  <img src="./docs/image2.png" width="280px" alt="retinder" />
+  
+  <table>
+  <tr>
+  <td><img src="./docs/image1.png" width="280px" alt="retinder" /></td>
+  <td><img src="./docs/image2.png" width="280px" alt="retinder" /></td>
+  </tr>
+  </table>
   <h3>A React Clone for iOS note app</h3>
   <p>A React clone for iOS note app</p>
 
@@ -14,9 +20,6 @@
 </div>
 
 ---
-
-<img src="./docs/image1.png" width="280px" alt="retinder" />
-
 
 ## install
 ```bash
